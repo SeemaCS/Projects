@@ -8,23 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/black"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".LaunchActivity"
-    tools:showIn="@layout/activity_launch">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/home_cook_list_view"
-            android:layout_gravity="center_horizontal"
-            android:dividerHeight="2dp"
-            android:listSelector="@drawable/list_selector" />
-    </ScrollView>
+    tools:context="project.scu.edu.chew.HomeCookDetailsActivity"
+    tools:showIn="@layout/activity_home_cook_details">
 
 </RelativeLayout>
