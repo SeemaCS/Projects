@@ -1,9 +1,12 @@
-package project.scu.edu.chew;
+package project.scu.edu.chew.helpers;
 
 /**
  * Created by lakshitha on 2/2/16.
  */
 import java.util.List;
+
+import project.scu.edu.chew.models.FoodItem;
+import project.scu.edu.chew.models.HomeCook;
 
 
 public class LoadData {

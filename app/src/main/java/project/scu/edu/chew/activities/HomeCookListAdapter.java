@@ -1,4 +1,4 @@
-package project.scu.edu.chew;
+package project.scu.edu.chew.activities;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -12,6 +12,9 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
+import project.scu.edu.chew.R;
+import project.scu.edu.chew.models.HomeCook;
 
 /**
  * Created by lakshitha on 2/2/16.

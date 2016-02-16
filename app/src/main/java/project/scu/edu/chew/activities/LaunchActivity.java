@@ -1,4 +1,4 @@
-package project.scu.edu.chew;
+package project.scu.edu.chew.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import project.scu.edu.chew.helpers.LoadData;
+import project.scu.edu.chew.R;
+import project.scu.edu.chew.models.HomeCook;
 
 // Proj names - Chew, Hook, Gobble, Hoober
 public class LaunchActivity extends AppCompatActivity {

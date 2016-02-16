@@ -1,4 +1,4 @@
-package project.scu.edu.chew;
+package project.scu.edu.chew.models;
 
 import java.io.Serializable;
 
