@@ -1,5 +1,6 @@
 package project.scu.edu.chew.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -51,12 +52,10 @@ public class HCListActivity5 extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                // Start from here
-                   /* Intent intent = new Intent(getBaseContext(), DetailsActivity.class);
-                    intent.putExtra("animal", animals.get(position));
+                    Intent intent = new Intent(getBaseContext(), MainKitchenActivity6.class);
+                    intent.putExtra("homecook", homeCooks.get(position));
                     if (intent != null)
-                        startActivity(intent); */
-
+                        startActivity(intent);
 
             }
         });

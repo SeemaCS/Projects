@@ -117,4 +117,6 @@
     <string name="title_activity_splash_activity1_2">SplashActivity1_2</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_main_kitchen6">MainKitchenActivity6</string>
+    <string name="title_activity_kitchen_details7">KitchenDetailsActivity7</string>
 </resources>

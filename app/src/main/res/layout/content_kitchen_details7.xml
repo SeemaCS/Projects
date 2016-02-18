@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/whitewood"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="project.scu.edu.chew.activities.KitchenDetailsActivity7"
+    tools:showIn="@layout/activity_kitchen_details7">
+
+    <!-- Kitchen Details -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:id="@+id/kitchenDetailsLayout"
+        android:background="@drawable/border_set"
+        android:layout_alignParentTop="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="220dp"
+                android:textColor="@color/brown"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginLeft="15dp"
+                android:text="Kitchen1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5.2mi"/>
+
+        </LinearLayout>
+
+
+
+        <RatingBar
+            android:id="@+id/ratingBar1"
+            style="@style/foodRatingBar"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </RatingBar>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Italian" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="8:00 AM - 9:00 PM"/>
+    </LinearLayout>
+
+    <!-- User Photos -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/kitchenDetailsLayout"
+        android:id="@+id/userPhotosLayout"
+        android:orientation="horizontal">
+
+
+    </LinearLayout>
+
+    <!-- Address -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userPhotosLayout"
+        android:id="@+id/addressLayout"
+        android:orientation="horizontal">
+
+
+    </LinearLayout>
+
+    <!-- Phone -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/phoneLayout"
+        android:layout_below="@+id/addressLayout"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/call_icon"/>
+
+    </LinearLayout>
+
+    <!-- Menu -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneLayout"
+        android:orientation="horizontal"
+        android:id="@+id/menuLayout">
+
+
+    </LinearLayout>
+
+    <!-- Rating & Reviews -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/menuLayout"
+        android:orientation="horizontal"
+        android:id="@+id/reviewsLayout">
+
+
+    </LinearLayout>
+
+
+    <!-- Bottom Toolbar -->
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/bottomToolbar"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="65dp"
+            android:background="@drawable/home_icon"/>
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="65dp"
+            android:background="@drawable/search_icon"/>
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="65dp"
+            android:background="@drawable/user_icon"/>
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/shopping_cart_icon"/>
+    </Toolbar>
+
+
+</RelativeLayout>
