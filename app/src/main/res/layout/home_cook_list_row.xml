@@ -30,10 +30,9 @@
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
         android:layout_toEndOf="@+id/thumbnail"
-        android:textColor="#FCDC3B"
+        android:textColor="@color/brown"
         android:typeface="sans"
         android:textSize="15sp"
-        android:textStyle="bold"
         />
 
 
