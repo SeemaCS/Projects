@@ -24,8 +24,20 @@ public class HCListActivity5 extends AppCompatActivity {
         setContentView(R.layout.activity_hclist);
 
 
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.topToolbar);
+//        setSupportActionBar(toolbar);
+//
+//        Toolbar bottomToolbar = (Toolbar) findViewById(R.id.bottomToolbar);
+//        bottomToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//
+//                return true;
+//            }
+//        });
+        // Inflate a menu to be displayed in the toolbar
+      //  bottomToolbar.inflateMenu(R.menu.menu_main);
+//        setS(bottomToolbar);
 
         // List view of dishes + thumbnails + Home cook names
         ListView listView = (ListView) findViewById(R.id.home_cook_list_view);

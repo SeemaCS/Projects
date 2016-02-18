@@ -13,13 +13,39 @@
         <!--android:theme="@style/AppTheme.AppBarOverlay">-->
 
         <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/toolbar"-->
+            <!--android:id="@+id/topToolbar"-->
             <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--android:background="?attr/colorPrimary"-->
-            <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="#80FF9900"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--app:popupTheme="@style/AppTheme.PopupOverlay">-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginLeft="80dp"-->
+                <!--android:src="@drawable/gobble_logo"/>-->
+            <!--</android.support.v7.widget.Toolbar>-->
+
+
 
     <!--</android.support.design.widget.AppBarLayout>-->
+
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/bottomToolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="#80FF9900"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--app:theme="@style/Base.Theme.AppCompat.CompactMenu"-->
+        <!-->-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_marginLeft="80dp"-->
+            <!--android:src="@drawable/gobble_logo"/>-->
+    <!--</android.support.v7.widget.Toolbar>-->
 
     <include layout="@layout/content_hclist" />
 
@@ -30,5 +56,7 @@
         <!--android:layout_gravity="bottom|end"-->
         <!--android:layout_margin="@dimen/fab_margin"-->
         <!--android:src="@android:drawable/ic_dialog_email" />-->
+
+
 
 </android.support.design.widget.CoordinatorLayout>
