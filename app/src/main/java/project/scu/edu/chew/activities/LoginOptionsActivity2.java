@@ -25,7 +25,7 @@ public class LoginOptionsActivity2 extends AppCompatActivity {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginOptionsActivity2.this, LaunchActivity.class);
+                Intent intent = new Intent(LoginOptionsActivity2.this, HCListActivity5.class);
                 if(intent != null)
                     startActivity(intent);
 

@@ -2,7 +2,6 @@ package project.scu.edu.chew.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,19 +11,21 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import project.scu.edu.chew.helpers.LoadData;
 import project.scu.edu.chew.R;
+import project.scu.edu.chew.helpers.LoadData;
 import project.scu.edu.chew.models.HomeCook;
 
 // Proj names - Chew, Hook, Gobble, Hoober
-public class LaunchActivity extends AppCompatActivity {
+public class HCListActivity5 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launch);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_hclist);
+
+
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         // List view of dishes + thumbnails + Home cook names
         ListView listView = (ListView) findViewById(R.id.home_cook_list_view);
