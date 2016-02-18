@@ -74,36 +74,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:gravity="center"
         >
 
         <Button
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginRight="40dp"
-            android:background="@android:color/transparent"
-            android:text="Fb" />
+            android:background="@drawable/facebook"
+           />
 
         <Button
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
             android:layout_marginRight="40dp"
-            android:background="@android:color/transparent"
-            android:text="In" />
+            android:background="@drawable/insta"
+           />
 
         <Button
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginRight="40dp"
-            android:background="@android:color/transparent"
-            android:text="Gp" />
+            android:background="@drawable/googleplus"
+         />
 
         <Button
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:background="@android:color/transparent"
-            android:text="tw" />
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/twitter"
+           />
 
 
     </LinearLayout>
