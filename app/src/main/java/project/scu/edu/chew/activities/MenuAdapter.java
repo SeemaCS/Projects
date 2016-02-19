@@ -14,36 +14,36 @@ import java.io.InputStream;
 import java.util.List;
 
 import project.scu.edu.chew.R;
-import project.scu.edu.chew.models.HomeCook;
+import project.scu.edu.chew.models.FoodItem;
 
 /**
  * Created by lakshitha on 2/2/16.
  */
 
 
-public class HomeCookListAdapter extends ArrayAdapter<HomeCook> {
+public class MenuAdapter extends ArrayAdapter<FoodItem> {
 
-    private final List<HomeCook> homeCooks;
+    private final List<FoodItem> foodItems;
 
-    public HomeCookListAdapter(Context context, int resource, List<HomeCook> homeCooks) {
-        super(context, resource, homeCooks);
-        this.homeCooks = homeCooks;
+    public MenuAdapter(Context context, int resource, List<FoodItem> foodItems) {
+        super(context, resource, foodItems);
+        this.foodItems = foodItems;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        HomeCook homeCook = homeCooks.get(position);
+        FoodItem foodItem = foodItems.get(position);
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
-        View row = inflater.inflate(R.layout.home_cook_list_row, null);
+        View row = inflater.inflate(R.layout.menu_list_row, null);
 
-        TextView nameTextView = (TextView) row.findViewById(R.id.home_cook_row_name);
-        nameTextView.setText(homeCook.getName());
+        TextView nameTextView = (TextView) row.findViewById(R.id.menu_row_name);
+        nameTextView.setText(foodItem.getName());
 
         try {
-            ImageView imageView = (ImageView) row.findViewById(R.id.home_cook_row_image);
-            InputStream inputStream = getContext().getAssets().open(homeCook.getImagePath());
+            ImageView imageView = (ImageView) row.findViewById(R.id.menu_row_image);
+            InputStream inputStream = getContext().getAssets().open(foodItem.getImagePath());
             Drawable drawable = Drawable.createFromStream(inputStream, null);
             imageView.setImageDrawable(drawable);
         } catch (IOException e) {

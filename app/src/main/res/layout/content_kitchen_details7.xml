@@ -64,65 +64,207 @@
             android:layout_marginLeft="15dp"
             android:text="8:00 AM - 9:00 PM"/>
     </LinearLayout>
-
-    <!-- User Photos -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/kitchenDetailsLayout"
-        android:id="@+id/userPhotosLayout"
-        android:orientation="horizontal">
-
-
-    </LinearLayout>
-
-    <!-- Address -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/userPhotosLayout"
-        android:id="@+id/addressLayout"
-        android:orientation="horizontal">
-
-
-    </LinearLayout>
-
-    <!-- Phone -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/phoneLayout"
-        android:layout_below="@+id/addressLayout"
-        android:orientation="horizontal">
-
-        <ImageView
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:fillViewport="true"
+        android:layout_below="@+id/kitchenDetailsLayout">
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/call_icon"/>
+            android:orientation="vertical">
+            <!-- User Photos -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:id="@+id/userPhotosLayout"
+                android:background="@drawable/border_set"
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@color/black" />
 
-    <!-- Menu -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/phoneLayout"
-        android:orientation="horizontal"
-        android:id="@+id/menuLayout">
+            </LinearLayout>
+
+            <!-- Address -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userPhotosLayout"
+                android:id="@+id/addressLayout"
+                android:background="@drawable/border_set"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="7dp"
+                        android:layout_marginLeft="7dp"
+                        android:background="@drawable/address_icon"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text= "Address"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text= "500 E El Camino Real, Santa Clara, CA 95050"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Phone -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/phoneLayout"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/border_set"
+                android:layout_below="@+id/addressLayout"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:background="@drawable/call_icon"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text= "Call"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text= "888-888-8888"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Menu -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/phoneLayout"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/border_set"
+                android:orientation="horizontal"
+                android:id="@+id/menuLayout">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:duplicateParentState="true"
+                    android:clickable="false"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:duplicateParentState="true"
+                        android:clickable="false"
+                        android:background="@drawable/restaurant_menu_icon"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:duplicateParentState="true"
+                        android:clickable="false"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:duplicateParentState="true"
+                            android:clickable="false"
+                            android:text= "Explore the Menu"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </LinearLayout>
 
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <!-- Rating & Reviews -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/menuLayout"
-        android:orientation="horizontal"
-        android:id="@+id/reviewsLayout">
+            <!-- Rating & Reviews -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/menuLayout"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                android:orientation="horizontal"
+                android:id="@+id/reviewsLayout">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:background="@drawable/rating_icon"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text= "Reviews &amp; Ratings"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
+                            android:text="Start your review here"
+                            android:textStyle="italic"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp">
+                        <ListView
+                            android:layout_width="match_parent"
+                            android:layout_height="1000dp"
+                            android:id="@+id/ratingsList">
+                        </ListView>
+                        </LinearLayout>
 
-    </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 
     <!-- Bottom Toolbar -->

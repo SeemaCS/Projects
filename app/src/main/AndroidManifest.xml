@@ -50,6 +50,14 @@
         <activity
             android:name=".activities.KitchenDetailsActivity7"
             android:label="@string/title_activity_kitchen_details7"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.MainMenuListActivity8"
+            android:label="@string/title_activity_main_menu_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.FoodItemDetailsActivity9"
+            android:label="@string/title_activity_food_item_details9"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
