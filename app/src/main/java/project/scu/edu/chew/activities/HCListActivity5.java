@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ import project.scu.edu.chew.models.HomeCook;
 
 // Proj names - Chew, Hook, Gobble, Hoober
 public class HCListActivity5 extends AppCompatActivity {
+
+    Button searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +55,22 @@ public class HCListActivity5 extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    Intent intent = new Intent(getBaseContext(), MainKitchenActivity6.class);
-                    intent.putExtra("homecook", homeCooks.get(position));
-                    if (intent != null)
-                        startActivity(intent);
+                Intent intent = new Intent(getBaseContext(), MainKitchenActivity6.class);
+                intent.putExtra("homecook", homeCooks.get(position));
+                if (intent != null)
+                    startActivity(intent);
+
+            }
+        });
+
+        searchButton = (Button) findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+                if (intent != null)
+                    startActivity(intent);
 
             }
         });

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -19,6 +20,9 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
     ListView reviewsRatings;
     LinearLayout menuLayout;
 
+    LinearLayout userPhotosLayout;
+    private Integer image [] = {R.drawable.food11, R.drawable.food12, R.drawable.food13, R.drawable.food14, R.drawable.food15, R.drawable.food16};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,8 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().hide();
+
+        addImagesToGallery();
 
         Intent i = getIntent();
         homeCook = (HomeCook)i.getSerializableExtra("homecook");
@@ -41,6 +47,22 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
                     startActivity(intent);
             }
         });
+    }
+
+    public void addImagesToGallery() {
+        userPhotosLayout = (LinearLayout) findViewById(R.id.userPhotosLayout);
+        for(Integer images : image) {
+            userPhotosLayout.addView(getImageView(images));
+        }
+    }
+
+    public View getImageView(Integer images) {
+        ImageView imageView = new ImageView(getApplicationContext());
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(0, 0, 10, 0);
+        imageView.setLayoutParams(lp);
+        imageView.setImageResource(images);
+        return imageView;
     }
 
 }

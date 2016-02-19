@@ -58,6 +58,10 @@
         <activity
             android:name=".activities.FoodItemDetailsActivity9"
             android:label="@string/title_activity_food_item_details9"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.SearchActivity"
+            android:label="@string/title_activity_search"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

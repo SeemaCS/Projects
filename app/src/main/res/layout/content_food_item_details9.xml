@@ -53,7 +53,38 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/brown"
-                android:text="$25"/>
+                android:text="Price: $25"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/brown"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="30dp"
+                    android:layout_height="35dp"
+                    android:text="-" />
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:paddingLeft="10dp"
+                    android:text="5"/>
+
+                <Button
+                    android:layout_width="30dp"
+                    android:layout_height="35dp"
+                    android:text="+"/>
+
+
+            </LinearLayout>
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,7 +98,8 @@
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="300dp">
+        android:layout_height="270dp"
+        android:layout_marginBottom="10dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -97,32 +129,105 @@
             android:textStyle="bold"/>
 
         <TableLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:stretchColumns="1">
+           >
             <TableRow>
                 <TextView
                     android:text="Calories"
-                    android:padding="3dip"/>
+                    android:background="@drawable/cell_shape"
+                    android:padding="7dip"/>
                 <TextView
                     android:text="200"
-                    android:padding="3dip"
+                    android:padding="7dip"
+                    android:background="@drawable/cell_shape"
                     android:gravity="right"/>
             </TableRow>
             <TableRow>
                 <TextView
-                    android:text="Calories"
-                    android:padding="3dip"/>
+                    android:text="Carbohydrates"
+                    android:background="@drawable/cell_shape"
+                    android:padding="7dip"/>
                 <TextView
-                    android:text="200"
-                    android:padding="3dip"
+                    android:text="30g"
+                    android:background="@drawable/cell_shape"
+                    android:padding="7dip"
+                    android:gravity="right"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="Protein"
+                    android:background="@drawable/cell_shape"
+                    android:padding="7dip"/>
+                <TextView
+                    android:text="4g"
+                    android:background="@drawable/cell_shape"
+                    android:padding="7dip"
+                    android:gravity="right"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="Fat"
+                    android:background="@drawable/cell_shape"
+                    android:padding="7dip"/>
+                <TextView
+                    android:text="10g"
+                    android:background="@drawable/cell_shape"
+                    android:padding="7dip"
+                    android:gravity="right"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="Fiber"
+                    android:background="@drawable/cell_shape"
+                    android:padding="7dip"/>
+                <TextView
+                    android:text="5g"
+                    android:background="@drawable/cell_shape"
+                    android:padding="7dip"
                     android:gravity="right"/>
             </TableRow>
         </TableLayout>
-
     </LinearLayout>
     </ScrollView>
+
+
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/bottomToolbar"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="55dp"
+            android:background="@drawable/home_icon"/>
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="55dp"
+            android:background="@drawable/search_icon"/>
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="55dp"
+            android:background="@drawable/user_icon"/>
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/shopping_cart_icon"/>
+    </Toolbar>
+
 
 
 </LinearLayout>

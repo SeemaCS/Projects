@@ -1,16 +1,12 @@
 package project.scu.edu.chew.activities;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import project.scu.edu.chew.R;
@@ -41,14 +37,14 @@ public class MenuAdapter extends ArrayAdapter<FoodItem> {
         TextView nameTextView = (TextView) row.findViewById(R.id.menu_row_name);
         nameTextView.setText(foodItem.getName());
 
-        try {
-            ImageView imageView = (ImageView) row.findViewById(R.id.menu_row_image);
-            InputStream inputStream = getContext().getAssets().open(foodItem.getImagePath());
-            Drawable drawable = Drawable.createFromStream(inputStream, null);
-            imageView.setImageDrawable(drawable);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            ImageView imageView = (ImageView) row.findViewById(R.id.menu_row_image);
+//            InputStream inputStream = getContext().getAssets().open(foodItem.getImagePath());
+//            Drawable drawable = Drawable.createFromStream(inputStream, null);
+//            imageView.setImageDrawable(drawable);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         return row;
     }
 }

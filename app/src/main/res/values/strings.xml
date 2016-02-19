@@ -121,4 +121,5 @@
     <string name="title_activity_kitchen_details7">KitchenDetailsActivity7</string>
     <string name="title_activity_main_menu_list">MainMenuListActivity</string>
     <string name="title_activity_food_item_details9">FoodItemDetailsActivity9</string>
+    <string name="title_activity_search">SearchActivity</string>
 </resources>
