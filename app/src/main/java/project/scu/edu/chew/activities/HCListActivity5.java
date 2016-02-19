@@ -2,13 +2,17 @@ package project.scu.edu.chew.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +26,12 @@ public class HCListActivity5 extends AppCompatActivity {
 
     Button searchButton;
     Button mapButton;
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private DrawerLayout mDrawerLayout;
+    private String mActivityTitle;
+    Button navigationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +55,24 @@ public class HCListActivity5 extends AppCompatActivity {
 //        setS(bottomToolbar);
 
         // List view of dishes + thumbnails + Home cook names
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+
+        mDrawerList = (ListView)findViewById(R.id.navList);
+        addDrawerItems();
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(HCListActivity5.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        navigationButton = (Button) findViewById(R.id.navigationButton);
+        navigationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.openDrawer(mDrawerList);
+            }
+        });
+
         ListView listView = (ListView) findViewById(R.id.home_cook_list_view);
 
         final List<HomeCook> homeCooks = new ArrayList<>();
@@ -87,6 +115,12 @@ public class HCListActivity5 extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void addDrawerItems() {
+        String[] itemsArray = { "Home", "Feedback", "About", "Help", "Sign Out" };
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemsArray);
+        mDrawerList.setAdapter(mAdapter);
     }
 
     @Override
