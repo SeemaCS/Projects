@@ -2,79 +2,63 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/whitewood"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    android:background="@drawable/whitewood"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activities.HCListActivity5"
-    tools:showIn="@layout/activity_hclist">
-
-
-        <Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/topToolbar"
-            android:background="@android:color/transparent">
-            <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="90dp"
-                android:background="@drawable/menu_icon"/>
-
-
-
-            <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-                android:layout_marginRight="90dp"
-            android:src="@drawable/gobble_logo"/>
-
-            <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:id="@+id/mapButton"
-                android:background="@drawable/map_icon"/>
-
-        </Toolbar>
-
-
-    
-
+    tools:context="project.scu.edu.chew.activities.CartActivity10"
+    tools:showIn="@layout/activity_cart10">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="400dp"
         android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
 
-            <!--<SearchView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/searchView"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
 
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/home_cook_list_view"
+                android:id="@+id/cart_list_view"
                 android:layout_gravity="center_horizontal"
                 android:dividerHeight="2dp"
-                android:listSelector="@drawable/list_selector" />
+                />
+
+
         </LinearLayout>
 
 
     </ScrollView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total: $50"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/thin_border_set"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/orderButton"
+        android:layout_marginLeft="110dp"
+        android:background="@color/brown"
+        android:textColor="@color/yellow"
+        android:layout_marginBottom="15dp"
+        android:text="Place Order"/>
 
     <Toolbar
         android:layout_width="match_parent"
@@ -93,7 +77,6 @@
         <Button
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:id="@+id/searchButton"
             android:layout_marginRight="55dp"
             android:background="@drawable/search_icon"/>
 
@@ -107,8 +90,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/shopping_cart_icon"/>
-        </Toolbar>
-
+    </Toolbar>
 
 
 </LinearLayout>

@@ -21,6 +21,7 @@ import project.scu.edu.chew.models.HomeCook;
 public class HCListActivity5 extends AppCompatActivity {
 
     Button searchButton;
+    Button mapButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,18 @@ public class HCListActivity5 extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+                if (intent != null)
+                    startActivity(intent);
+
+            }
+        });
+
+        mapButton = (Button) findViewById(R.id.mapButton);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getBaseContext(), MapActivity.class);
                 if (intent != null)
                     startActivity(intent);
 

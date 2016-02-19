@@ -122,4 +122,11 @@
     <string name="title_activity_main_menu_list">MainMenuListActivity</string>
     <string name="title_activity_food_item_details9">FoodItemDetailsActivity9</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_cart10">CartActivity10</string>
+    <string name="title_activity_review">ReviewActivity</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

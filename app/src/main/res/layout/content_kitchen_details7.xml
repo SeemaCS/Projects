@@ -45,7 +45,7 @@
 
         <RatingBar
             android:id="@+id/ratingBar1"
-            style="@style/foodRatingBar"
+            style="@style/foodRatingBarStandard"
             android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -151,25 +151,35 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:duplicateParentState="true"
+                    android:clickable="false"
                     android:orientation="horizontal">
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:duplicateParentState="true"
+                        android:clickable="false"
                         android:layout_marginRight="10dp"
                         android:layout_marginLeft="7dp"
                         android:background="@drawable/call_icon"/>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:duplicateParentState="true"
+                        android:clickable="false"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:duplicateParentState="true"
+                            android:clickable="false"
                             android:text= "Call"
                             android:textStyle="bold"/>
 
                         <TextView
                             android:layout_width="wrap_content"
+                            android:duplicateParentState="true"
+                            android:clickable="false"
                             android:layout_height="wrap_content"
                             android:text= "888-888-8888"/>
                     </LinearLayout>
@@ -253,6 +263,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/reviewHint"
                             android:layout_marginTop="7dp"
                             android:text="Start your review here"
                             android:textStyle="italic"/>
