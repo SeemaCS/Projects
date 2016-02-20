@@ -40,6 +40,8 @@ public class HomeCookListAdapter extends ArrayAdapter<HomeCook> {
 
         TextView nameTextView = (TextView) row.findViewById(R.id.home_cook_row_name);
         nameTextView.setText(homeCook.getName());
+        TextView cuisineTextView = (TextView) row.findViewById(R.id.home_cook_row_cuisine);
+        cuisineTextView.setText(homeCook.getCuisine());
 
         try {
             ImageView imageView = (ImageView) row.findViewById(R.id.home_cook_row_image);

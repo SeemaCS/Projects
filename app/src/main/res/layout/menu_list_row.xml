@@ -44,7 +44,7 @@
         android:textColor="@color/black"
         android:textSize="10sp"
         android:textStyle="italic"
-        android:text="This is a flaky bread"/>
+        />
     </LinearLayout>
 
 

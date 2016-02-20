@@ -37,6 +37,10 @@ public class MenuAdapter extends ArrayAdapter<FoodItem> {
         TextView nameTextView = (TextView) row.findViewById(R.id.menu_row_name);
         nameTextView.setText(foodItem.getName());
 
+
+        TextView descTextView = (TextView) row.findViewById(R.id.menu_row_description);
+        descTextView.setText(foodItem.getDescription());
+
 //        try {
 //            ImageView imageView = (ImageView) row.findViewById(R.id.menu_row_image);
 //            InputStream inputStream = getContext().getAssets().open(foodItem.getImagePath());

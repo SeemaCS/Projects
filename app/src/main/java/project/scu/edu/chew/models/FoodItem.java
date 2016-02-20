@@ -11,6 +11,25 @@ public class FoodItem implements Serializable{
     private String imagePath;
     private String description;
     private double calories;
+    private double price;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    private int quantity;
 
     public FoodItem(String name, String imagePath) {
         this.name = name;

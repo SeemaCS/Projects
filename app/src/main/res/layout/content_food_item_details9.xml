@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/brown"
-                android:text="Paratha"/>
+                android:text="Pasta"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,20 +67,20 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:layout_width="30dp"
-                    android:layout_height="35dp"
-                    android:text="-" />
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/minus_icon" />
 
                 <TextView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:paddingLeft="10dp"
-                    android:text="5"/>
+                    android:text="1"/>
 
                 <Button
-                    android:layout_width="30dp"
-                    android:layout_height="35dp"
-                    android:text="+"/>
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/add_icon"/>
 
 
             </LinearLayout>
@@ -118,8 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="A paratha is a flatbread that originated in the north of the Indian Subcontinent. It is still quite prevalent in the north of India, where wheat is grown and is the traditional staple of the area."/>
-
+            android:text="Pasta (Italian pronunciation: [ˈpasta]) is a staple food of traditional Italian cuisine, with the first reference dating to 1154 in Sicily.It is also commonly used to refer to the variety of pasta dishes. Typically, pasta is a noodle made from an unleavened dough of a durum wheat flour mixed with water or eggs and formed into sheets or various shapes, then cooked by boiling or baking. It can also be made with flour from other cereals or grains.[citation needed] Pastas may be divided into two broad categories, dried (pasta secca) and fresh (pasta fresca)."/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

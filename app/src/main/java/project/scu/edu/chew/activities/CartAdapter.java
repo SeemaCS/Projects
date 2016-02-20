@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -33,8 +34,8 @@ public class CartAdapter extends ArrayAdapter<FoodItem> {
                 (Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.cart_list_row, null);
 
-//        TextView nameTextView = (TextView) row.findViewById(R.id.cart_row_name);
-//        nameTextView.setText("Paratha");
+        TextView nameTextView = (TextView) row.findViewById(R.id.cart_row_name);
+        nameTextView.setText(foodItem.getName());
 
 
 

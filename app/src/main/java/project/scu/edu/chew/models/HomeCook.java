@@ -14,6 +14,7 @@ public class HomeCook implements Serializable{
     private String phone;
     private String time;
     private String name;
+    private String cuisine;
 
     public HomeCook(String name, String phone, String imagePath) {
         this.name = name;
@@ -67,5 +68,14 @@ public class HomeCook implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    public String getCuisine() {
+        return cuisine;
+    }
+
+    public void setCuisine(String cuisine) {
+        this.cuisine = cuisine;
     }
 }

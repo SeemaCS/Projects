@@ -17,7 +17,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/brown"
-            android:text="Paratha"
             android:typeface="sans"
             android:textSize="15sp" />
 
@@ -29,20 +28,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quantity: 2"/>
+                android:text="Quantity: 1"/>
 
             <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="230dp"
-                android:text="X"/>
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="220dp"
+                android:background="@drawable/cancel_icon"/>
 
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price: $50"/>
+            android:text="Price: $25"/>
 
     </LinearLayout>
 

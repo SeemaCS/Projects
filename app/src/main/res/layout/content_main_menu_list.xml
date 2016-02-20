@@ -18,21 +18,28 @@
         android:layout_height="50dp"
         android:id="@+id/topToolbar"
         android:background="@android:color/transparent">
-        <TextView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="90dp"
-            android:text="Menu"/>
+
 
 
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginLeft="140dp"
             android:layout_marginRight="90dp"
             android:src="@drawable/gobble_logo"/>
 
     </Toolbar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="90dp"
+        android:text="MENU"
+        android:textSize="15sp"
+        android:textColor="@color/brown"
+        android:textStyle="bold"/>
 
     <ScrollView
         android:layout_width="match_parent"

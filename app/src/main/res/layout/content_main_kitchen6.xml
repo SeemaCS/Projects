@@ -27,13 +27,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginRight="160dp"
                 android:textColor="@color/brown"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:duplicateParentState="true"
                 android:clickable="false"
-                android:text="Kitchen1"/>
+                android:text="Maria's Kitchen"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -51,6 +51,7 @@
             style="@style/foodRatingBarStandard"
             android:clickable="false"
             android:layout_marginLeft="15dp"
+            android:rating="3.5"
             android:duplicateParentState="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">

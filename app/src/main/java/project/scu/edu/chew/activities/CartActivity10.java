@@ -37,12 +37,8 @@ public class CartActivity10 extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.cart_list_view);
 
         List<FoodItem> foodItems = new ArrayList<>();
-        foodItems.add(new FoodItem("Food1", "food11.jpg"));
-        foodItems.add(new FoodItem("Food1", "food11.jpg"));
-        foodItems.add(new FoodItem("Food1", "food11.jpg"));
-        foodItems.add(new FoodItem("Food1", "food11.jpg"));
-        foodItems.add(new FoodItem("Food1", "food11.jpg"));
-        foodItems.add(new FoodItem("Food1", "food11.jpg"));
+        foodItems.add(new FoodItem("Pasta", "food11.jpg"));
+        foodItems.add(new FoodItem("Pizza", "food11.jpg"));
 
 
         listView.setAdapter(new CartAdapter(this, R.layout.cart_list_row, foodItems));

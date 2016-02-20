@@ -27,12 +27,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="220dp"
+                android:layout_marginRight="160dp"
                 android:textColor="@color/brown"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_marginLeft="15dp"
-                android:text="Kitchen1"/>
+                android:text="Maria's Kitchen"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -47,6 +47,7 @@
             android:id="@+id/ratingBar1"
             style="@style/foodRatingBarStandard"
             android:layout_marginLeft="15dp"
+            android:rating="3.5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -268,12 +269,13 @@
                             android:text="Start your review here"
                             android:textStyle="italic"/>
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingBottom="10dp">
                             <ListView
                                 android:layout_width="match_parent"
                                 android:layout_height="1000dp"
+                                android:textSize="12sp"
                                 android:id="@+id/ratingsList">
                             </ListView>
                         </LinearLayout>

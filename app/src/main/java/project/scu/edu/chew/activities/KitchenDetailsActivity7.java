@@ -29,7 +29,7 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
     private final int REQUEST_CODE_CALL = 1;
 
     LinearLayout userPhotosLayout;
-    private Integer image [] = {R.drawable.food11, R.drawable.food12, R.drawable.food13, R.drawable.food14, R.drawable.food15, R.drawable.food16};
+    private Integer image [] = {R.drawable.food11, R.drawable.lasagna, R.drawable.pasta2, R.drawable.risotto, R.drawable.food15, R.drawable.tiramisu};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
