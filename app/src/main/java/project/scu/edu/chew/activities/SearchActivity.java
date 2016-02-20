@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 
 import project.scu.edu.chew.R;
 
+// Search Screen - Activity to search the home cook list based on filters
 public class SearchActivity extends AppCompatActivity {
 
     @Override

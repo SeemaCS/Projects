@@ -16,7 +16,7 @@ import project.scu.edu.chew.models.FoodItem;
  * Created by lakshitha on 2/2/16.
  */
 
-
+// Adapter class to display the items available in a kitchen.
 public class MenuAdapter extends ArrayAdapter<FoodItem> {
 
     private final List<FoodItem> foodItems;
@@ -37,18 +37,9 @@ public class MenuAdapter extends ArrayAdapter<FoodItem> {
         TextView nameTextView = (TextView) row.findViewById(R.id.menu_row_name);
         nameTextView.setText(foodItem.getName());
 
-
         TextView descTextView = (TextView) row.findViewById(R.id.menu_row_description);
         descTextView.setText(foodItem.getDescription());
 
-//        try {
-//            ImageView imageView = (ImageView) row.findViewById(R.id.menu_row_image);
-//            InputStream inputStream = getContext().getAssets().open(foodItem.getImagePath());
-//            Drawable drawable = Drawable.createFromStream(inputStream, null);
-//            imageView.setImageDrawable(drawable);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         return row;
     }
 }

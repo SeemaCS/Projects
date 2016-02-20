@@ -16,7 +16,7 @@ import project.scu.edu.chew.models.FoodItem;
  * Created by lakshitha on 2/2/16.
  */
 
-
+// Display items in the cart added along with details.
 public class CartAdapter extends ArrayAdapter<FoodItem> {
 
     private final List<FoodItem> foodItems;
@@ -37,16 +37,6 @@ public class CartAdapter extends ArrayAdapter<FoodItem> {
         TextView nameTextView = (TextView) row.findViewById(R.id.cart_row_name);
         nameTextView.setText(foodItem.getName());
 
-
-
-//        try {
-//            ImageView imageView = (ImageView) row.findViewById(R.id.menu_row_image);
-//            InputStream inputStream = getContext().getAssets().open(foodItem.getImagePath());
-//            Drawable drawable = Drawable.createFromStream(inputStream, null);
-//            imageView.setImageDrawable(drawable);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         return row;
     }
 }

@@ -14,6 +14,7 @@ import project.scu.edu.chew.R;
 import project.scu.edu.chew.models.FoodItem;
 import project.scu.edu.chew.models.HomeCook;
 
+// Menu Item List Activity
 public class MainMenuListActivity8 extends AppCompatActivity {
 
     HomeCook homeCook;
@@ -32,7 +33,6 @@ public class MainMenuListActivity8 extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.menu_list_view);
 
         final List<FoodItem> foodItems = homeCook.getFoodItems();
-        //LoadData.populateData(foodItems);
 
         listView.setAdapter(new MenuAdapter(this, R.layout.menu_list_row, foodItems));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

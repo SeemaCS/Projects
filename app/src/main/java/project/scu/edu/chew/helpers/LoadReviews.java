@@ -3,6 +3,8 @@ package project.scu.edu.chew.helpers;
 /**
  * Created by lakshitha on 2/18/16.
  */
+
+// Helper class - to be linked to database later.
 public class LoadReviews {
 
     public static String[] getReviews() {

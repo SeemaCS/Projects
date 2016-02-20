@@ -2,9 +2,6 @@ package project.scu.edu.chew.models;
 
 import java.io.Serializable;
 
-/**
- * Created by lakshitha on 2/2/16.
- */
 public class FoodItem implements Serializable{
 
     private String name;

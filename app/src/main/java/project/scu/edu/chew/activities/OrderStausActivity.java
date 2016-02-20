@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 
 import project.scu.edu.chew.R;
 
+// Thank you Screen - Activity to display thankyou on viewing notification
 public class OrderStausActivity extends AppCompatActivity {
 
     @Override

@@ -14,7 +14,6 @@
     tools:context="project.scu.edu.chew.activities.OrderStausActivity"
     tools:showIn="@layout/activity_order_staus">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

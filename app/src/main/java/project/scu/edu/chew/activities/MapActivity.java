@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 
 import project.scu.edu.chew.R;
 
+// Map - Display all nearby home cooks based on current location
 public class MapActivity extends AppCompatActivity {
 
     @Override

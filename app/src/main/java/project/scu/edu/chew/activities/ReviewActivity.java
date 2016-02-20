@@ -10,6 +10,7 @@ import android.view.View;
 
 import project.scu.edu.chew.R;
 
+// Add New Review Screen - Activity to add a new review, rating and upload pics.
 public class ReviewActivity extends AppCompatActivity {
 
     private final int RESULT_CODE_CAMERA=2;

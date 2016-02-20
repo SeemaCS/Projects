@@ -42,7 +42,6 @@
         </LinearLayout>
 
 
-
         <RatingBar
             android:id="@+id/ratingBar1"
             style="@style/foodRatingBarStandard"

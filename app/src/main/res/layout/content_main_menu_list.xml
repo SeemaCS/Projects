@@ -19,9 +19,6 @@
         android:id="@+id/topToolbar"
         android:background="@android:color/transparent">
 
-
-
-
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"

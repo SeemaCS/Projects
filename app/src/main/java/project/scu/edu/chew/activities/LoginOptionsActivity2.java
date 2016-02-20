@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import project.scu.edu.chew.R;
 
+// Display Login options - home screen
 public class LoginOptionsActivity2 extends AppCompatActivity {
 
     Button skipButton;
@@ -18,8 +19,6 @@ public class LoginOptionsActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_options2);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         skipButton = (Button) findViewById(R.id.skipButton);
         skipButton.setOnClickListener(new View.OnClickListener() {

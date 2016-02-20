@@ -14,6 +14,7 @@ import java.io.InputStream;
 
 import project.scu.edu.chew.R;
 
+// Display menu item details.
 public class FoodItemDetailsActivity9 extends AppCompatActivity {
 
     ImageView foodpic;

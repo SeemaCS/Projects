@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import project.scu.edu.chew.R;
 import project.scu.edu.chew.models.HomeCook;
 
+// Display the kitchen details in brief
 public class MainKitchenActivity6 extends AppCompatActivity {
 
     LinearLayout kitchenLayout;
@@ -25,7 +26,6 @@ public class MainKitchenActivity6 extends AppCompatActivity {
 
         Intent i = getIntent();
         homeCook = (HomeCook)i.getSerializableExtra("homecook");
-
 
         kitchenLayout = (LinearLayout) findViewById(R.id.kitchenLayout);
         kitchenLayout.setOnClickListener(new View.OnClickListener() {

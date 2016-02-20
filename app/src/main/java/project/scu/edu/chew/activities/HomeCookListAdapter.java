@@ -20,7 +20,7 @@ import project.scu.edu.chew.models.HomeCook;
  * Created by lakshitha on 2/2/16.
  */
 
-
+// Adapter to display custom homecook list.
 public class HomeCookListAdapter extends ArrayAdapter<HomeCook> {
 
     private final List<HomeCook> homeCooks;

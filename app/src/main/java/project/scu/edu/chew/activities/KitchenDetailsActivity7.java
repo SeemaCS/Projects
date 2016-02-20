@@ -19,6 +19,7 @@ import project.scu.edu.chew.R;
 import project.scu.edu.chew.helpers.LoadReviews;
 import project.scu.edu.chew.models.HomeCook;
 
+// Display kitchen details
 public class KitchenDetailsActivity7 extends AppCompatActivity {
 
     HomeCook homeCook;

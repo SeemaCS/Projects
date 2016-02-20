@@ -20,7 +20,7 @@ import project.scu.edu.chew.R;
 import project.scu.edu.chew.helpers.LoadData;
 import project.scu.edu.chew.models.HomeCook;
 
-// Proj names - Chew, Hook, Gobble, Hoober
+// Display home cook list
 public class HCListActivity5 extends AppCompatActivity {
 
     Button searchButton;
@@ -37,22 +37,6 @@ public class HCListActivity5 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hclist);
-
-
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.topToolbar);
-//        setSupportActionBar(toolbar);
-//
-//        Toolbar bottomToolbar = (Toolbar) findViewById(R.id.bottomToolbar);
-//        bottomToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//
-//                return true;
-//            }
-//        });
-        // Inflate a menu to be displayed in the toolbar
-      //  bottomToolbar.inflateMenu(R.menu.menu_main);
-//        setS(bottomToolbar);
 
         // List view of dishes + thumbnails + Home cook names
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);

@@ -30,21 +30,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
 
-            <ImageView android:src="@drawable/gobble_logo"
-                android:layout_width="100dp"
-                android:layout_height="72dp"
-                android:layout_marginBottom="24dp"
-                android:layout_gravity="center_horizontal" />
+                <ImageView android:src="@drawable/gobble_logo"
+                    android:layout_width="100dp"
+                    android:layout_height="72dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_gravity="center_horizontal" />
 
-        </LinearLayout>
+            </LinearLayout>
 
 
             <android.support.design.widget.TextInputLayout
@@ -89,7 +89,7 @@
                 android:text="@string/action_sign_in"
                 android:textColor="@color/yellow"
                 android:background="@color/brown"
-                 />
+                />
 
         </LinearLayout>
     </ScrollView>

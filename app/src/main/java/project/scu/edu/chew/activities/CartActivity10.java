@@ -22,6 +22,7 @@ import java.util.List;
 import project.scu.edu.chew.R;
 import project.scu.edu.chew.models.FoodItem;
 
+// Shows the cart details
 public class CartActivity10 extends AppCompatActivity {
 
     Button orderButton;
@@ -40,7 +41,6 @@ public class CartActivity10 extends AppCompatActivity {
         foodItems.add(new FoodItem("Pasta", "food11.jpg"));
         foodItems.add(new FoodItem("Pizza", "food11.jpg"));
 
-
         listView.setAdapter(new CartAdapter(this, R.layout.cart_list_row, foodItems));
 
         orderButton = (Button) findViewById(R.id.orderButton);
@@ -52,8 +52,6 @@ public class CartActivity10 extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     public void showNotification(View view)
@@ -61,7 +59,7 @@ public class CartActivity10 extends AppCompatActivity {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
 
         mBuilder.setSmallIcon(R.drawable.gobble_logo).setColor(Color.rgb(255,153,0));
-       mBuilder.setVibrate(new long[] {100,250}).setDefaults(Notification.DEFAULT_SOUND);
+        mBuilder.setVibrate(new long[] {100,250}).setDefaults(Notification.DEFAULT_SOUND);
         mBuilder.setContentTitle("Notification Alert, Click Me!");
         mBuilder.setContentText("Your order has been successfully placed!");
 
@@ -69,14 +67,12 @@ public class CartActivity10 extends AppCompatActivity {
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addParentStack(OrderStausActivity.class);
 
-// Adds the Intent that starts the Activity to the top of the stack
-       stackBuilder.addNextIntent(resultIntent);
+        stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(resultPendingIntent);
 
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-// notificationID allows you to update the notification later on.
         mNotificationManager.notify(3, mBuilder.build());
     }
 

@@ -13,7 +13,6 @@
     tools:context="project.scu.edu.chew.activities.SearchActivity"
     tools:showIn="@layout/activity_search">
 
-
     <SearchView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

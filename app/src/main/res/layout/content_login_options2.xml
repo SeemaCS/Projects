@@ -19,13 +19,13 @@
         android:layout_height="wrap_content"
         android:gravity="right">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/skipButton"
-                android:background="@color/brown"
-                android:textColor="@color/yellow"
-                android:text="Skip" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/skipButton"
+            android:background="@color/brown"
+            android:textColor="@color/yellow"
+            android:text="Skip" />
 
 
     </LinearLayout>
@@ -35,13 +35,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center">
-            
-            <ImageView
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:src="@drawable/gobble_logo"
-                android:background="@android:color/transparent"
-                />
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/gobble_logo"
+            android:background="@android:color/transparent"
+            />
 
     </LinearLayout>
 
@@ -83,27 +83,27 @@
             android:layout_height="45dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/facebook"
-           />
+            />
 
         <Button
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/insta"
-           />
+            />
 
         <Button
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/googleplus"
-         />
+            />
 
         <Button
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@drawable/twitter"
-           />
+            />
 
 
     </LinearLayout>

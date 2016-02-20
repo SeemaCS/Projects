@@ -9,11 +9,11 @@ import project.scu.edu.chew.models.FoodItem;
 import project.scu.edu.chew.models.HomeCook;
 
 
+// Helper class to load data - to be replaced with database laster.
 public class LoadData {
 
 
     public static void populateData(List<HomeCook> homeCooks) {
-
 
         // #1
         HomeCook homeCook = new HomeCook("Maria's Kitchen", "12345678", "pasta.jpg");

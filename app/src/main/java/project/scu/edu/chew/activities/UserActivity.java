@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 
 import project.scu.edu.chew.R;
 
+// Edit Profile Screen - Activity to edit user profile - name, email and change password
 public class UserActivity extends AppCompatActivity {
 
     @Override

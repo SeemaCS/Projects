@@ -9,6 +9,7 @@ import android.view.View;
 
 import project.scu.edu.chew.R;
 
+// Display homecook details
 public class HomeCookDetailsActivity extends AppCompatActivity {
 
     @Override
