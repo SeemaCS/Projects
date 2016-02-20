@@ -93,6 +93,14 @@
         <activity
             android:name=".activities.NavigationActivity"
             android:label="@string/title_activity_navigation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.OrderStausActivity"
+            android:label="@string/title_activity_order_staus"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.UserActivity"
+            android:label="@string/title_activity_user"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

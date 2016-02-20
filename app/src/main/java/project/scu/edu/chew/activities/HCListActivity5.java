@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +31,7 @@ public class HCListActivity5 extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
     Button navigationButton;
+    Button user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class HCListActivity5 extends AppCompatActivity {
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(HCListActivity5.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HCListActivity5.this, "", Toast.LENGTH_SHORT).show();
             }
         });
         navigationButton = (Button) findViewById(R.id.navigationButton);
@@ -111,6 +111,17 @@ public class HCListActivity5 extends AppCompatActivity {
 
                 Intent intent = new Intent(getBaseContext(), MapActivity.class);
                 if (intent != null)
+                    startActivity(intent);
+
+            }
+        });
+
+        user = (Button)findViewById(R.id.user);
+        user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HCListActivity5.this, UserActivity.class);
+                if(intent != null)
                     startActivity(intent);
 
             }
