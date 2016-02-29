@@ -1,5 +1,3 @@
-package PythonTranslation;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,6 +7,7 @@ import java.util.HashMap;
 public class Node {
 
 	int id;
+	boolean isRunning = true;
 	int port;
 	String ipAddress;
 	int leaderId = -1;
@@ -50,6 +49,7 @@ public class Node {
 	public static void main(String args[]) {
 		Node node = new Node(Integer.parseInt(args[0]));
 		node.loadIpTable();
+		System.out.println("Node " + node.id + " started with port number " + node.port);
 		new Thread(new LeaderElection(node)).start();
 	}
 

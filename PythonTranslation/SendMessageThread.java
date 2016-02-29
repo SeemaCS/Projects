@@ -6,26 +6,24 @@ import java.net.Socket;
 import java.util.Map;
 
 
-public class SendMessage {
+public class SendMessageThread implements Runnable{
 
 	Node n;
 	MessageType type;
 	int receiverId;
 
-	public SendMessage(Node n, MessageType type) {
+	public SendMessageThread(Node n, MessageType type) {
 		this.n = n;
 		this.type = type;
-		run();
 	}
 	
-	public SendMessage(Node n, MessageType type, int receiverId) {
+	public SendMessageThread(Node n, MessageType type, int receiverId) {
 		this.n = n;
 		this.type = type;
 		this.receiverId = receiverId;
-		run();
 	}
 
-	//@Override
+	@Override
 	public void run() {
 		switch(type) {
 		case ELECTION :
@@ -47,7 +45,7 @@ public class SendMessage {
 			for(Map.Entry<Integer, Node> entries : n.peers.entrySet()) {
 				int key = entries.getKey();
 				Node value = entries.getValue();
-				if((key > n.id)) {
+				if(key > n.id) {
 					sendMessageOnSocket(value.port, value.ipAddress, "ELECTION");
 				}
 			}
@@ -61,7 +59,7 @@ public class SendMessage {
 		for(Map.Entry<Integer, Node> entries : n.peers.entrySet()) {
 			int key = entries.getKey();
 			Node value = entries.getValue();
-			if((key != n.id)) {
+			if(key != n.id) {
 				sendMessageOnSocket(value.port, value.ipAddress, "COORDINATOR");
 			}
 		}
@@ -71,7 +69,7 @@ public class SendMessage {
 		for(Map.Entry<Integer, Node> entries : n.peers.entrySet()) {
 			int key = entries.getKey();
 			Node value = entries.getValue();
-			if((key == receiverId)) {
+			if(key == receiverId) {
 				sendMessageOnSocket(value.port, value.ipAddress, "OKAY");
 			}
 		}
@@ -80,9 +78,10 @@ public class SendMessage {
 	public void sendMessageOnSocket(int port, String ipAddress, String msg) {
 		Socket senderSoc;
 		try {
+
 			System.out.println("Sending message to Node on port " + port);
 			InetAddress add = InetAddress.getByName("localhost");
-			
+
 			senderSoc = new Socket(add, port);
 			 System.out.println("Sender socket..");
 			if(senderSoc != null) {

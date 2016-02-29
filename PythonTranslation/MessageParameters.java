@@ -1,5 +1,3 @@
-package PythonTranslation;
-
 import java.io.Serializable;
 
 public class MessageParameters implements Serializable {
