@@ -9,6 +9,7 @@ public class Node {
 	int id;
 	boolean isRunning = true;
 	int port;
+	int udpPort;
 	String ipAddress;
 	int leaderId = -1;
 	boolean terminate = false;
@@ -32,11 +33,13 @@ public class Node {
 				if(this.id == nodeId) {
 					port = Integer.parseInt(tokens[2]);
 					ipAddress = tokens[1];
+					udpPort = Integer.parseInt(tokens[3]);
 				}
 				else {
 					Node n = new Node(nodeId);
 					n.port = Integer.parseInt(tokens[2]);
 					n.ipAddress = tokens[1];
+					n.udpPort = Integer.parseInt(tokens[3]);
 					this.peers.put(n.id, n);
 				}
 			}
@@ -51,6 +54,7 @@ public class Node {
 		node.loadIpTable();
 		System.out.println("Node " + node.id + " started with port number " + node.port);
 		new Thread(new LeaderElection(node)).start();
+		new Thread(new Paxos(node)).start();
 	}
 
 }
