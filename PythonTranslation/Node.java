@@ -26,6 +26,7 @@ public class Node {
 	int leaderId = -1;
 	boolean terminate = false;
 	boolean isNode = true;
+	Logger logger;
 	HashMap<Integer, Node> peers = new HashMap<Integer, Node>();
 	
 	HashMap<Integer, Calendar> log = new HashMap<Integer, Calendar>();
@@ -35,6 +36,7 @@ public class Node {
 	public Node(int id) {
 		this.id = id;
 		this.calendar = new Calendar();
+		logger = new MyLogger(this).LOGGER;
 	}
 
 	public void loadIpTable() {
@@ -156,6 +158,20 @@ public class Node {
 			leader = this;
 		} else {
 			leader = this.peers.get(leaderId);
+		}
+		
+		if(leader == null) {
+			logger.info("Unable to find leader, waiting until one is selected...");
+			while(this.leaderId == -1) {
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			logger.info("Found leader now...scheduling");
+			this.insertAppointment(appointment);
 		}
 		
 		//Ask leader to Send propose msg to others
