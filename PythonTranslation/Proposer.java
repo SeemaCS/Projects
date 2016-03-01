@@ -87,7 +87,8 @@ public class Proposer implements Runnable {
 
 	public void sendAccept(int m, Object v, int logSlot){
 
-		UDPMessage msg = new UDPMessage("accept", m, "Calendar", logSlot);
+		// Redo calendar object
+		UDPMessage msg = new UDPMessage("accept", m, null, logSlot);
 		for(Map.Entry<Integer, Node> entries : node.peers.entrySet()) {
 			int key = entries.getKey();
 			Node value = entries.getValue();
@@ -98,7 +99,8 @@ public class Proposer implements Runnable {
 
 	public void sendCommit(Object v, int logSlot){
 
-		UDPMessage msg = new UDPMessage("accept", -1, "Calendar", logSlot);
+		// Redo calendar object
+		UDPMessage msg = new UDPMessage("accept", -1, null, logSlot);
 		for(Map.Entry<Integer, Node> entries : node.peers.entrySet()) {
 			int key = entries.getKey();
 			Node value = entries.getValue();
