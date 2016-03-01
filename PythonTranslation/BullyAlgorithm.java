@@ -5,15 +5,21 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
+import java.util.logging.Logger;
 
 public class BullyAlgorithm implements Runnable{
 	
 	Node n;
 	int timeout; 
 	ServerSocket serverSoc;  
-
+	Logger logger;
+	
 	public BullyAlgorithm(Node n, int timeout, ServerSocket serverSoc) {
+		
+
 		this.n = n;
+		logger = new MyLogger(n).LOGGER;
+
 		this.timeout = timeout;
 		this.serverSoc = serverSoc;
 	}
@@ -22,31 +28,31 @@ public class BullyAlgorithm implements Runnable{
 	public void run() {
 		//Send message
 
-		System.out.println("Starting Bully Algorithm");
+		logger.info("Starting Bully Algorithm");
 		new Thread(new SendMessageThread(this.n, MessageType.ELECTION)).start();
 		boolean receivedOkay = false;
 		
-		System.out.println("Message sent...waiting to receive object");
+		logger.info("Message sent...waiting to receive object");
 		while(true) {
 			try {
 				serverSoc.setSoTimeout(timeout);
-				 System.out.println("Before recSocket accept...");
+				 logger.info("Before recSocket accept...");
 				Socket receiverSoc = serverSoc.accept();
-				 System.out.println("ReceiverSocket accepted...");
+				 logger.info("ReceiverSocket accepted...");
 				if(receiverSoc != null) {
-					System.out.println("ReceiverSocket not null");
+					logger.info("ReceiverSocket not null");
 				}
 				else {
-					 System.out.println("ReceiverSocket null");
+					 logger.info("ReceiverSocket null");
 				}
 				InputStream is = receiverSoc.getInputStream();
 				ObjectInputStream ois = new ObjectInputStream(is);
 				MessageParameters messageObj = (MessageParameters) ois.readObject();
 				if(messageObj != null) {
-					 System.out.println("Message obj not null");
-					System.out.println("Message msg: = " + messageObj.msg);
-					System.out.println("Message msg id: = " + messageObj.id);
-					System.out.println("Message msg nodeId: = " + n.id);
+					 logger.info("Message obj not null");
+					logger.info("Message msg: = " + messageObj.msg);
+					logger.info("Message msg id: = " + messageObj.id);
+					logger.info("Message msg nodeId: = " + n.id);
 					if((messageObj.msg).equals("COORDINATOR")) {
                                                 n.leaderId = messageObj.id;
                                                 break;
@@ -65,10 +71,10 @@ public class BullyAlgorithm implements Runnable{
 				}
 			} catch (SocketTimeoutException e) {
 
-				System.out.println("Socket timed out...");
-				System.out.println("recievedOkay?.." + receivedOkay);
+				logger.info("Socket timed out...");
+				logger.info("recievedOkay?.." + receivedOkay);
 				if (!receivedOkay){
-					 System.out.println("I am the coordinator..");
+					 logger.info("I am the coordinator..");
 					new Thread(new SendMessageThread(this.n, MessageType.COORDINATOR)).start();
 					n.leaderId = n.id;
 					break;

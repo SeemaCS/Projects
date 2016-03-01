@@ -4,6 +4,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Map;
+import java.util.logging.Logger;
 
 
 public class SendMessage {
@@ -11,15 +12,18 @@ public class SendMessage {
 	Node n;
 	MessageType type;
 	int receiverId;
+	Logger logger;
 
 	public SendMessage(Node n, MessageType type) {
 		this.n = n;
+		logger = new MyLogger(n).LOGGER;
 		this.type = type;
 		run();
 	}
 	
 	public SendMessage(Node n, MessageType type, int receiverId) {
 		this.n = n;
+		logger = new MyLogger(n).LOGGER;
 		this.type = type;
 		this.receiverId = receiverId;
 		run();
@@ -80,29 +84,29 @@ public class SendMessage {
 	public void sendMessageOnSocket(int port, String ipAddress, String msg) {
 		Socket senderSoc;
 		try {
-			System.out.println("Sending message to Node on port " + port);
+			logger.info("Sending message to Node on port " + port);
 			InetAddress add = InetAddress.getByName("localhost");
 			
 			senderSoc = new Socket(add, port);
-			 System.out.println("Sender socket..");
+			 logger.info("Sender socket..");
 			if(senderSoc != null) {
-			 System.out.println("SenderSocket not null");
+			 logger.info("SenderSocket not null");
 			OutputStream os = senderSoc.getOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(os);
 			MessageParameters messageObject = new MessageParameters(n.id, msg);
 			oos.writeObject(messageObject);
 			oos.flush();
-			 System.out.println("oos flushed");
+			 logger.info("oos flushed");
 			senderSoc.close();
-			 System.out.println("Sender socket closed..");
+			 logger.info("Sender socket closed..");
 			}
 			else {
-				System.out.println("Sendersoc is null...");
+				logger.info("Sendersoc is null...");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
-			System.out.println("Port " + port + " is unreachable..");
+			logger.info("Port " + port + " is unreachable..");
 		}
 	}
 

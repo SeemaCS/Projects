@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 public class Node {
 
@@ -52,7 +53,9 @@ public class Node {
 	public static void main(String args[]) {
 		Node node = new Node(Integer.parseInt(args[0]));
 		node.loadIpTable();
-		System.out.println("Node " + node.id + " started with port number " + node.port);
+		Logger logger = new MyLogger(node).LOGGER;
+		
+		logger.info("Node " + node.id + " started with port number " + node.port);
 		new Thread(new LeaderElection(node)).start();
 		new Thread(new Paxos(node)).start();
 	}
