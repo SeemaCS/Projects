@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -27,6 +28,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +43,8 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity3 extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+    private Firebase mFirebaseRef;
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -61,6 +68,8 @@ public class LoginActivity3 extends AppCompatActivity implements LoaderCallbacks
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+
+    private TextView errorMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +104,12 @@ public class LoginActivity3 extends AppCompatActivity implements LoaderCallbacks
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        errorMsg = (TextView) findViewById(R.id.errorMsg);
+
+        Firebase.setAndroidContext(this);
+
+      //  if(mFirebaseRef.getAuth() == null)
     }
 
     private void populateAutoComplete() {
@@ -185,12 +200,37 @@ public class LoginActivity3 extends AppCompatActivity implements LoaderCallbacks
             // form field with an error.
             focusView.requestFocus();
         } else {
+
+            authenticateUser(email, password);
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            //   showProgress(true);
+            //   mAuthTask = new UserLoginTask(email, password);
+            //   mAuthTask.execute((Void) null);
         }
+
+     //   show some progress bar
+
+
+    }
+
+    private void authenticateUser(String email, String password) {
+        mFirebaseRef = new Firebase("https://gobble.firebaseio.com");
+        mFirebaseRef.authWithPassword(email, password, new Firebase.AuthResultHandler() {
+            @Override
+            public void onAuthenticated(AuthData authData) {
+                errorMsg.setText("");
+                Intent intent = new Intent(LoginActivity3.this, HCListActivity5.class);
+                if(intent != null)
+                    startActivity(intent);
+            }
+
+            @Override
+            public void onAuthenticationError(FirebaseError firebaseError) {
+                errorMsg.setText("Login failed " + firebaseError.getMessage());
+            }
+        });
+
     }
 
     private boolean isEmailValid(String email) {
@@ -302,6 +342,7 @@ public class LoginActivity3 extends AppCompatActivity implements LoaderCallbacks
         private final String mEmail;
         private final String mPassword;
 
+
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
@@ -318,13 +359,18 @@ public class LoginActivity3 extends AppCompatActivity implements LoaderCallbacks
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
+            //---
+
+
+            //---
+
+//            for (String credential : DUMMY_CREDENTIALS) {
+//                String[] pieces = credential.split(":");
+//                if (pieces[0].equals(mEmail)) {
+//                    // Account exists, return true if the password matches.
+//                    return pieces[1].equals(mPassword);
+//                }
+//            }
 
             // TODO: register the new account here.
             return true;
