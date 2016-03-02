@@ -51,6 +51,7 @@ public class Proposer implements Runnable {
 		while(true) {
 			if(!commandQueue.isEmpty()) {
 				UDPMessage message = commandQueue.get(commandQueue.size()-1);
+				message.print();
 				if(message.msgType.equals("propose")){
 					sendPrepare(message);
 				}
@@ -136,6 +137,7 @@ public class Proposer implements Runnable {
 
 	public void sendUDPMessage(UDPMessage msg, int udpPort, String ipAddress) {
 		try {
+			msg.print();
 			DatagramSocket socket = new DatagramSocket(node.udpPort);
 			byte[] buf = new byte[4096];
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();

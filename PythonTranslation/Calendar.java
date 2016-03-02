@@ -19,4 +19,15 @@ public class Calendar implements Serializable{
 		}
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		for(Appointment a : appointments) {
+			System.out.println(a);
+		}
+		return "";
+	}
+	
+
+
 }

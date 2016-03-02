@@ -76,7 +76,7 @@ public class Paxos implements Runnable {
 			logger.info("Invalid Message Type");
 			return;
 		}
-		
+		System.out.println("Parsing UDP msg  "+msg);
 		if(msg.msgType.equals("propose")) {
 			int proposedSlot = msg.logSlot;
 			for(int i = 0; i < proposedSlot; i++) {

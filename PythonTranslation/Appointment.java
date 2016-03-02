@@ -5,6 +5,18 @@ import java.util.List;
 
 public class Appointment implements Serializable{
 	
+	@Override
+	public String toString() {
+		System.out.println(name);
+		System.out.println(day);
+		System.out.println(startTime);
+		System.out.println(endTime);
+		for(int i : participants) {
+			System.out.println(i);
+		}
+		return "";
+	}
+
 	String name;
 	String day;
 	String startTime;
