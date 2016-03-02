@@ -1,12 +1,15 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 public class AckListener implements Runnable {
-	
+
 	Proposer proposer;
 	int numNodes;
 	int majority;
-	
+
 	public AckListener(Proposer proposer) {
 		this.proposer = proposer;
 	}
@@ -16,17 +19,20 @@ public class AckListener implements Runnable {
 		while(true) {
 			numNodes = proposer.node.peers.size()+ 1;
 			majority = (int) (Math.ceil(numNodes/2.0));
-			for(int slot= 0; slot < proposer.ackQueues.size(); slot++) {
-				ArrayList<QueueObject> slotQueue = (ArrayList<QueueObject>) proposer.ackQueues.get(slot);
-				int numberAcks = slotQueue.size();
-				Object v = null;
-				if(numberAcks >= majority) {
-					if(!proposer.committedSlots.contains(slot)) {
-						v = slotQueue.get(0);
-						proposer.sendCommit(v, slot);
-						proposer.committedSlots.add(slot);
+
+			//********* CHECK QUEUE ***********
+			for(Map.Entry<Integer, LinkedHashMap<Integer, QueueObject>> slotEntry: this.proposer.ackQueues.entrySet()){
+				Integer slot = slotEntry.getKey();
+				LinkedHashMap<Integer, QueueObject> slotQueue = slotEntry.getValue();
+				int numberacks = slotQueue.size();
+				if(numberacks >= majority) {
+					if(!this.proposer.committedSlots.contains(slot)) {
+						//to get first key
+						Map.Entry<Integer, QueueObject> entry = slotQueue.entrySet().iterator().next();
+						Calendar v = slotQueue.get(entry.getKey()).accVal;
+						this.proposer.sendCommit(v, slot);
+						this.proposer.committedSlots.add(slot);
 					}
-	
 				}
 			}
 			if(proposer.terminate) {

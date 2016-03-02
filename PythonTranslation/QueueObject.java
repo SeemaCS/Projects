@@ -2,15 +2,19 @@
 public class QueueObject {
 	
 	int accNum = -1;
-	Object accVal;
+	Calendar accVal;
 	
-	public QueueObject(int accNum, Object accVal) {
+	public QueueObject(int accNum, Calendar accVal) {
 		this.accNum = accNum;
 		this.accVal = accVal;
 	}
 	
 	public QueueObject(int accNum) {
 		this.accNum = accNum;
+	}
+	
+	public QueueObject(Calendar accVal) {
+		this.accVal = accVal;
 	}
 
 }

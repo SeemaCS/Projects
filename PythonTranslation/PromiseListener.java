@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -17,29 +20,29 @@ public class PromiseListener implements Runnable {
 	@Override
 	public void run() {
 		while(true) {
-			//logSlots = proposer.promiseQueue.keySet();
 			numNodes = proposer.node.peers.size()+ 1;
 			majority = (int) (Math.ceil(numNodes/2.0));
-			//Iterator slot = proposer.promiseQueues.iterator();
-			for(int slot= 0; slot < proposer.promiseQueues.size(); slot++) {
-				ArrayList<QueueObject> slotQueue = (ArrayList<QueueObject>) proposer.promiseQueues.get(slot);
+			
+			for(Map.Entry<Integer, LinkedHashMap<Integer, QueueObject>> slotEntry: this.proposer.promiseQueues.entrySet()){
+				Integer slot = slotEntry.getKey();
+				HashMap<Integer, QueueObject> slotQueue = slotEntry.getValue();
 				int numberPromises = slotQueue.size();
 				if(numberPromises >= majority) {
 					int m = -1;
-					Object v = null;;  // check actual value that is coming for v
-					for(int i = 0; i < numberPromises; i++){
-						QueueObject queueObj = slotQueue.get(i);
-						if(queueObj.accNum != -1 && queueObj.accVal != null) {
-							if(queueObj.accNum > m) {
-								m = proposer.myProposals.get(slot).get(0);
-								v = queueObj.accVal;
+					Calendar v = null;
+					for(Map.Entry<Integer, QueueObject> queueEntry : slotQueue.entrySet()) {
+						int key = queueEntry.getKey();
+						QueueObject value = queueEntry.getValue();
+						if(value.accNum != -1 && value.accVal != null) {
+							if(value.accNum > m) {
+								m = this.proposer.myProposals.get(slot).proposalNumber;
+								v = value.accVal;
 							}
 						}
 					}
-					proposer.sendAccept(m,v,slot);
+					this.proposer.sendAccept(m, v, slot);
 				}
 			}
-			
 			if(proposer.terminate) {
 				break;
 			}
@@ -49,7 +52,6 @@ public class PromiseListener implements Runnable {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 
 }

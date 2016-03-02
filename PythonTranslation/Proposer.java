@@ -8,6 +8,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,11 +20,11 @@ public class Proposer implements Runnable {
 	int currentProposalNumber;
 	List<UDPMessage> commandQueue;
 	List<Integer> committedSlots;
-	ArrayList<ArrayList<Integer>> myProposals;
+	HashMap<Integer, ProposerProposal> myProposals;
 	/*HashMap<Integer, String> promiseQueues;
 	HashMap<Integer, String> ackQueues;*/
-	ArrayList<ArrayList<QueueObject>> promiseQueues;
-	ArrayList<ArrayList<QueueObject>> ackQueues;
+	HashMap<Integer, LinkedHashMap<Integer, QueueObject>> promiseQueues;
+	HashMap<Integer, LinkedHashMap<Integer, QueueObject>> ackQueues;
 	boolean terminate = false;
 	boolean isProposer = true;
 
@@ -33,12 +34,14 @@ public class Proposer implements Runnable {
 		this.currentProposalNumber = this.uid;
 		commandQueue = new ArrayList<UDPMessage>();
 		committedSlots = new ArrayList<Integer>();
-		myProposals = new ArrayList<ArrayList<Integer>>();
-		promiseQueues = new ArrayList<ArrayList<QueueObject>>();
-		ackQueues = new ArrayList<ArrayList<QueueObject>>();
+		myProposals = new HashMap<Integer, ProposerProposal>();
+		promiseQueues = new HashMap<Integer, LinkedHashMap<Integer, QueueObject>>();
+		ackQueues = new HashMap<Integer, LinkedHashMap<Integer, QueueObject>>();
 		/*promiseQueues = new HashMap<Integer, String>();
 		ackQueues = new HashMap<Integer, String>();*/
 	}
+
+
 
 	@Override
 	public void run() {
@@ -73,22 +76,47 @@ public class Proposer implements Runnable {
 	public void sendPrepare(UDPMessage message) {
 		this.currentProposalNumber += 10;
 		int m = currentProposalNumber;
-		
+		Calendar calendar = message.calendar;
+		int logSlot = message.logSlot;
+		this.myProposals.put(logSlot, new ProposerProposal(m, calendar));
 
+		UDPMessage msg = new UDPMessage("prepare", m, null, logSlot, this.node.id);
+
+		for(Map.Entry<Integer, Node> entries : this.node.peers.entrySet()) {
+			int key = entries.getKey();
+			Node value = entries.getValue(); 
+			this.sendUDPMessage(msg, value.port, value.ipAddress);
+		}
 	}
 
 	public void receivePromise(UDPMessage message) {
-
+		LinkedHashMap<Integer, QueueObject> promiseQueueValue = this.promiseQueues.get(message.logSlot) ; 
+		if(promiseQueueValue== null) {
+			promiseQueueValue = new LinkedHashMap<Integer, QueueObject>();
+			promiseQueueValue.put(message.senderID, new QueueObject(message.acceptedNum, message.acceptedVal));
+			this.promiseQueues.put(message.logSlot, promiseQueueValue);
+		}
+		else {
+			promiseQueueValue.put(message.senderID, new QueueObject(message.acceptedNum, message.acceptedVal));
+			this.promiseQueues.put(message.logSlot, promiseQueueValue);
+		}
 	}
 
 	public void receiveAck(UDPMessage message) {
-
+		LinkedHashMap<Integer, QueueObject> ackQueueValue = this.ackQueues.get(message.logSlot) ; 
+		if(ackQueueValue== null) {
+			ackQueueValue = new LinkedHashMap<Integer, QueueObject>();
+			ackQueueValue.put(message.senderID, new QueueObject(message.acceptedVal));
+			this.ackQueues.put(message.logSlot, ackQueueValue);
+		}
+		else {
+			ackQueueValue.put(message.senderID, new QueueObject(message.acceptedVal));
+			this.ackQueues.put(message.logSlot, ackQueueValue);
+		}
 	}
 
-	public void sendAccept(int m, Object v, int logSlot){
-
-		// Redo calendar object
-		UDPMessage msg = new UDPMessage("accept", m, null, logSlot);
+	public void sendAccept(int m, Calendar v, int logSlot){
+		UDPMessage msg = new UDPMessage("accept", m, v, logSlot, this.node.id);
 		for(Map.Entry<Integer, Node> entries : node.peers.entrySet()) {
 			int key = entries.getKey();
 			Node value = entries.getValue();
@@ -97,16 +125,13 @@ public class Proposer implements Runnable {
 
 	}
 
-	public void sendCommit(Object v, int logSlot){
-
-		// Redo calendar object
-		UDPMessage msg = new UDPMessage("accept", -1, null, logSlot);
+	public void sendCommit(Calendar v, int logSlot){
+		UDPMessage msg = new UDPMessage("commit", -1, v, logSlot, this.node.id);
 		for(Map.Entry<Integer, Node> entries : node.peers.entrySet()) {
 			int key = entries.getKey();
 			Node value = entries.getValue();
 			sendUDPMessage(msg, value.udpPort, value.ipAddress);
 		}
-
 	}
 
 	public void sendUDPMessage(UDPMessage msg, int udpPort, String ipAddress) {

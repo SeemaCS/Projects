@@ -27,6 +27,8 @@ public class Node {
 	boolean terminate = false;
 	boolean isNode = true;
 	Logger logger;
+	Acceptor acceptor;
+	Proposer proposer;
 	HashMap<Integer, Node> peers = new HashMap<Integer, Node>();
 	
 	HashMap<Integer, Calendar> log = new HashMap<Integer, Calendar>();
@@ -36,6 +38,8 @@ public class Node {
 	public Node(int id) {
 		this.id = id;
 		this.calendar = new Calendar();
+		this.acceptor = new Acceptor(this);
+		this.proposer = new Proposer(this);
 		logger = new MyLogger(this).LOGGER;
 	}
 
@@ -75,7 +79,7 @@ public class Node {
 		DatagramSocket socket;
 		try {
 			socket = new DatagramSocket(this.udpPort);
-			UDPMessage msgObj = new UDPMessage("terminate", -1, null, -1);
+			UDPMessage msgObj = new UDPMessage("terminate", -1, null, -1, this.id);
 			byte[] buf = new byte[4096];
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -178,7 +182,7 @@ public class Node {
 		DatagramSocket socket;
 		try {
 			socket = new DatagramSocket(this.udpPort);
-			UDPMessage msgObj = new UDPMessage("propose", -1, newCalendar, nextLogSlot);
+			UDPMessage msgObj = new UDPMessage("propose", -1, newCalendar, nextLogSlot, this.id);
 			byte[] buf = new byte[4096];
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
