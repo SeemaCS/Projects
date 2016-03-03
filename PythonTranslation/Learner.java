@@ -13,6 +13,10 @@ public class Learner implements Runnable {
 		while(true) {
 			if(!n.acceptor.commitsQueue.isEmpty()) {
 				CommitQueueObject obj = n.acceptor.commitsQueue.get(n.acceptor.commitsQueue.size()-1);
+				n.acceptor.commitsQueue.remove(n.acceptor.commitsQueue.size()-1);
+				System.out.println("Committing to log file....");
+				System.out.println("Log slot:" + obj.logSlot);
+				System.out.println("Calendar:" + obj.v);
 				n.log.put(obj.logSlot, obj.v);
 				n.calendar = n.log.get(Collections.max(n.log.keySet()));
 			}

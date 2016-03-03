@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,8 +79,13 @@ public class Node {
 		// Send special termination message to itself
 		DatagramSocket socket;
 		try {
-			socket = new DatagramSocket(this.udpPort);
+			InetSocketAddress addr = new InetSocketAddress(this.udpPort);
+			socket = new DatagramSocket(null);
+			socket.setReuseAddress(true);
+			socket.setBroadcast(true);
+			socket.bind(addr);
 			UDPMessage msgObj = new UDPMessage("terminate", -1, null, -1, this.id);
+			msgObj.print();
 			byte[] buf = new byte[4096];
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -165,7 +171,7 @@ public class Node {
 		}
 		
 		if(leader == null) {
-			logger.info("Unable to find leader, waiting until one is selected...");
+			System.out.println("Unable to find leader, waiting until one is selected...");
 			while(this.leaderId == -1) {
 				try {
 					Thread.sleep(10);
@@ -174,15 +180,21 @@ public class Node {
 					e.printStackTrace();
 				}
 			}
-			logger.info("Found leader now...scheduling");
+			System.out.println("Found leader now...scheduling");
 			this.insertAppointment(appointment);
 		}
 		
-		//Ask leader to Send propose msg to others
+		// Send propose msg to leader
 		DatagramSocket socket;
 		try {
-			socket = new DatagramSocket(this.udpPort);
+			System.out.println("Sending propose msg to leader.." + leader.id);
+			InetSocketAddress addr = new InetSocketAddress(this.udpPort);
+			socket = new DatagramSocket(null);
+			socket.setReuseAddress(true);
+			socket.setBroadcast(true);
+			socket.bind(addr);
 			UDPMessage msgObj = new UDPMessage("propose", -1, newCalendar, nextLogSlot, this.id);
+			msgObj.print();
 			byte[] buf = new byte[4096];
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(baos);

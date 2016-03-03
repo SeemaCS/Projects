@@ -1,9 +1,12 @@
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -50,7 +53,9 @@ public class Proposer implements Runnable {
 
 		while(true) {
 			if(!commandQueue.isEmpty()) {
+				System.out.println("In proposer...");
 				UDPMessage message = commandQueue.get(commandQueue.size()-1);
+				commandQueue.remove(commandQueue.size()-1);
 				message.print();
 				if(message.msgType.equals("propose")){
 					sendPrepare(message);
@@ -75,24 +80,31 @@ public class Proposer implements Runnable {
 
 
 	public void sendPrepare(UDPMessage message) {
+		System.out.println("In send Prepare...");
 		this.currentProposalNumber += 10;
 		int m = currentProposalNumber;
 		Calendar calendar = message.calendar;
 		int logSlot = message.logSlot;
 		this.myProposals.put(logSlot, new ProposerProposal(m, calendar));
 
-		UDPMessage msg = new UDPMessage("prepare", m, null, logSlot, this.node.id);
+		UDPMessage msg = new UDPMessage("prepare", m, new Calendar(), logSlot, this.node.id);
 
 		for(Map.Entry<Integer, Node> entries : this.node.peers.entrySet()) {
 			int key = entries.getKey();
 			Node value = entries.getValue(); 
-			this.sendUDPMessage(msg, value.port, value.ipAddress);
+			System.out.println("Sending msg to " + value.id);
+			this.sendUDPMessage(msg, value.udpPort, value.ipAddress);
 		}
+		
+		this.sendUDPMessage(msg, this.node.udpPort, this.node.ipAddress);
 	}
 
 	public void receivePromise(UDPMessage message) {
+		System.out.println("In receive Promise");
+		message.print();
 		LinkedHashMap<Integer, QueueObject> promiseQueueValue = this.promiseQueues.get(message.logSlot) ; 
 		if(promiseQueueValue== null) {
+			System.out.println("No values in promiseQueue for that slot");
 			promiseQueueValue = new LinkedHashMap<Integer, QueueObject>();
 			promiseQueueValue.put(message.senderID, new QueueObject(message.acceptedNum, message.acceptedVal));
 			this.promiseQueues.put(message.logSlot, promiseQueueValue);
@@ -117,12 +129,19 @@ public class Proposer implements Runnable {
 	}
 
 	public void sendAccept(int m, Calendar v, int logSlot){
+		System.out.println("In send Accept");
 		UDPMessage msg = new UDPMessage("accept", m, v, logSlot, this.node.id);
+		msg.print();
+		
 		for(Map.Entry<Integer, Node> entries : node.peers.entrySet()) {
 			int key = entries.getKey();
 			Node value = entries.getValue();
+			System.out.println("Sending accept message to port:" + value.udpPort);
 			sendUDPMessage(msg, value.udpPort, value.ipAddress);
 		}
+		
+		this.sendUDPMessage(msg, this.node.udpPort, this.node.ipAddress);
+
 
 	}
 
@@ -133,12 +152,20 @@ public class Proposer implements Runnable {
 			Node value = entries.getValue();
 			sendUDPMessage(msg, value.udpPort, value.ipAddress);
 		}
+		
+		this.sendUDPMessage(msg, this.node.udpPort, this.node.ipAddress);
+
 	}
 
 	public void sendUDPMessage(UDPMessage msg, int udpPort, String ipAddress) {
 		try {
+			System.out.println("Sending message to (Node on port) " + udpPort);
 			msg.print();
-			DatagramSocket socket = new DatagramSocket(node.udpPort);
+			DatagramSocket socket = new DatagramSocket(null);
+			InetSocketAddress addr = new InetSocketAddress(node.udpPort);
+			socket.setReuseAddress(true);
+			socket.setBroadcast(true);
+			socket.bind(addr);
 			byte[] buf = new byte[4096];
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -149,6 +176,7 @@ public class Proposer implements Runnable {
 			DatagramPacket packet = new DatagramPacket(data, data.length, add, udpPort);
 			socket.send(packet);
 			socket.close();
+			
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -160,5 +188,33 @@ public class Proposer implements Runnable {
 			e.printStackTrace();
 		}
 	}
+	
+//	public void sendUDPMessage1(UDPMessage msg, int udpPort, String ipAddress) {
+//		Socket senderSoc;
+//		try {
+//			System.out.println("Sending message to Node on port " + udpPort);
+//			InetAddress add = InetAddress.getByName("localhost");
+//			
+//			senderSoc = new Socket(add, udpPort);
+//			 System.out.println("Sender socket..");
+//			if(senderSoc != null) {
+//				System.out.println("SenderSocket not null");
+//			OutputStream os = senderSoc.getOutputStream();
+//			ObjectOutputStream oos = new ObjectOutputStream(os);
+//			oos.writeObject(msg);
+//			oos.flush();
+//			System.out.println("oos flushed");
+//			senderSoc.close();
+//			System.out.println("Sender socket closed..");
+//			}
+//			else {
+//				System.out.println("Sendersoc is null...");
+//			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			//e.printStackTrace();
+//			System.out.println("Port " + udpPort + " is unreachable..");
+//		}
+//	}
 
 }

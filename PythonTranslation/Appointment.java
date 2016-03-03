@@ -7,14 +7,22 @@ public class Appointment implements Serializable{
 	
 	@Override
 	public String toString() {
-		System.out.println(name);
-		System.out.println(day);
-		System.out.println(startTime);
-		System.out.println(endTime);
+		String str = "[";
+//		System.out.println(name);
+//		System.out.println(day);
+//		System.out.println(startTime);
+//		System.out.println(endTime);
+		
+		str += "Name:" + name;
+		str += ",Day:" + day;
+		str += ",StartTime:" + startTime;
+		str += ",EndTime:" + endTime;
+		str += ",Participants:(" ;
 		for(int i : participants) {
-			System.out.println(i);
+			//System.out.println(i);
+			str += i + "," ;
 		}
-		return "";
+		return ")]" + str;
 	}
 
 	String name;
