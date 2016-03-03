@@ -285,39 +285,47 @@
         </RelativeLayout>
     </ScrollView>
 
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="525dp"
+        android:layout_marginLeft="15dp"
+        android:name="project.scu.edu.chew.activities.BottomToolbarFragment"
+        android:id="@+id/bottomToolbar">
+    </fragment>
 
     <!-- Bottom Toolbar -->
-    <Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:id="@+id/bottomToolbar"
-        android:background="@android:color/transparent"
-        android:layout_alignParentBottom="true"
-        >
+    <!--<Toolbar-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:id="@+id/bottomToolbar"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!-->-->
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="65dp"
-            android:background="@drawable/home_icon"/>
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginRight="65dp"-->
+            <!--android:background="@drawable/home_icon"/>-->
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="65dp"
-            android:background="@drawable/search_icon"/>
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginRight="65dp"-->
+            <!--android:background="@drawable/search_icon"/>-->
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="65dp"
-            android:background="@drawable/user_icon"/>
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginRight="65dp"-->
+            <!--android:background="@drawable/user_icon"/>-->
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/shopping_cart_icon"/>
-    </Toolbar>
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:background="@drawable/shopping_cart_icon"/>-->
+    <!--</Toolbar>-->
 
 
 </RelativeLayout>

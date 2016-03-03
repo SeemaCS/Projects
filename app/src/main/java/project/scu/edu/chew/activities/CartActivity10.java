@@ -8,49 +8,33 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import project.scu.edu.chew.R;
-import project.scu.edu.chew.models.FoodItem;
 
 // Shows the cart details
-public class CartActivity10 extends AppCompatActivity {
+public class CartActivity10 extends BaseActivity {
 
     Button orderButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart10);
+        //setContentView(R.layout.activity_cart10);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().hide();
 
-        ListView listView = (ListView) findViewById(R.id.cart_list_view);
 
-        List<FoodItem> foodItems = new ArrayList<>();
-        foodItems.add(new FoodItem("Pasta", "food11.jpg"));
-        foodItems.add(new FoodItem("Pizza", "food11.jpg"));
+        TopToolbarFragment toolbarFragment = new TopToolbarFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.toptoolbarcontainer, toolbarFragment).commit();
 
-        listView.setAdapter(new CartAdapter(this, R.layout.cart_list_row, foodItems));
+        CartContentFragment cartContentFragment = new CartContentFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.mainContentcontainer, cartContentFragment).commit();
 
-        orderButton = (Button) findViewById(R.id.orderButton);
-        orderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(CartActivity10.this, "Order has been placed", Toast.LENGTH_SHORT).show();
-                showNotification(v);
-            }
-        });
 
     }
 

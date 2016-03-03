@@ -102,6 +102,10 @@
         <activity
             android:name=".activities.UserActivity"
             android:label="@string/title_activity_user"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.BaseActivity"
+            android:label="@string/title_activity_tool_bar_base"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

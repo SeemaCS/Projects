@@ -28,70 +28,70 @@
 
     </Toolbar>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="90dp"
-        android:text="MENU"
-        android:textSize="15sp"
-        android:textColor="@color/brown"
-        android:textStyle="bold"/>
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="25dp"-->
+        <!--android:layout_marginRight="90dp"-->
+        <!--android:text="MENU"-->
+        <!--android:textSize="15sp"-->
+        <!--android:textColor="@color/brown"-->
+        <!--android:textStyle="bold"/>-->
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:fillViewport="true">
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="450dp"-->
+        <!--android:fillViewport="true">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp">
-
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/menu_list_view"
-                android:layout_gravity="center_horizontal"
-                android:dividerHeight="2dp"
-                android:listSelector="@drawable/list_selector" />
-        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingBottom="10dp">-->
 
 
-    </ScrollView>
+            <!--<ListView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/menu_list_view"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:dividerHeight="2dp"-->
+                <!--android:listSelector="@drawable/list_selector" />-->
+        <!--</LinearLayout>-->
 
 
-    <Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:id="@+id/bottomToolbar"
-        android:background="@android:color/transparent"
-        android:layout_alignParentBottom="true"
-        >
+    <!--</ScrollView>-->
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="55dp"
-            android:background="@drawable/home_icon"/>
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="55dp"
-            android:background="@drawable/search_icon"/>
+    <!--<Toolbar-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:id="@+id/bottomToolbar"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!-->-->
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="55dp"
-            android:background="@drawable/user_icon"/>
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginRight="55dp"-->
+            <!--android:background="@drawable/home_icon"/>-->
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/shopping_cart_icon"/>
-    </Toolbar>
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginRight="55dp"-->
+            <!--android:background="@drawable/search_icon"/>-->
+
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginRight="55dp"-->
+            <!--android:background="@drawable/user_icon"/>-->
+
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:background="@drawable/shopping_cart_icon"/>-->
+    <!--</Toolbar>-->
 
 </LinearLayout>
