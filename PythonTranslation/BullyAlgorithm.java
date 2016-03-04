@@ -1,10 +1,16 @@
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class BullyAlgorithm implements Runnable{
@@ -12,6 +18,7 @@ public class BullyAlgorithm implements Runnable{
 	Node n;
 	int timeout; 
 	ServerSocket serverSoc;  
+	int prevLeaderId = -1;
 	//Logger logger;
 	
 	public BullyAlgorithm(Node n, int timeout, ServerSocket serverSoc) {
@@ -75,16 +82,35 @@ public class BullyAlgorithm implements Runnable{
 				}
 			} catch (SocketTimeoutException e) {
 
+				System.out.println("Socket timed out...");
 				//logger.info("Socket timed out...");
 				//logger.info("recievedOkay?.." + receivedOkay);
 				if (!receivedOkay){
+					System.out.println("Not received okay yet...");
+					System.out.println("n.id : " + n.id);
+					System.out.println("n.leaderId : " + n.leaderId);
 					 //logger.info("I am the coordinator..");
-					if((messageObj != null) && (messageObj.id < n.id)) {
+					if((n.id < n.leaderId)) {
+						
+						System.out.println("I am lesser than leader");
+						System.out.println("But...Let me check if the leader is alive....");
+						if(isNodeReachable(n.leaderId)) {
+							System.out.println("Leader is alive...I am not doing anything");
+						} else {
+							System.out.println("Leader is dead...");
+							System.out.println("I am the coordinator..");
+							new Thread(new SendMessageThread(this.n, MessageType.COORDINATOR)).start();
+							n.leaderId = n.id;
+							break;
+						}
+						
+						
 //						new SendMessage(this.n, MessageType.OKAY, messageObj.id);
 //						new Thread(new SendMessageThread(this.n, MessageType.ELECTION)).start();							
 						
 					} 
 					else {
+						System.out.println("I am greater/equal than leader");
 					System.out.println("I am the coordinator..");
 					new Thread(new SendMessageThread(this.n, MessageType.COORDINATOR)).start();
 					n.leaderId = n.id;
@@ -102,5 +128,72 @@ public class BullyAlgorithm implements Runnable{
 		
 	}
 	
+	
+	public boolean isNodeReachable(int nodeId) {
+		InetSocketAddress address;
 
+			address = new InetSocketAddress("localhost", getNode(nodeId).port);
+			
+			System.out.println("Checking if node id is reachable: " + nodeId);
+			boolean isReachable = sendPingMessageOnSocket(getNode(nodeId).port, getNode(nodeId).ipAddress, "ping");
+			
+			
+		
+	       
+	     return isReachable;
+	}
+
+	
+	public Node getNode(int nodeId) {
+		Node node = null;
+		if(nodeId == n.id)
+			node = n;
+		else {
+			for(Map.Entry<Integer, Node> entry: n.peers.entrySet()) {
+				if(nodeId == entry.getKey()) {
+					node = entry.getValue();
+					break;
+				}
+			}
+		}
+		
+		return node;
+	}
+	
+	public boolean sendPingMessageOnSocket(int port, String ipAddress, String msg) {
+		boolean isPingable = true;
+		Socket senderSoc;
+		try {
+			//logger.info("Sending message to Node on port " + port);
+			InetAddress add = InetAddress.getByName("localhost");
+			
+			senderSoc = new Socket(add, port);
+			// logger.info("Sender socket..");
+			if(senderSoc != null) {
+			// logger.info("SenderSocket not null");
+			OutputStream os = senderSoc.getOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(os);
+			MessageParameters messageObject = new MessageParameters(n.id, "ping");
+			oos.writeObject(messageObject);
+			oos.flush();
+			// logger.info("oos flushed");
+			senderSoc.close();
+			 //logger.info("Sender socket closed..");
+			}
+			else {
+				//logger.info("Sendersoc is null...");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Port " + port + " is unreachable..");
+			isPingable = false;
+		}
+		catch(Exception e) {
+			System.out.println("Port " + port + " is unreachable..");
+			isPingable = false;
+		}
+		
+		return isPingable;
+	}
 }
