@@ -15,11 +15,11 @@ import java.util.logging.Logger;
 public class Paxos implements Runnable {
 
 	Node node;
-	Logger logger;
+	//Logger logger;
 
 	public Paxos(Node node) {
 		this.node = node;
-		logger = new MyLogger(node).LOGGER;
+		//logger = new MyLogger(node).LOGGER;
 	}
 
 	@Override

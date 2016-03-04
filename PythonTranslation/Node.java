@@ -27,7 +27,7 @@ public class Node {
 	int leaderId = -1;
 	boolean terminate = false;
 	boolean isNode = true;
-	Logger logger;
+	//Logger logger;
 	Acceptor acceptor;
 	Proposer proposer;
 	HashMap<Integer, Node> peers = new HashMap<Integer, Node>();
@@ -41,7 +41,7 @@ public class Node {
 		this.calendar = new Calendar();
 		this.acceptor = new Acceptor(this);
 		this.proposer = new Proposer(this);
-		logger = new MyLogger(this).LOGGER;
+		//logger = new MyLogger(this).LOGGER;
 	}
 
 	public void loadIpTable() {
@@ -221,9 +221,9 @@ public class Node {
 	public static void main(String args[]) {
 		Node node = new Node(Integer.parseInt(args[0]));
 		node.loadIpTable();
-		Logger logger = new MyLogger(node).LOGGER;
+		//Logger logger = new MyLogger(node).LOGGER;
 		
-		logger.info("Node " + node.id + " started with port number " + node.port);
+		//logger.info("Node " + node.id + " started with port number " + node.port);
 		new Thread(new LeaderElection(node)).start();
 		new Thread(new Paxos(node)).start();
 		

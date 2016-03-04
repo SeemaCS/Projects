@@ -12,17 +12,17 @@ public class SendMessageThread implements Runnable{
 	Node n;
 	MessageType type;
 	int receiverId;
-	Logger logger;
+	//Logger logger;
 
 	public SendMessageThread(Node n, MessageType type) {
 		this.n = n;
-		logger = new MyLogger(n).LOGGER;
+		//ogger = new MyLogger(n).LOGGER;
 		this.type = type;
 	}
 	
 	public SendMessageThread(Node n, MessageType type, int receiverId) {
 		this.n = n;
-		logger = new MyLogger(n).LOGGER;
+		//logger = new MyLogger(n).LOGGER;
 		this.type = type;
 		this.receiverId = receiverId;
 	}
@@ -83,29 +83,29 @@ public class SendMessageThread implements Runnable{
 		Socket senderSoc;
 		try {
 
-			logger.info("Sending message to Node on port " + port);
+			//logger.info("Sending message to Node on port " + port);
 			InetAddress add = InetAddress.getByName("localhost");
 
 			senderSoc = new Socket(add, port);
-			 logger.info("Sender socket..");
+			 //logger.info("Sender socket..");
 			if(senderSoc != null) {
-			 logger.info("SenderSocket not null");
+			 //logger.info("SenderSocket not null");
 			OutputStream os = senderSoc.getOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(os);
 			MessageParameters messageObject = new MessageParameters(n.id, msg);
 			oos.writeObject(messageObject);
 			oos.flush();
-			 logger.info("oos flushed");
+			 //logger.info("oos flushed");
 			senderSoc.close();
-			 logger.info("Sender socket closed..");
+			 //logger.info("Sender socket closed..");
 			}
 			else {
-				logger.info("Sendersoc is null...");
+				//logger.info("Sendersoc is null...");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
-			logger.info("Port " + port + " is unreachable..");
+			//logger.info("Port " + port + " is unreachable..");
 		}
 	}
 

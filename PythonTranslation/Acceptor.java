@@ -79,6 +79,7 @@ public class Acceptor implements Runnable {
 		
 		if(!this.accNums.keySet().contains(logSlot)) {
 			System.out.println("Inside if loop of receive Prepare");
+			System.out.println("Value of maxPrepare" + this.maxPrepare);
 			this.accNums.put(logSlot, -1);	
 		}
 		

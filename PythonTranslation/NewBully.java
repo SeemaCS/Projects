@@ -7,14 +7,14 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.logging.Logger;
 
-public class BullyAlgorithm implements Runnable{
+public class NewBully {
 	
 	Node n;
 	int timeout; 
 	ServerSocket serverSoc;  
 	//Logger logger;
 	
-	public BullyAlgorithm(Node n, int timeout, ServerSocket serverSoc) {
+	public NewBully(Node n, int timeout, ServerSocket serverSoc) {
 		
 
 		this.n = n;
@@ -24,14 +24,14 @@ public class BullyAlgorithm implements Runnable{
 		this.serverSoc = serverSoc;
 	}
 	
-	@Override
+	
 	public void run() {
 		//Send message
 
 		//logger.info("Starting Bully Algorithm");
 		new Thread(new SendMessageThread(this.n, MessageType.ELECTION)).start();
 		boolean receivedOkay = false;
-		MessageParameters messageObj = null;
+		
 		//logger.info("Message sent...waiting to receive object");
 		while(true) {
 			try {
@@ -47,19 +47,17 @@ public class BullyAlgorithm implements Runnable{
 				}
 				InputStream is = receiverSoc.getInputStream();
 				ObjectInputStream ois = new ObjectInputStream(is);
-				 messageObj = (MessageParameters) ois.readObject();
+				MessageParameters messageObj = (MessageParameters) ois.readObject();
 				if(messageObj != null) {
 					 //logger.info("Message obj not null");
 					//logger.info("Message msg: = " + messageObj.msg);
 					//logger.info("Message msg id: = " + messageObj.id);
 					//logger.info("Message msg nodeId: = " + n.id);
 					if((messageObj.msg).equals("COORDINATOR")) {
-						if(messageObj.id > n.id) {
                                                 n.leaderId = messageObj.id;
                                                 System.out.println("Coordinator is" + n.leaderId);
                                                 System.out.println("Getting out");
                                                 break;
-						}
                                         }
 					if((messageObj.msg).equals("ELECTION")) {
 						if(messageObj.id < n.id) {
@@ -79,17 +77,9 @@ public class BullyAlgorithm implements Runnable{
 				//logger.info("recievedOkay?.." + receivedOkay);
 				if (!receivedOkay){
 					 //logger.info("I am the coordinator..");
-					if((messageObj != null) && (messageObj.id < n.id)) {
-//						new SendMessage(this.n, MessageType.OKAY, messageObj.id);
-//						new Thread(new SendMessageThread(this.n, MessageType.ELECTION)).start();							
-						
-					} 
-					else {
-					System.out.println("I am the coordinator..");
 					new Thread(new SendMessageThread(this.n, MessageType.COORDINATOR)).start();
 					n.leaderId = n.id;
 					break;
-					}
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
