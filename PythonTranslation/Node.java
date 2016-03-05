@@ -9,8 +9,11 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -128,7 +131,8 @@ public class Node {
 			System.out.println("Scheduling appointment...");
 			
 			Appointment appointment = parseAppointment(tokens);
-			this.insertAppointment(appointment);
+			boolean canInsert = this.insertAppointment(appointment);
+			System.out.println("Is appointment Valid: " + canInsert);
 		}
 	}
 	
@@ -159,8 +163,78 @@ public class Node {
 		return appointment;
 	}
 	
-	public void insertAppointment(Appointment appointment) {
+	public boolean checkAppointmentConflict(Appointment myAppointment) {
+		List<Appointment> appointments = this.calendar.appointments;
+		for(Appointment app : appointments) {
+			if(isConflicting(app, myAppointment)) {
+				System.out.println("Is appointment conflicting");
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean isConflicting(Appointment app1, Appointment app2) {
+		System.out.println("Checking if appointments conflicting...");
+		if(app1 == app2) {
+			return false;
+		}
+		if(!(app1.day.equals(app2.day))) {
+			return false;
+		}
 		
+		List<Integer> participants1 = app1.participants;
+		List<Integer> participants2 = app2.participants;
+		
+		List<Integer> commonParticipants = listIntersection(participants1, participants2);
+		
+		if(commonParticipants.isEmpty()){
+			return false;
+		}
+		
+		SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
+		Date s1 = null;
+		Date s2 = null;
+		Date e1 = null;
+		Date e2 = null;
+		
+		try {
+			 s1 = parser.parse(app1.startTime);
+			 s2 = parser.parse(app2.startTime);
+			 e1 = parser.parse(app1.endTime);
+			 e2 = parser.parse(app2.endTime);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		System.out.println("Time Check: "+ s1 + s2 + e1 + e2);
+		
+		if(e1.before(s2) || e1.equals(s2)) {
+			return false;
+		}
+		if(e2.before(s1) || e2.equals(s1)) {
+			return false;
+		}	
+		
+		return true;
+	}
+	
+	public List<Integer> listIntersection(List<Integer> l1, List<Integer> l2) {
+		List<Integer> newList = new ArrayList<Integer>();
+		for(Integer i : l1) {
+			if(l2.contains(i)) {
+				newList.add(i);
+			}
+		}
+		return newList;
+	}
+	
+	public boolean insertAppointment(Appointment appointment) {
+		
+		boolean canInsert = true;
+		// conflicting appointments check
+		canInsert = checkAppointmentConflict(appointment);
 		Calendar newCalendar = new Calendar(this.calendar);
 		newCalendar.appointments.add(appointment);
 		
@@ -225,7 +299,7 @@ public class Node {
 			e.printStackTrace();
 		}
 		
-		
+		return canInsert;
 		
 	}
 
