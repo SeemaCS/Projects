@@ -306,7 +306,10 @@ public class Node {
 	public static void main(String args[]) {
 		Node node = new Node(Integer.parseInt(args[0]));
 		node.loadIpTable();
+		
+		System.out.println("Checking with Firbase..");
 		node.loadFromFirebasenew();
+		System.out.println("Done firebase...");
 		//Logger logger = new MyLogger(node).LOGGER;
 		
 		//logger.info("Node " + node.id + " started with port number " + node.port);
@@ -341,6 +344,7 @@ public class Node {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void onDataChange(DataSnapshot snapshot) {
+				if(snapshot.getValue() != null) {
 				if(snapshot.child("logFile").getChildrenCount() > 0) {
 					 for (DataSnapshot messageSnapshot: snapshot.child("logFile").getChildren()) {
 				            System.out.println("%%%% " + messageSnapshot.getKey());
@@ -352,9 +356,11 @@ public class Node {
 				            
 				            myHashMap.put( new Integer(dbObject.getLogSlot()), dbObject.getCal());
 				        }
-					 done.set(true);
+					
 					
 				}
+				}
+				 done.set(true);
 			}
 			@Override
 			public void onCancelled(FirebaseError arg0) {
@@ -364,9 +370,12 @@ public class Node {
 		 while (!done.get());
 		 
 		 //Set new values to node's log and calendar
+		 
+		 if(!myHashMap.isEmpty()) {
 		 this.log = myHashMap;
 		 this.calendar = this.log.get(Collections.max(this.log.keySet()));
 		 System.out.println("Finished setting new values from DB to node");
+		 }
 	
 	}
 
