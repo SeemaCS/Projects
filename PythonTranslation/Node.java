@@ -134,6 +134,81 @@ public class Node {
 			boolean canInsert = this.insertAppointment(appointment);
 			System.out.println("Is appointment Valid: " + canInsert);
 		}
+		else if(tokens[0].equals("cancel")) {
+			Appointment appointment = parseAppointment(tokens);
+			this.deleteAppointment(appointment);
+		}
+	}
+	
+	public void deleteAppointment(Appointment appointment) {
+		Calendar newCalendar = new Calendar();
+		
+		for(Appointment app : this.calendar.appointments) {
+			if(!(app.equals(appointment))) {
+				newCalendar.appointments.add(app);
+			}
+		}
+		
+		int nextLogSlot = -1;
+		//Logic for log keys
+		if(!this.log.isEmpty()) {
+			nextLogSlot = Collections.max(this.log.keySet()) + 1;
+		} else {
+			nextLogSlot = 0;
+		}
+		
+		//Get leader
+		int leaderId = this.leaderId;
+		Node leader;
+		if(leaderId == this.id) {
+			leader = this;
+		} else {
+			leader = this.peers.get(leaderId);
+		}
+		
+		if(leader == null) {
+			System.out.println("Unable to find leader, waiting until one is selected...");
+			while(this.leaderId == -1) {
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			System.out.println("Found leader now...scheduling");
+			this.insertAppointment(appointment);
+		}
+		
+		// Send propose msg to leader
+		DatagramSocket socket;
+		try {
+			System.out.println("Sending propose msg to leader.." + leader.id);
+			InetSocketAddress addr = new InetSocketAddress(this.udpPort);
+			socket = new DatagramSocket(null);
+			socket.setReuseAddress(true);
+			socket.setBroadcast(true);
+			socket.bind(addr);
+			UDPMessage msgObj = new UDPMessage("propose", -1, newCalendar, nextLogSlot, this.id);
+			msgObj.print();
+			byte[] buf = new byte[4096];
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(baos);
+			oos.writeObject(msgObj);
+			oos.flush();
+			byte[] data = baos.toByteArray();
+			InetAddress add = InetAddress.getByName("localhost");
+			DatagramPacket packet = new DatagramPacket(data, data.length, add, leader.udpPort);
+			socket.send(packet);
+			socket.close();
+			
+		} catch (SocketException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public Appointment parseAppointment(String[] tokens) {
@@ -166,12 +241,12 @@ public class Node {
 	public boolean checkAppointmentConflict(Appointment myAppointment) {
 		List<Appointment> appointments = this.calendar.appointments;
 		for(Appointment app : appointments) {
-			if(isConflicting(app, myAppointment)) {
+			if(isConflicting(app, myAppointment) == true) {
 				System.out.println("Is appointment conflicting");
-				return true;
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	public boolean isConflicting(Appointment app1, Appointment app2) {
@@ -189,8 +264,10 @@ public class Node {
 		List<Integer> commonParticipants = listIntersection(participants1, participants2);
 		
 		if(commonParticipants.isEmpty()){
+			System.out.println("Common Participants are empty");
 			return false;
 		}
+		System.out.println("Common Participants are not empty");
 		
 		SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
 		Date s1 = null;
@@ -235,6 +312,9 @@ public class Node {
 		boolean canInsert = true;
 		// conflicting appointments check
 		canInsert = checkAppointmentConflict(appointment);
+		if(canInsert == false)
+			return false;
+		
 		Calendar newCalendar = new Calendar(this.calendar);
 		newCalendar.appointments.add(appointment);
 		

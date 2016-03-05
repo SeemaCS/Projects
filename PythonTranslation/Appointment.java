@@ -6,6 +6,38 @@ import java.util.List;
 public class Appointment implements Serializable{
 	
 	@Override
+	public boolean equals(Object obj) {
+		boolean isEqual = false;
+
+		Appointment app1 = this;
+		Appointment app2 = (Appointment) obj;
+		
+		if(app1.name.equals(app2.name)) {
+			if(app1.day.equals(app2.day)) {
+				if(app1.startTime.equals(app2.startTime)) {
+					if(app1.endTime.equals(app2.endTime)) {
+						List<Integer> commonParticipants = listIntersection(app1.participants, app2.participants);
+						if(commonParticipants.size() == app1.participants.size() && commonParticipants.size() == app2.participants.size()) {
+							isEqual = true;
+						}
+					}
+				}
+			}
+		}
+		return isEqual;
+	}
+	
+	public List<Integer> listIntersection(List<Integer> l1, List<Integer> l2) {
+		List<Integer> newList = new ArrayList<Integer>();
+		for(Integer i : l1) {
+			if(l2.contains(i)) {
+				newList.add(i);
+			}
+		}
+		return newList;
+	}
+
+	@Override
 	public String toString() {
 		String str = "[";
 //		System.out.println(name);
