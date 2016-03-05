@@ -29,6 +29,14 @@ public class Calendar implements Serializable{
 		}
 		return "]" + str;
 	}
+
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
 	
 
 

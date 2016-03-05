@@ -76,6 +76,7 @@ public class Acceptor implements Runnable {
 		int logSlot = msg.logSlot;
 		String ipAddress = "";
 		int port;
+		this.maxPrepare = -1;
 		
 		if(!this.accNums.keySet().contains(logSlot)) {
 			System.out.println("Inside if loop of receive Prepare");

@@ -1,11 +1,16 @@
 import java.util.Collections;
+import java.util.concurrent.atomic.AtomicBoolean;
 
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 
 public class Learner implements Runnable {
 
 	Node n;
 	
+	
 	public Learner(Node n) {
+		
 		this.n = n;
 	}
 	@Override
@@ -19,6 +24,21 @@ public class Learner implements Runnable {
 				System.out.println("Calendar:" + obj.v);
 				n.log.put(obj.logSlot, obj.v);
 				n.calendar = n.log.get(Collections.max(n.log.keySet()));
+				if(n.leaderId == n.id) {
+					//pushToFirebase(obj.logSlot, obj.v);
+					 Thread t = new Thread(new DatabaseThread(new DatabaseObject(obj.logSlot, obj.v)));
+				        t.start();
+				        
+				        try {
+							t.join();
+							Thread.sleep(10000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				        
+				        
+				}
 			}
 			if(n.terminate) {
 				break;
@@ -31,5 +51,21 @@ public class Learner implements Runnable {
 		}
 		
 	}
+	
+//	public void pushToFirebase(int logSlot, Calendar cal) {
+//		final AtomicBoolean done = new AtomicBoolean(false);
+//
+//		Firebase rootRef = new Firebase("https://torrid-fire-1695.firebaseio.com/");
+//		Firebase ref = rootRef.child("logFile");
+//		
+//		ref.setValue(logSlot, new Firebase.CompletionListener() {
+//			
+//			@Override
+//			public void onComplete(FirebaseError arg0, Firebase arg1) {
+//				done.set(true);
+//			}
+//		}); 
+//		 while (!done.get());
+//	}
 
 }

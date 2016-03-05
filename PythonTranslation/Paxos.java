@@ -18,6 +18,7 @@ public class Paxos implements Runnable {
 	//Logger logger;
 
 	public Paxos(Node node) {
+		
 		this.node = node;
 		//logger = new MyLogger(node).LOGGER;
 	}

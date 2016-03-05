@@ -12,10 +12,20 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
+import javax.xml.crypto.Data;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 public class Node {
 
@@ -42,6 +52,7 @@ public class Node {
 		this.acceptor = new Acceptor(this);
 		this.proposer = new Proposer(this);
 		//logger = new MyLogger(this).LOGGER;
+		
 	}
 
 	public void loadIpTable() {
@@ -221,6 +232,7 @@ public class Node {
 	public static void main(String args[]) {
 		Node node = new Node(Integer.parseInt(args[0]));
 		node.loadIpTable();
+		node.loadFromFirebasenew();
 		//Logger logger = new MyLogger(node).LOGGER;
 		
 		//logger.info("Node " + node.id + " started with port number " + node.port);
@@ -245,5 +257,44 @@ public class Node {
 		LogManager.getLogManager().reset();
 		
 	}
+	
+	public void loadFromFirebasenew() {
+		final AtomicBoolean done = new AtomicBoolean(false);
+		Firebase ref = new Firebase("https://distributedcalendar.firebaseio.com/");
+		final HashMap<Integer, Calendar> myHashMap = new HashMap<Integer, Calendar>();
+		ref.addValueEventListener(new ValueEventListener() {
+			
+			@SuppressWarnings("unchecked")
+			@Override
+			public void onDataChange(DataSnapshot snapshot) {
+				if(snapshot.child("logFile").getChildrenCount() > 0) {
+					 for (DataSnapshot messageSnapshot: snapshot.child("logFile").getChildren()) {
+				            System.out.println("%%%% " + messageSnapshot.getKey());
+				            DatabaseObject dbObject = (DatabaseObject)messageSnapshot.getValue(DatabaseObject.class);
+				            System.out.println("DBOBJECT:" + dbObject);
+				            
+				            System.out.println("LOGSLOT:" + dbObject.getLogSlot());
+				            System.out.println("Calendar:" + dbObject.getCal());
+				            
+				            myHashMap.put( new Integer(dbObject.getLogSlot()), dbObject.getCal());
+				        }
+					 done.set(true);
+					
+				}
+			}
+			@Override
+			public void onCancelled(FirebaseError arg0) {
+				// TODO Auto-generated method stub	
+			}
+		});
+		 while (!done.get());
+		 
+		 //Set new values to node's log and calendar
+		 this.log = myHashMap;
+		 this.calendar = this.log.get(Collections.max(this.log.keySet()));
+		 System.out.println("Finished setting new values from DB to node");
+	
+	}
+
 
 }
