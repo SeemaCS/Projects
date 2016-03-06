@@ -1,3 +1,8 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="570dp"
+    android:fillViewport="true">
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,9 +14,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <!--<ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">-->
+
         <LinearLayout
             android:layout_width="340dp"
             android:layout_height="60dp"
@@ -34,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:width="150dp"
+        android:id="@+id/scheduleName"
         android:hint="Enter name"/>
         </LinearLayout>
 
@@ -53,12 +57,19 @@
         android:textSize="18sp"
         android:layout_marginRight="20dp"
         android:layout_centerInParent="true" />
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:id="@+id/users">
-    </Spinner>
+    <!--<Spinner-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="17dp"-->
+        <!--android:id="@+id/users">-->
+    <!--</Spinner>-->
+
+        <com.project.dc.calendarapp.MultiSpinner
+            android:id="@+id/users"
+            android:layout_marginTop="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -82,6 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:id="@+id/startTime"
             android:width="150dp"
             android:hint="Enter time"/>
     </LinearLayout>
@@ -108,6 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:width="150dp"
+            android:id="@+id/endTime"
             android:hint="Enter time"/>
     </LinearLayout>
 
@@ -156,6 +169,7 @@
             android:textSize="14sp"
             android:id="@+id/participants"/>
     </LinearLayout>
-    <!--</ScrollView>-->
 </LinearLayout>
 </FrameLayout>
+</ScrollView>
+
