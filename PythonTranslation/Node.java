@@ -396,6 +396,9 @@ public class Node {
 		new Thread(new LeaderElection(node)).start();
 		new Thread(new Paxos(node)).start();
 		
+		//Start UI Server
+		new Thread(new UIServer(node)).start();
+		
 		System.out.println(">> Node " + node.id + "started...");
 		System.out.println(">> Enter schedule..");
 		while(true) {
