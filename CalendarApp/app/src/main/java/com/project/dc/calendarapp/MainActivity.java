@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         fab = (FloatingActionButton) findViewById(R.id.fab);
+
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -55,10 +56,41 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new ScheduleFragment(), "SCHEDULE");
         adapter.addFragment(new CancelFragment(), "CANCEL");
         viewPager.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                System.out.println("On Page scrolled");
+
+                cancelAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                System.out.println("On Page selected");
+                cancelAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                System.out.println("On Page scroll state changed");
+                cancelAdapter.notifyDataSetChanged();
+
+            }
+        });
+
+        viewPager.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                System.out.println("On Page selected");
+                cancelAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

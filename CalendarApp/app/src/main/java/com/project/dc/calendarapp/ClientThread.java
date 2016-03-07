@@ -17,6 +17,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 class ClientThread implements  Runnable {
@@ -25,10 +26,16 @@ class ClientThread implements  Runnable {
     String inputMessage;
     MainActivity activity;
 
+    ArrayList<String> serverIPList = new ArrayList<>();
+    static int counter = 0;
+
     public ClientThread(String inputMessage, String serverFromMessage, MainActivity activity){
         this.serverFromMessage = serverFromMessage;
         this.inputMessage = inputMessage;
         this.activity = activity;
+
+        serverIPList.add("172.20.66.164");
+        serverIPList.add("172.20.66.164");
     }
 
     private Socket socket;
@@ -40,14 +47,37 @@ class ClientThread implements  Runnable {
         String str = "";
         try {
             System.out.println("Starting client thread...");
-            InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
-            socket = new Socket(serverAddr, SERVERPORT);
+//            InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
+//            socket = new Socket(serverAddr, SERVERPORT);
+//            if(socket != null) {
+//                System.out.println("Socket obtained...");
+//            }
+//            else {
+//                System.out.println("Socket null...");
+//            }
+
+            //***** R-R for Server...
+            boolean gotIp = false;
+            while(gotIp == false) {
+                InetAddress serverAddr = InetAddress.getByName(serverIPList.get(counter % serverIPList.size()));
+
+                try {
+                    socket = new Socket(serverAddr, SERVERPORT);
+                    gotIp = true;
+                    break;
+                } catch (Exception ex) {
+                    counter ++;
+                }
+
+            }
             if(socket != null) {
                 System.out.println("Socket obtained...");
             }
             else {
                 System.out.println("Socket null...");
+
             }
+            System.out.println("Connected to server IP:" + socket.getInetAddress().getHostName());
 
             str = this.inputMessage;
             PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
@@ -70,18 +100,26 @@ class ClientThread implements  Runnable {
             String message1 = "";
             if(serverFromMessage.equals("success")) {
                 if(str.startsWith("schedule")) {
+                    System.out.println("Successful scheduling!!!! "+activity.schedule.toString());
                     message1 = "Your appointment has been scheduled successfully";
                     System.out.println("Tokenizing..." + str);
                     String[] tokens = str.split(" ");
+                    System.out.println("Before scheduling!!!!!!!!!!! "+activity.actualSchedule.toString());
                     activity.schedule.add(new String(tokens[1]));
                     activity.actualSchedule.add(new String(str));
+                    System.out.println("After scheduling!!!!!!!!!!! " + activity.schedule.toString());
+                    System.out.println("After scheduling!!!!!!!!!!! "+activity.actualSchedule.toString());
                 }
                 else if(str.startsWith("cancel")) {
                     message1 = "Your appointment has been cancelled successfully";
                     String[] tokens = str.split(" ");
+                    System.out.println("In canel!!! "+ activity.schedule.toString());
                     activity.schedule.remove(new String(tokens[1]));
+                    System.out.println("Before cancelling "+ activity.actualSchedule.toString());
                     str = str.replace("cancel", "schedule");
                     activity.actualSchedule.remove(new String(str));
+                    System.out.println("After cancelling!!!!" + activity.schedule.toString());
+                    System.out.println("After cancelling!!!!!!!" +activity.actualSchedule.toString());
                 }
             }
             else {
@@ -91,6 +129,8 @@ class ClientThread implements  Runnable {
                     message1 = "Your appointment could not be cancelled. Please try again";
             }
             showNotification(message1);
+            counter ++;
+
         } catch (UnknownHostException e1) {
             e1.printStackTrace();
         } catch (IOException e1) {
@@ -112,7 +152,7 @@ class ClientThread implements  Runnable {
 
     public void showNotification( String message) {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(activity);
-        mBuilder.setSmallIcon(R.drawable.cancel_icon).setColor(Color.rgb(80, 147, 28));
+        mBuilder.setSmallIcon(R.drawable.icon).setColor(Color.rgb(80, 147, 28));
         mBuilder.setVibrate(new long[] {100,250}).setDefaults(Notification.DEFAULT_SOUND);
         mBuilder.setContentTitle("Notification Alert, Click Me!");
         mBuilder.setContentText(message);

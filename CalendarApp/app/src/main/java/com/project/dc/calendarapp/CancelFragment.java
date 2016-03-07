@@ -16,15 +16,20 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class CancelFragment extends Fragment {
+     MainActivity activity;
+
     public CancelFragment() {
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        System.out.println("Coming on create...");
+        activity = (MainActivity) getActivity();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cancel, container, false);
-        final MainActivity activity = (MainActivity) getActivity();
+
         List<String> scheduledItems = activity.schedule;
         ListView listView = (ListView) view.findViewById(R.id.scheduleList);
         activity.cancelAdapter = new CancelAdapter(activity.getBaseContext(), R.layout.cancel_list_row, scheduledItems, activity);
@@ -32,4 +37,11 @@ public class CancelFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("Coming on resume");
+        activity.cancelAdapter.notifyDataSetChanged();
+
+    }
 }
