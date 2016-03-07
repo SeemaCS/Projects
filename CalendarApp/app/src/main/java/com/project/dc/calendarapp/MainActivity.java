@@ -22,15 +22,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-
     FloatingActionButton fab;
-
     CancelAdapter cancelAdapter;
     List<String> schedule = new ArrayList<String>();
     List<String> actualSchedule = new ArrayList<String>();
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,18 +33,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
-
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
         fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -84,12 +74,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -107,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
-
         public ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
@@ -132,8 +119,4 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             return mFragmentTitleList.get(position);
         }
     }
-
-    ///
-
-
 }
