@@ -10,6 +10,7 @@ public class Shutdown implements Runnable {
 	public void run() {
 		while(true) {
 			if(n.terminate) {
+				System.out.println("[ShutDownThread] Terminating the node");
 				n.proposer.terminate = true;
 				n.acceptor.terminate = true;
 				break;

@@ -82,23 +82,25 @@ public class BullyAlgorithm implements Runnable{
 				}
 			} catch (SocketTimeoutException e) {
 
-				System.out.println("Socket timed out...");
+			//	System.out.println("Socket timed out...");
 				//logger.info("Socket timed out...");
 				//logger.info("recievedOkay?.." + receivedOkay);
 				if (!receivedOkay){
-					System.out.println("Not received okay yet...");
-					System.out.println("n.id : " + n.id);
-					System.out.println("n.leaderId : " + n.leaderId);
+				//	System.out.println("Not received okay yet...");
+				//	System.out.println("n.id : " + n.id);
+				//	System.out.println("n.leaderId : " + n.leaderId);
 					 //logger.info("I am the coordinator..");
 					if((n.id < n.leaderId)) {
 						
-						System.out.println("I am lesser than leader");
-						System.out.println("But...Let me check if the leader is alive....");
+					//	System.out.println("I am lesser than leader");
+					//	System.out.println("But...Let me check if the leader is alive....");
+						System.out.println("[BullyAlgorithmThread] Pinging leader to check status");
 						if(isNodeReachable(n.leaderId)) {
-							System.out.println("Leader is alive...I am not doing anything");
+							//System.out.println("Leader is alive...I am not doing anything");
 						} else {
-							System.out.println("Leader is dead...");
-							System.out.println("I am the coordinator..");
+							//System.out.println("Leader is dead...");
+							//System.out.println("I am the coordinator..");
+							System.out.println("[BullyAlgorithmThread] Leader is dead. I am the coordinator");
 							new Thread(new SendMessageThread(this.n, MessageType.COORDINATOR)).start();
 							n.leaderId = n.id;
 							break;
@@ -110,8 +112,9 @@ public class BullyAlgorithm implements Runnable{
 						
 					} 
 					else {
-						System.out.println("I am greater/equal than leader");
-					System.out.println("I am the coordinator..");
+						//System.out.println("I am greater/equal than leader");
+					//System.out.println("I am the coordinator..");
+						System.out.println("[BullyAlgorithmThread] I am the higher than the current leader. I am the coordinator");
 					new Thread(new SendMessageThread(this.n, MessageType.COORDINATOR)).start();
 					n.leaderId = n.id;
 					break;
@@ -119,10 +122,10 @@ public class BullyAlgorithm implements Runnable{
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+			//	e.printStackTrace();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+			//	e.printStackTrace();
 			}
 		}
 		
@@ -134,7 +137,7 @@ public class BullyAlgorithm implements Runnable{
 
 			address = new InetSocketAddress("localhost", getNode(nodeId).port);
 			
-			System.out.println("Checking if node id is reachable: " + nodeId);
+		//	System.out.println("Checking if node id is reachable: " + nodeId);
 			boolean isReachable = sendPingMessageOnSocket(getNode(nodeId).port, getNode(nodeId).ipAddress, "ping");
 			
 			
@@ -186,11 +189,11 @@ public class BullyAlgorithm implements Runnable{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
-			System.out.println("Port " + port + " is unreachable..");
+			//System.out.println("Port " + port + " is unreachable..");
 			isPingable = false;
 		}
 		catch(Exception e) {
-			System.out.println("Port " + port + " is unreachable..");
+		//	System.out.println("Port " + port + " is unreachable..");
 			isPingable = false;
 		}
 		

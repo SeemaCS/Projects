@@ -39,7 +39,7 @@ public class Acceptor implements Runnable {
 	public void run() {
 		while(true) {
 			if(!commandQueue.isEmpty()) {
-				System.out.println("In Acceptor...");
+				//System.out.println("[AcceptorThread] ");
 				UDPMessage message = commandQueue.get(commandQueue.size()-1);
 				commandQueue.remove(commandQueue.size()-1);
 				message.print();
@@ -68,7 +68,7 @@ public class Acceptor implements Runnable {
 
 
 	public void receivePrepare(UDPMessage msg) {
-		System.out.println("In receive Prepare");
+		
 		msg.print();
 		
 		int m = msg.m;
@@ -78,9 +78,10 @@ public class Acceptor implements Runnable {
 		int port;
 		this.maxPrepare = -1;
 		
+		System.out.println("[AcceptorThread] Working on receivePrepare request from node: " + senderID + " for logSlot: " + logSlot);
 		if(!this.accNums.keySet().contains(logSlot)) {
-			System.out.println("Inside if loop of receive Prepare");
-			System.out.println("Value of maxPrepare" + this.maxPrepare);
+			//System.out.println("Inside if loop of receive Prepare");
+			//System.out.println("Value of maxPrepare" + this.maxPrepare);
 			this.accNums.put(logSlot, -1);	
 		}
 		
@@ -89,8 +90,8 @@ public class Acceptor implements Runnable {
 		}
 		
 		if(m > this.maxPrepare) {
-			System.out.println("m in > maxPrepare:" + m);
-			System.out.println("maxPrepare in > maxPrepare:" + maxPrepare);
+			//System.out.println("m in > maxPrepare:" + m);
+			//System.out.println("maxPrepare in > maxPrepare:" + maxPrepare);
 			this.maxPrepare = m;
 			
 			//Coded by me
@@ -106,11 +107,11 @@ public class Acceptor implements Runnable {
 				ipAddress = n.ipAddress;
 				port = n.udpPort;
 			}
-			System.out.println("Sending promise with calendar..." + this.accVals.get(logSlot));
+		//	System.out.println("Sending promise with calendar..." + this.accVals.get(logSlot));
 			if(this.accVals.get(logSlot) == null) {
-				System.out.println("Calendar is null");
+				//System.out.println("Calendar is null");
 			} else 
-				System.out.println("Calendar is not null");
+				//System.out.println("Calendar is not null");
 			
 			sendPromise(ipAddress, port, this.accNums.get(logSlot), this.accVals.get(logSlot), logSlot);
 		}
@@ -118,20 +119,22 @@ public class Acceptor implements Runnable {
 	}
 
 	public void sendPromise(String ipAddress, int port, int accNum, Calendar accVal, int logSlot) {
-		System.out.println("In send promise");
+		System.out.println("[AcceptorThread] Working on sendPromise request for logSlot: " + logSlot);
 		if(accVal == null) {
-			System.out.println("Calendar is null");
-		} else 
-			System.out.println("Calendar is not null");
+			//System.out.println("Calendar is null");
+		} else {
+			//System.out.println("Calendar is not null");
+		}
 		
 		UDPMessage msg = new UDPMessage("promise", accVal, accNum, logSlot, this.node.id);
-		System.out.println("Created new UDP msg");
+	//	System.out.println("Created new UDP msg");
 		msg.print();
-		System.out.print("Sending promise msg on port..." + port);
+	//	System.out.print("Sending promise msg on port..." + port);
 		sendUDPMessage(msg, port, ipAddress);
 	}
 
 	public void receiveAccept(UDPMessage msg) {
+
 		int m = msg.m;
 		Calendar v = msg.calendar;
 		int senderID = msg.senderID;
@@ -139,6 +142,8 @@ public class Acceptor implements Runnable {
 		String ipAddress = "";
 		int port;
 		
+		System.out.println("[AcceptorThread] Working on receiveAccept request from node: " + senderID + " for logSlot: " + logSlot);
+
 		if(!this.accNums.keySet().contains(logSlot)) {
 			this.accNums.put(logSlot, -1);	
 		}
@@ -165,18 +170,22 @@ public class Acceptor implements Runnable {
 	}
 
 	public void sendAck(String ipAddress, int port, int accNum, Calendar accVal, int logSlot) {
+		System.out.println("[AcceptorThread] Working on sendAck request for logSlot: " + logSlot);
+
 		UDPMessage msg = new UDPMessage("ack", accVal, accNum, logSlot, this.node.id);
 		sendUDPMessage(msg, port, ipAddress);
 	}
 
 	public void receiveCommit(UDPMessage msg) {
+		System.out.println("[AcceptorThread] Working on receiveCommit request for logSlot: " + msg.logSlot);
+
 		this.commitsQueue.add(new CommitQueueObject(msg.logSlot, msg.calendar));
 	}
 
 	public void sendUDPMessage(UDPMessage msg, int udpPort, String ipAddress) {
 		try {
 			msg.print();
-			
+			System.out.println("[AcceptorThread] Sending UDP message to IPAddress: " + ipAddress + " , Port: " + udpPort );
 			
 			InetSocketAddress addr = new InetSocketAddress(node.udpPort);
 			DatagramSocket socket = new DatagramSocket(null);
@@ -195,13 +204,13 @@ public class Acceptor implements Runnable {
 			socket.close();
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}
 	}
 

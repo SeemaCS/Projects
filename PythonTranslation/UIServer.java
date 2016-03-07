@@ -15,25 +15,25 @@ public class UIServer implements Runnable{
 	@Override
 	public void run() {
 		try {
-			System.out.println("UISERVER is up");
+			//System.out.println("UISERVER is up");
 
 		
 			ServerSocket serverSoc = new ServerSocket(node.uiPort);
-			System.out.println("UISERVER is up on port: "+ node.uiPort);
+		//	System.out.println("UISERVER is up on port: "+ node.uiPort);
 			while(true) {
-				System.out.println("UISERVER:..Waiting for client..");
+				System.out.println("[UISERVER] Waiting for client to connect");
 				Socket receiverSoc = serverSoc.accept();
-				System.out.println("Got client....creating new thread to work on it...");
+				//System.out.println("Got client....creating new thread to work on it...");
 				//new Thread(new UIMessageHandler(receiverSoc)).start();
-				Thread.sleep(1100);
+				//Thread.sleep(1100);
 				new UIMessageHandler(node, receiverSoc).run();
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
+		//	e.printStackTrace();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}
 	}
 	

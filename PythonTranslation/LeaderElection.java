@@ -23,13 +23,13 @@ public class LeaderElection implements Runnable {
 			ServerSocket serverSoc = new ServerSocket(n.port);
 			int prevLeaderId = -1;
 			while(true) {
-				System.out.println("Checking if there is a valid leader...." + n.leaderId);
+				//System.out.println("Checking if there is a valid leader...." + n.leaderId);
 				
 				// If no leader, elect leader....
 				
 				if(prevLeaderId == -1 || !(prevLeaderId > n.leaderId)) {
-					System.out.println("Starting BULLY");
-					System.out.println("Node id " +  n.leaderId);
+					//System.out.println("Starting BULLY");
+					//System.out.println("Node id " +  n.leaderId);
 					//System.out.println("Node id " +  );
 				//new code
 //				NewBully nb = new NewBully(this.n, TIMEOUT, serverSoc);
@@ -41,8 +41,8 @@ public class LeaderElection implements Runnable {
 				}
 				Thread.sleep(POLL_TIME);
 				
-				System.out.println("Bully Algorithm done...");
-				System.out.println("LEADER ELECTED, IS: " + n.leaderId);
+			//	System.out.println("Bully Algorithm done...");
+				System.out.println("[LeaderElectionThread] LEADER ELECTED, IS: " + n.leaderId);
 				
 				// Ping leader to c if hes alive. If hes not alive, make n.leaderId = -1
 				
@@ -50,7 +50,7 @@ public class LeaderElection implements Runnable {
 				//System.out.println("Bully Algorithm done...");
 				//System.out.println("LEADER IS: " + n.leaderId);
 				if(n.leaderId != prevLeaderId) {
-					System.out.println("LEADER IS: " + n.leaderId);
+					//System.out.println("LEADER IS: " + n.leaderId);
 					prevLeaderId = n.leaderId;
 				}
 				if(n.terminate)
@@ -58,9 +58,9 @@ public class LeaderElection implements Runnable {
 			}
 			serverSoc.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}
 	}
 	
@@ -76,14 +76,14 @@ public class LeaderElection implements Runnable {
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			isReachable = false;
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			isReachable = false;
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}
 	       
-		System.out.println("Checking if leader is reachable: " + isReachable);
+	//	System.out.println("Checking if leader is reachable: " + isReachable);
 	     return isReachable;
 	}
 	

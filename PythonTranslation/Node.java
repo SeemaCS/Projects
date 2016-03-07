@@ -68,7 +68,7 @@ public class Node {
 			String line = null;
 			while ((line = br.readLine()) != null) {
 				String[] tokens = line.split(",");
-				System.out.println("tokens[4] is:" + tokens[4]);
+		//		System.out.println("tokens[4] is:" + tokens[4]);
 				int nodeId = Integer.parseInt(tokens[0]);
 				if(this.id == nodeId) {
 					port = Integer.parseInt(tokens[2]);
@@ -87,7 +87,7 @@ public class Node {
 			}
 			br.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 		} 
 	}
 	
@@ -118,29 +118,36 @@ public class Node {
 			Thread.sleep(1000);
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}
 		
 	}
 	
 	public void parseCommand(String input) {
+		System.out.println("[NODE] Working on client request: " + input);
 		String[] tokens = input.split(" ");
 		if(tokens[0].equals("schedule")) {
-			System.out.println("Scheduling appointment...");
+			//System.out.println("Scheduling appointment...");
 			
 			Appointment appointment = parseAppointment(tokens);
 			boolean canInsert = this.insertAppointment(appointment);
-			System.out.println("Is appointment Valid: " + canInsert);
+			if(canInsert == true) {
+				System.out.println("[NODE] Appointment " + appointment.name + " is valid. Trying to commit");
+			} else {
+				System.out.println("[NODE] Appointment " + appointment.name + " is conflicting");
+			}
+			//System.out.println("Is appointment Valid: " + canInsert);
 		}
 		else if(tokens[0].equals("cancel")) {
 			Appointment appointment = parseAppointment(tokens);
 			this.deleteAppointment(appointment);
+			System.out.println("[NODE] Appointment " + appointment.name + " removed. Trying to commit");
 		}
 	}
 	
@@ -171,23 +178,23 @@ public class Node {
 		}
 		
 		if(leader == null) {
-			System.out.println("Unable to find leader, waiting until one is selected...");
+			System.out.println("[NODE] Unable to find leader, waiting until one is selected");
 			while(this.leaderId == -1) {
 				try {
 					Thread.sleep(10);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+				//	e.printStackTrace();
 				}
 			}
-			System.out.println("Found leader now...scheduling");
+			System.out.println("[NODE] Found leader now. Trying to commit");
 			this.insertAppointment(appointment);
 		}
 		
 		// Send propose msg to leader
 		DatagramSocket socket;
 		try {
-			System.out.println("Sending propose msg to leader.." + leader.id);
+			System.out.println("[NODE] Sending propose message to leader: " + leader.id);
 			InetSocketAddress addr = new InetSocketAddress(this.udpPort);
 			socket = new DatagramSocket(null);
 			socket.setReuseAddress(true);
@@ -208,16 +215,16 @@ public class Node {
 			
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}
 	}
 	
 	public Appointment parseAppointment(String[] tokens) {
 		
-		System.out.println("Inside parse message");
+		//System.out.println("Inside parse message");
 		Appointment appointment = null;
 		
 		String name = tokens[1];
@@ -227,9 +234,9 @@ public class Node {
 		String[] users = participants.split(",");
 		List<Integer> userList = new ArrayList<Integer>();
 		for(String u : users) {
-			System.out.println("U is:" + u);
+		//	System.out.println("U is:" + u);
 			u = u.substring(u.length()-1, u.length());
-			System.out.println("U is:" + u);
+		//	System.out.println("U is:" + u);
 			userList.add(Integer.parseInt(u));
 		}
 		
@@ -241,10 +248,10 @@ public class Node {
 		
 		String day = tokens[4];
 	
-		System.out.println("before creating appointment" + name+day+startTime+endTime+userList);
+	//	System.out.println("before creating appointment" + name+day+startTime+endTime+userList);
 		
 		appointment = new Appointment(name, day, startTime, endTime, userList);
-		System.out.println("Is something wrong????"+appointment);
+	//	System.out.println("Is something wrong????"+appointment);
 		return appointment;
 	}
 	
@@ -252,7 +259,7 @@ public class Node {
 		List<Appointment> appointments = this.calendar.appointments;
 		for(Appointment app : appointments) {
 			if(isConflicting(app, myAppointment) == true) {
-				System.out.println("Is appointment conflicting");
+				//System.out.println("Is appointment conflicting");
 				return false;
 			}
 		}
@@ -260,7 +267,7 @@ public class Node {
 	}
 	
 	public boolean isConflicting(Appointment app1, Appointment app2) {
-		System.out.println("Checking if appointments conflicting...");
+	//	System.out.println("Checking if appointments conflicting...");
 		if(app1 == app2) {
 			return false;
 		}
@@ -274,10 +281,10 @@ public class Node {
 		List<Integer> commonParticipants = listIntersection(participants1, participants2);
 		
 		if(commonParticipants.isEmpty()){
-			System.out.println("Common Participants are empty");
+		//	System.out.println("Common Participants are empty");
 			return false;
 		}
-		System.out.println("Common Participants are not empty");
+	//	System.out.println("Common Participants are not empty");
 		
 		SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
 		Date s1 = null;
@@ -292,10 +299,10 @@ public class Node {
 			 e2 = parser.parse(app2.endTime);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		} 
 		
-		System.out.println("Time Check: "+ s1 + s2 + e1 + e2);
+	//	System.out.println("Time Check: "+ s1 + s2 + e1 + e2);
 		
 		if(e1.before(s2) || e1.equals(s2)) {
 			return false;
@@ -346,23 +353,23 @@ public class Node {
 		}
 		
 		if(leader == null) {
-			System.out.println("Unable to find leader, waiting until one is selected...");
+			System.out.println("[NODE] Unable to find leader, waiting until one is selected");
 			while(this.leaderId == -1) {
 				try {
 					Thread.sleep(10);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+				//	e.printStackTrace();
 				}
 			}
-			System.out.println("Found leader now...scheduling");
+			System.out.println("[NODE] Found leader now. Trying to commit");
 			this.insertAppointment(appointment);
 		}
 		
 		// Send propose msg to leader
 		DatagramSocket socket;
 		try {
-			System.out.println("Sending propose msg to leader.." + leader.id);
+			System.out.println("[NODE] Sending propose message to leader: " + leader.id);
 			InetSocketAddress addr = new InetSocketAddress(this.udpPort);
 			socket = new DatagramSocket(null);
 			socket.setReuseAddress(true);
@@ -383,10 +390,10 @@ public class Node {
 			
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// e.printStackTrace();
 		}
 		
 		return canInsert;
@@ -394,25 +401,32 @@ public class Node {
 	}
 
 	public static void main(String args[]) {
+		System.out.println("[NODE] Starting node with ID: " + args[0]);
 		Node node = new Node(Integer.parseInt(args[0]));
+		
+		System.out.println("[NODE] Loading finger table");
 		node.loadIpTable();
 		
-		System.out.println("Checking with Firbase..");
+		System.out.println("[NODE] Restoring data from Firebase");
 		node.loadFromFirebasenew();
-		System.out.println("Done firebase...");
+		//System.out.println("Done firebase...");
 		//Logger logger = new MyLogger(node).LOGGER;
 		
 		//logger.info("Node " + node.id + " started with port number " + node.port);
 	
+		System.out.println("[NODE] Starting Leader Election Thread on TCP Port: " + node.port);
 		new Thread(new LeaderElection(node)).start();
 		//Start UI Server
+		System.out.println("[NODE] Starting UI Server Thread on TCP Port: " + node.uiPort);
 		new Thread(new UIServer(node)).start();
+		
+		System.out.println("[NODE] Starting Paxos Thread on UDP Port: " + node.udpPort);
 		new Thread(new Paxos(node)).start();
 		
 	
 		
-		System.out.println(">> Node " + node.id + "started...");
-		System.out.println(">> Enter schedule..");
+//		System.out.println(">> Node " + node.id + "started...");
+//		System.out.println(">> Enter schedule..");
 		while(true) {
 			Scanner scanner = new Scanner(System.in);
 			String input = scanner.nextLine();
@@ -442,12 +456,12 @@ public class Node {
 				if(snapshot.getValue() != null) {
 				if(snapshot.child("logFile").getChildrenCount() > 0) {
 					 for (DataSnapshot messageSnapshot: snapshot.child("logFile").getChildren()) {
-				            System.out.println("%%%% " + messageSnapshot.getKey());
+				          //  System.out.println("%%%% " + messageSnapshot.getKey());
 				            DatabaseObject dbObject = (DatabaseObject)messageSnapshot.getValue(DatabaseObject.class);
-				            System.out.println("DBOBJECT:" + dbObject);
+				          //  System.out.println("DBOBJECT:" + dbObject);
 				            
-				            System.out.println("LOGSLOT:" + dbObject.getLogSlot());
-				            System.out.println("Calendar:" + dbObject.getCal());
+				         //   System.out.println("LOGSLOT:" + dbObject.getLogSlot());
+				         //   System.out.println("Calendar:" + dbObject.getCal());
 				            
 				            myHashMap.put( new Integer(dbObject.getLogSlot()), dbObject.getCal());
 				        }
@@ -469,7 +483,7 @@ public class Node {
 		 if(!myHashMap.isEmpty()) {
 		 this.log = myHashMap;
 		 this.calendar = this.log.get(Collections.max(this.log.keySet()));
-		 System.out.println("Finished setting new values from DB to node");
+		// System.out.println("Finished setting new values from DB to node");
 		 }
 	
 	}

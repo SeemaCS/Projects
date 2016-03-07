@@ -73,20 +73,21 @@ public class Proposer implements Runnable {
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 	}
 
 
 	public void sendPrepare(UDPMessage message) {
-		System.out.println("In send Prepare...");
+	//	System.out.println("In send Prepare...");
 		this.currentProposalNumber += 10;
 		int m = currentProposalNumber;
 		Calendar calendar = message.calendar;
 		int logSlot = message.logSlot;
 		this.myProposals.put(logSlot, new ProposerProposal(m, calendar));
 
+		System.out.println("[ProposerThread] Working on sendPrepare request for logSlot: " + logSlot);
 		UDPMessage msg = new UDPMessage("prepare", m, new Calendar(), logSlot, this.node.id);
 
 		for(Map.Entry<Integer, Node> entries : this.node.peers.entrySet()) {
@@ -100,11 +101,13 @@ public class Proposer implements Runnable {
 	}
 
 	public void receivePromise(UDPMessage message) {
-		System.out.println("In receive Promise");
+		//System.out.println("In receive Promise");
+		System.out.println("[ProposerThread] Working on receivePromise request for logSlot: " + message.logSlot);
+
 		message.print();
 		LinkedHashMap<Integer, QueueObject> promiseQueueValue = this.promiseQueues.get(message.logSlot) ; 
 		if(promiseQueueValue== null) {
-			System.out.println("No values in promiseQueue for that slot");
+		//	System.out.println("No values in promiseQueue for that slot");
 			promiseQueueValue = new LinkedHashMap<Integer, QueueObject>();
 			promiseQueueValue.put(message.senderID, new QueueObject(message.acceptedNum, message.acceptedVal));
 			this.promiseQueues.put(message.logSlot, promiseQueueValue);
@@ -116,6 +119,8 @@ public class Proposer implements Runnable {
 	}
 
 	public void receiveAck(UDPMessage message) {
+		System.out.println("[ProposerThread] Working on receiveAck request for logSlot: " + message.logSlot);
+
 		LinkedHashMap<Integer, QueueObject> ackQueueValue = this.ackQueues.get(message.logSlot) ; 
 		if(ackQueueValue== null) {
 			ackQueueValue = new LinkedHashMap<Integer, QueueObject>();
@@ -129,14 +134,16 @@ public class Proposer implements Runnable {
 	}
 
 	public void sendAccept(int m, Calendar v, int logSlot){
-		System.out.println("In send Accept");
+		//System.out.println("In send Accept");
+		System.out.println("[ProposerThread] Working on sendAccept request for logSlot: " + logSlot);
+
 		UDPMessage msg = new UDPMessage("accept", m, v, logSlot, this.node.id);
 		msg.print();
 		
 		for(Map.Entry<Integer, Node> entries : node.peers.entrySet()) {
 			int key = entries.getKey();
 			Node value = entries.getValue();
-			System.out.println("Sending accept message to port:" + value.udpPort);
+			//System.out.println("Sending accept message to port:" + value.udpPort);
 			sendUDPMessage(msg, value.udpPort, value.ipAddress);
 		}
 		
@@ -146,6 +153,8 @@ public class Proposer implements Runnable {
 	}
 
 	public void sendCommit(Calendar v, int logSlot){
+		System.out.println("[ProposerThread] Working on sendCommit request for logSlot: " + logSlot);
+
 		UDPMessage msg = new UDPMessage("commit", -1, v, logSlot, this.node.id);
 		for(Map.Entry<Integer, Node> entries : node.peers.entrySet()) {
 			int key = entries.getKey();
@@ -159,7 +168,9 @@ public class Proposer implements Runnable {
 
 	public void sendUDPMessage(UDPMessage msg, int udpPort, String ipAddress) {
 		try {
-			System.out.println("Sending message to (Node on port) " + udpPort);
+		//	System.out.println("Sending message to (Node on port) " + udpPort);
+			System.out.println("[ProposerThread] Sending UDP message to IPAddress: " + ipAddress + " , Port: " + udpPort );
+
 			msg.print();
 			DatagramSocket socket = new DatagramSocket(null);
 			InetSocketAddress addr = new InetSocketAddress(node.udpPort);
@@ -179,13 +190,13 @@ public class Proposer implements Runnable {
 			
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}
 	}
 	

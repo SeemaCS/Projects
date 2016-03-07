@@ -48,6 +48,8 @@ public class SendMessage {
 	public void sendElectionMessage() {
 		try {
 			Thread.sleep(1000);
+			System.out.println("[BullyAlgorithmThread] Working on sendElectionMessage");
+
 			for(Map.Entry<Integer, Node> entries : n.peers.entrySet()) {
 				int key = entries.getKey();
 				Node value = entries.getValue();
@@ -57,11 +59,12 @@ public class SendMessage {
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
 	public void sendCoordinatorMessage() {
+		System.out.println("[BullyAlgorithmThread] Working on sendCoordinatorMessage");
 		for(Map.Entry<Integer, Node> entries : n.peers.entrySet()) {
 			int key = entries.getKey();
 			Node value = entries.getValue();
@@ -72,6 +75,7 @@ public class SendMessage {
 	}
 	
 	public void sendOkayMessage() {
+		System.out.println("[BullyAlgorithmThread] Working on sendOkayMessage");
 		for(Map.Entry<Integer, Node> entries : n.peers.entrySet()) {
 			int key = entries.getKey();
 			Node value = entries.getValue();

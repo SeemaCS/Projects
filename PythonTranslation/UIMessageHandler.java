@@ -27,7 +27,7 @@ public class UIMessageHandler{
 			Scanner scan = new Scanner(ios);
 			String message = scan.nextLine();
 			
-			System.out.println("Message from Mobile:" + message);
+		//	System.out.println("Message from Mobile:" + message);
 			String response = getResponseMessage(message);
 			
 			oos = clientSoc.getOutputStream();
@@ -37,14 +37,14 @@ public class UIMessageHandler{
 			
 			
 		}catch(IOException e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}
 		finally {
 			try {
 				clientSoc.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+		//		e.printStackTrace();
 			}
 		}
 		
@@ -52,28 +52,36 @@ public class UIMessageHandler{
 	
 	
 	public String getResponseMessage(String requestMsg) {
+		System.out.println("[UIServer] Working on client request: " + requestMsg);
 		requestMsg = requestMsg.trim();
 		String response = "failure";
 		
 		try {
 		String[] tokens = requestMsg.split(" ");
 		if(tokens[0].equals("schedule")) {
-			System.out.println("Scheduling appointment from client Mobile...");
+			//System.out.println("Scheduling appointment from client Mobile...");
 			
 			Appointment appointment = n.parseAppointment(tokens);
 			boolean canInsert = n.insertAppointment(appointment);
 			if(canInsert == true) {
 				response = "success";
 			}
+			
+			if(canInsert == true) {
+				System.out.println("[UIServer] Appointment " + appointment.name + " is valid. Trying to commit");
+			} else {
+				System.out.println("[UIServer] Appointment " + appointment.name + " is conflicting");
+			}
 		}
 		else if(tokens[0].equals("cancel")) {
 			Appointment appointment = n.parseAppointment(tokens);
 			n.deleteAppointment(appointment);
 			response = "success";
+			System.out.println("[UIServer] Appointment " + appointment.name + " removed. Trying to commit");
 		}
 		} catch(Exception ex) {
-			System.out.println("[UIServer] Some exception occurred..." + ex.getMessage());
-			ex.printStackTrace();
+		//	System.out.println("[UIServer] Some exception occurred..." + ex.getMessage());
+		//	ex.printStackTrace();
 			response = "failure";
 		}
 		

@@ -30,9 +30,16 @@ public class UDPMessage implements Serializable {
 	}
 	
 	public void print() {
-		System.out.println("Message Type: "+msgType+" M: "+m+" logSlot: "+logSlot+
-				" SenderID: "+senderID+" AcceptedNum: "+acceptedNum+" Calendar Object: "+calendar+" AcceptedVal: "+ acceptedVal);
+//		System.out.println("Message Type: "+msgType+" M: "+m+" logSlot: "+logSlot+
+//				" SenderID: "+senderID+" AcceptedNum: "+acceptedNum+" Calendar Object: "+calendar+" AcceptedVal: "+ acceptedVal);
+//	
 	}
+	
+//	public void printNew() {
+//		System.out.println("Message Type: "+msgType+" M: "+m+" logSlot: "+logSlot+
+//				" SenderID: "+senderID+" AcceptedNum: "+acceptedNum+" Calendar Object: "+calendar+" AcceptedVal: "+ acceptedVal);
+//	
+//	}
 	
 	/*public UDPMessage(String msgType, int logSlot, int senderID) {
 		this.msgType = msgType;

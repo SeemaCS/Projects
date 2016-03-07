@@ -19,7 +19,7 @@ public class PromiseListener implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("Promise Listener is up");
+//		System.out.println("Promise Listener is up");
 		
 		while(true) {
 			numNodes = proposer.node.peers.size()+ 1;

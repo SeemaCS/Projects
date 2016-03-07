@@ -19,9 +19,9 @@ public class Learner implements Runnable {
 			if(!n.acceptor.commitsQueue.isEmpty()) {
 				CommitQueueObject obj = n.acceptor.commitsQueue.get(n.acceptor.commitsQueue.size()-1);
 				n.acceptor.commitsQueue.remove(n.acceptor.commitsQueue.size()-1);
-				System.out.println("Committing to log file....");
-				System.out.println("Log slot:" + obj.logSlot);
-				System.out.println("Calendar:" + obj.v);
+				System.out.println("[LearnerThread] Committing to log file");
+			//	System.out.println("Log slot:" + obj.logSlot);
+			//	System.out.println("Calendar:" + obj.v);
 				n.log.put(obj.logSlot, obj.v);
 				n.calendar = n.log.get(Collections.max(n.log.keySet()));
 				if(n.leaderId == n.id) {
@@ -34,7 +34,7 @@ public class Learner implements Runnable {
 							Thread.sleep(10000);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
-							e.printStackTrace();
+						//	e.printStackTrace();
 						}
 				        
 				        
@@ -46,7 +46,7 @@ public class Learner implements Runnable {
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+			//	e.printStackTrace();
 			}
 		}
 		
