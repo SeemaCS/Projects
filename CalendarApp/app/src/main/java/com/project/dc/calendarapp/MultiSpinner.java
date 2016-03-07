@@ -1,8 +1,6 @@
 package com.project.dc.calendarapp;
 
-
-
-        import android.app.AlertDialog;
+import android.app.AlertDialog;
         import android.content.Context;
         import android.content.DialogInterface;
         import android.content.DialogInterface.OnMultiChoiceClickListener;

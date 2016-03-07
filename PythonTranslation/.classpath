@@ -2,11 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/lakshitha/Downloads/DCProjectJars/firebase-client-jvm-2.5.2.jar"/>
-	<classpathentry kind="lib" path="/Users/lakshitha/Downloads/DCProjectJars/httpclient-4.0.1.jar"/>
-	<classpathentry kind="lib" path="/Users/lakshitha/Downloads/DCProjectJars/jackson-annotations-2.7.2.jar"/>
-	<classpathentry kind="lib" path="/Users/lakshitha/Downloads/DCProjectJars/jackson-core-2.7.2.jar"/>
-	<classpathentry kind="lib" path="/Users/lakshitha/Downloads/DCProjectJars/jackson-databind-2.7.2.jar"/>
-	<classpathentry kind="lib" path="/Users/lakshitha/Downloads/DCProjectJars/tubesock-0.0.12.jar"/>
+	<classpathentry kind="lib" path="C:/Seema/SCU/6th QUARTER/DISTRIBUTED COMPUTING/PROJECT/DCProjectJars-2016-03-07/DCProjectJars/firebase-client-jvm-2.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Seema/SCU/6th QUARTER/DISTRIBUTED COMPUTING/PROJECT/DCProjectJars-2016-03-07/DCProjectJars/httpclient-4.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Seema/SCU/6th QUARTER/DISTRIBUTED COMPUTING/PROJECT/DCProjectJars-2016-03-07/DCProjectJars/jackson-annotations-2.7.2.jar"/>
+	<classpathentry kind="lib" path="C:/Seema/SCU/6th QUARTER/DISTRIBUTED COMPUTING/PROJECT/DCProjectJars-2016-03-07/DCProjectJars/jackson-core-2.7.2.jar"/>
+	<classpathentry kind="lib" path="C:/Seema/SCU/6th QUARTER/DISTRIBUTED COMPUTING/PROJECT/DCProjectJars-2016-03-07/DCProjectJars/jackson-databind-2.7.2.jar"/>
+	<classpathentry kind="lib" path="C:/Seema/SCU/6th QUARTER/DISTRIBUTED COMPUTING/PROJECT/DCProjectJars-2016-03-07/DCProjectJars/tubesock-0.0.12.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

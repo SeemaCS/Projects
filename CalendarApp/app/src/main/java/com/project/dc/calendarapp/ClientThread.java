@@ -31,11 +31,9 @@ class ClientThread implements  Runnable {
         this.activity = activity;
     }
 
-
     private Socket socket;
     private static final int SERVERPORT = 8600;
     private static final String SERVER_IP = "172.20.66.164";
-
 
     @Override
     public void run() {
@@ -49,7 +47,6 @@ class ClientThread implements  Runnable {
             }
             else {
                 System.out.println("Socket null...");
-
             }
 
             str = this.inputMessage;
@@ -57,24 +54,19 @@ class ClientThread implements  Runnable {
             out.println(str);
             out.flush();
             System.out.println("Sent msg to server...");
-
             // Thread.sleep(1100);
-
             InputStream ios = socket.getInputStream();
             String message = null;
             Scanner scan = new Scanner(ios);
             if(scan.hasNext()) {
                 message = scan.nextLine();
-
                 if (message != null) {
                     serverFromMessage = message;
                 }
             }
             socket.close();
-
             System.out.println("Got message from server..." + message);
-            System.out.println("6)Thread done..i am the main thread with message:" + serverFromMessage);
-
+            //System.out.println("6)Thread done..i am the main thread with message:" + serverFromMessage);
             String message1 = "";
             if(serverFromMessage.equals("success")) {
                 if(str.startsWith("schedule")) {
@@ -91,26 +83,18 @@ class ClientThread implements  Runnable {
                     str = str.replace("cancel", "schedule");
                     activity.actualSchedule.remove(new String(str));
                 }
-
             }
             else {
                 if(str.startsWith("schedule"))
                     message1 = "Your appointment could not be scheduled. Please try again";
                 else if(str.startsWith("cancel"))
                     message1 = "Your appointment could not be cancelled. Please try again";
-
             }
-
             showNotification(message1);
-
         } catch (UnknownHostException e1) {
-
             e1.printStackTrace();
-
         } catch (IOException e1) {
-
             e1.printStackTrace();
-
         }
 //            catch (InterruptedException e) {
 //                e.printStackTrace();
@@ -121,33 +105,24 @@ class ClientThread implements  Runnable {
                 str = "";
                 this.inputMessage = "";
             } catch (IOException e) {
-
                 e.printStackTrace();
             }
-
         }
-
     }
 
-    public void showNotification( String message)
-    {
+    public void showNotification( String message) {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(activity);
-
-        mBuilder.setSmallIcon(R.drawable.cancel_icon).setColor(Color.rgb(255, 153, 0));
+        mBuilder.setSmallIcon(R.drawable.cancel_icon).setColor(Color.rgb(80, 147, 28));
         mBuilder.setVibrate(new long[] {100,250}).setDefaults(Notification.DEFAULT_SOUND);
         mBuilder.setContentTitle("Notification Alert, Click Me!");
         mBuilder.setContentText(message);
-
         Intent resultIntent = new Intent(activity, MainActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(activity);
         stackBuilder.addParentStack(MainActivity.class);
-
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(resultPendingIntent);
-
         NotificationManager mNotificationManager = (NotificationManager) activity.getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
-
         mNotificationManager.notify(3, mBuilder.build());
     }
 }
