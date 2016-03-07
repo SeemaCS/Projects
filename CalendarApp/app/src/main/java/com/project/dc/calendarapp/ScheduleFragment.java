@@ -25,12 +25,13 @@ public class ScheduleFragment extends Fragment implements MultiSpinner.OnMultipl
     private Spinner userSpinner;
     private Spinner daySpinner;
     private TextView participants;
-    private static final String[] users = {"Jack", "Bob", "John", "Andrew", "Charlie", "Dan"};
+    private static final String[] users = {"Jack0", "Bob1", "John2", "Andrew3", "Charlie4", "Dan5", "Eric6"};
     private static final String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
     String text = "";
     String dayText = "";
     EditText startTimeEditText;
     EditText endTimeEditText;
+    View view;
 
     String serverFromMessage = "";
     String messageToServer = "schedule ";
@@ -42,7 +43,7 @@ public class ScheduleFragment extends Fragment implements MultiSpinner.OnMultipl
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
+        view = inflater.inflate(R.layout.fragment_schedule, container, false);
         final MainActivity activity = (MainActivity) getActivity();
         participants = (TextView) view.findViewById(R.id.participants);
         userSpinner = (Spinner)view.findViewById(R.id.users);
@@ -115,7 +116,8 @@ public class ScheduleFragment extends Fragment implements MultiSpinner.OnMultipl
 
                 messageToServer += scheduleName.getText() + " ";
 
-                String participantText ="(" + participants.getText() + ") ";
+                String modifiedParticipants = participants.getText().toString().replace(" ", "");
+                String participantText ="(" + modifiedParticipants + ") ";
                 messageToServer += participantText;
 
 
@@ -126,6 +128,8 @@ public class ScheduleFragment extends Fragment implements MultiSpinner.OnMultipl
 
                 messageToServer += dayText;
 
+
+
                 System.out.println("Message to Server...");
                 System.out.println(messageToServer);
 
@@ -135,6 +139,7 @@ public class ScheduleFragment extends Fragment implements MultiSpinner.OnMultipl
                 }
                 else {
                     sendMessageToServer(messageToServer);
+                    messageToServer = "schedule ";
                 }
 
 
@@ -163,7 +168,7 @@ public class ScheduleFragment extends Fragment implements MultiSpinner.OnMultipl
     public void sendMessageToServer(String messageToServer) {
         System.out.println("Coming here...on click....");
 
-        Thread t = new Thread(new ClientThread(messageToServer, serverFromMessage));
+        Thread t = new Thread(new ClientThread(messageToServer, serverFromMessage, (MainActivity)getActivity()));
         t.start();
         System.out.println("1)Thread done..i am the main thread with message:" + serverFromMessage);
 
@@ -182,6 +187,8 @@ public class ScheduleFragment extends Fragment implements MultiSpinner.OnMultipl
 
         System.out.println("5) Thread done..i am the main thread with message:" + serverFromMessage);
         //textViewMsg.setText(serverFromMessage);
+
+
 
 
 

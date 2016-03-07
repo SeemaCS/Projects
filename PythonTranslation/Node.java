@@ -36,6 +36,7 @@ public class Node {
 	boolean isRunning = true;
 	int port;
 	int udpPort;
+	int uiPort;
 	String ipAddress;
 	int leaderId = -1;
 	boolean terminate = false;
@@ -67,17 +68,20 @@ public class Node {
 			String line = null;
 			while ((line = br.readLine()) != null) {
 				String[] tokens = line.split(",");
+				System.out.println("tokens[4] is:" + tokens[4]);
 				int nodeId = Integer.parseInt(tokens[0]);
 				if(this.id == nodeId) {
 					port = Integer.parseInt(tokens[2]);
 					ipAddress = tokens[1];
 					udpPort = Integer.parseInt(tokens[3]);
+					uiPort = Integer.parseInt(tokens[4]);
 				}
 				else {
 					Node n = new Node(nodeId);
 					n.port = Integer.parseInt(tokens[2]);
 					n.ipAddress = tokens[1];
 					n.udpPort = Integer.parseInt(tokens[3]);
+					n.uiPort = Integer.parseInt(tokens[4]);
 					this.peers.put(n.id, n);
 				}
 			}
@@ -212,6 +216,8 @@ public class Node {
 	}
 	
 	public Appointment parseAppointment(String[] tokens) {
+		
+		System.out.println("Inside parse message");
 		Appointment appointment = null;
 		
 		String name = tokens[1];
@@ -221,7 +227,9 @@ public class Node {
 		String[] users = participants.split(",");
 		List<Integer> userList = new ArrayList<Integer>();
 		for(String u : users) {
-			u = u.substring(4, u.length());
+			System.out.println("U is:" + u);
+			u = u.substring(u.length()-1, u.length());
+			System.out.println("U is:" + u);
 			userList.add(Integer.parseInt(u));
 		}
 		
@@ -233,8 +241,10 @@ public class Node {
 		
 		String day = tokens[4];
 	
-		appointment = new Appointment(name, day, startTime, endTime, userList);
+		System.out.println("before creating appointment" + name+day+startTime+endTime+userList);
 		
+		appointment = new Appointment(name, day, startTime, endTime, userList);
+		System.out.println("Is something wrong????"+appointment);
 		return appointment;
 	}
 	
@@ -393,11 +403,13 @@ public class Node {
 		//Logger logger = new MyLogger(node).LOGGER;
 		
 		//logger.info("Node " + node.id + " started with port number " + node.port);
+	
 		new Thread(new LeaderElection(node)).start();
-		new Thread(new Paxos(node)).start();
-		
 		//Start UI Server
 		new Thread(new UIServer(node)).start();
+		new Thread(new Paxos(node)).start();
+		
+	
 		
 		System.out.println(">> Node " + node.id + "started...");
 		System.out.println(">> Enter schedule..");

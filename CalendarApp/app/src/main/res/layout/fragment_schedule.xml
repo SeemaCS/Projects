@@ -28,6 +28,7 @@
         android:text="Name: "
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:layout_marginRight="20dp"
         android:layout_centerInParent="true" />
@@ -38,6 +39,8 @@
         android:layout_marginTop="15dp"
         android:width="150dp"
         android:id="@+id/scheduleName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:hint="Enter name"/>
         </LinearLayout>
 
@@ -52,6 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Participants: "
+        android:textColor="@color/white"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="17dp"
         android:textSize="18sp"
@@ -83,6 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start Time: "
+            android:textColor="@color/white"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:textSize="18sp"
@@ -94,6 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:id="@+id/startTime"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:width="150dp"
             android:hint="Enter time"/>
     </LinearLayout>
@@ -109,6 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="End Time: "
+            android:textColor="@color/white"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:textSize="18sp"
@@ -119,8 +127,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:textColor="@color/white"
             android:width="150dp"
             android:id="@+id/endTime"
+            android:textColorHint="@color/white"
             android:hint="Enter time"/>
     </LinearLayout>
 
@@ -135,6 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select Day: "
+            android:textColor="@color/white"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:textSize="18sp"
@@ -159,6 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="8dp"
+            android:textColor="@color/white"
             android:textSize="14sp"
             android:text="Schedule for: "/>
         <TextView
@@ -166,6 +178,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
+            android:textColor="@color/white"
             android:textSize="14sp"
             android:id="@+id/participants"/>
     </LinearLayout>

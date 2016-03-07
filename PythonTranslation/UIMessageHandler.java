@@ -52,8 +52,10 @@ public class UIMessageHandler{
 	
 	
 	public String getResponseMessage(String requestMsg) {
+		requestMsg = requestMsg.trim();
 		String response = "failure";
 		
+		try {
 		String[] tokens = requestMsg.split(" ");
 		if(tokens[0].equals("schedule")) {
 			System.out.println("Scheduling appointment from client Mobile...");
@@ -68,6 +70,11 @@ public class UIMessageHandler{
 			Appointment appointment = n.parseAppointment(tokens);
 			n.deleteAppointment(appointment);
 			response = "success";
+		}
+		} catch(Exception ex) {
+			System.out.println("[UIServer] Some exception occurred..." + ex.getMessage());
+			ex.printStackTrace();
+			response = "failure";
 		}
 		
 		

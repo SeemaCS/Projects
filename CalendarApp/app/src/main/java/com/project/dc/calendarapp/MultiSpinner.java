@@ -210,7 +210,7 @@ public class MultiSpinner extends Spinner implements
         for (int i = 0; i < _items.length; ++i) {
             if (mSelection[i]) {
                 if (foundOne) {
-                    sb.append(", ");
+                    sb.append(",");
                 }
                 foundOne = true;
 
@@ -227,7 +227,7 @@ public class MultiSpinner extends Spinner implements
         for (int i = 0; i < _items.length; ++i) {
             if (mSelection[i]) {
                 if (foundOne) {
-                    sb.append(", ");
+                    sb.append(",");
                 }
                 foundOne = true;
                 sb.append(_items[i]);

@@ -15,8 +15,13 @@ public class UIServer implements Runnable{
 	@Override
 	public void run() {
 		try {
-			ServerSocket serverSoc = new ServerSocket(9500);
+			System.out.println("UISERVER is up");
+
+		
+			ServerSocket serverSoc = new ServerSocket(node.uiPort);
+			System.out.println("UISERVER is up on port: "+ node.uiPort);
 			while(true) {
+				System.out.println("UISERVER:..Waiting for client..");
 				Socket receiverSoc = serverSoc.accept();
 				System.out.println("Got client....creating new thread to work on it...");
 				//new Thread(new UIMessageHandler(receiverSoc)).start();

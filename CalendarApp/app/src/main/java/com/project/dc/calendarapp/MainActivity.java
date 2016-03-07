@@ -25,6 +25,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     FloatingActionButton fab;
 
+    CancelAdapter cancelAdapter;
+    List<String> schedule = new ArrayList<String>();
+    List<String> actualSchedule = new ArrayList<String>();
+
 
 
 
@@ -128,5 +132,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             return mFragmentTitleList.get(position);
         }
     }
+
+    ///
+
 
 }
