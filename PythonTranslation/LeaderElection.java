@@ -68,7 +68,7 @@ public class LeaderElection implements Runnable {
 		boolean isReachable = false;
 		InetAddress address;
 		try {
-			address = InetAddress.getByName("localhost");
+			address = InetAddress.getByName(getPrevLeader(prevLeaderId).ipAddress);
 			//System.out.println("Name: " + address.getHostName());
 			if(address.isReachable(getPrevLeader(prevLeaderId).port)) {
 				isReachable = true;

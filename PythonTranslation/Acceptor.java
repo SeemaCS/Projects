@@ -198,7 +198,7 @@ public class Acceptor implements Runnable {
 			oos.writeObject(msg);
 			oos.flush();
 			byte[] data = baos.toByteArray();
-			InetAddress add = InetAddress.getByName("localhost");
+			InetAddress add = InetAddress.getByName(ipAddress);
 			DatagramPacket packet = new DatagramPacket(data, data.length, add, udpPort);
 			socket.send(packet);
 			socket.close();

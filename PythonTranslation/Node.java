@@ -110,7 +110,7 @@ public class Node {
 			oos.writeObject(msgObj);
 			oos.flush();
 			byte[] data = baos.toByteArray();
-			InetAddress add = InetAddress.getByName("localhost");
+			InetAddress add = InetAddress.getByName(this.ipAddress);
 			DatagramPacket packet = new DatagramPacket(data, data.length, add, this.udpPort);
 			socket.send(packet);
 			socket.close();
@@ -208,7 +208,7 @@ public class Node {
 			oos.writeObject(msgObj);
 			oos.flush();
 			byte[] data = baos.toByteArray();
-			InetAddress add = InetAddress.getByName("localhost");
+			InetAddress add = InetAddress.getByName(leader.ipAddress);
 			DatagramPacket packet = new DatagramPacket(data, data.length, add, leader.udpPort);
 			socket.send(packet);
 			socket.close();
@@ -383,7 +383,7 @@ public class Node {
 			oos.writeObject(msgObj);
 			oos.flush();
 			byte[] data = baos.toByteArray();
-			InetAddress add = InetAddress.getByName("localhost");
+			InetAddress add = InetAddress.getByName(leader.ipAddress);
 			DatagramPacket packet = new DatagramPacket(data, data.length, add, leader.udpPort);
 			socket.send(packet);
 			socket.close();

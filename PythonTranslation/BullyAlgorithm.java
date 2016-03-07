@@ -135,7 +135,7 @@ public class BullyAlgorithm implements Runnable{
 	public boolean isNodeReachable(int nodeId) {
 		InetSocketAddress address;
 
-			address = new InetSocketAddress("localhost", getNode(nodeId).port);
+			address = new InetSocketAddress(getNode(nodeId).ipAddress, getNode(nodeId).port);
 			
 		//	System.out.println("Checking if node id is reachable: " + nodeId);
 			boolean isReachable = sendPingMessageOnSocket(getNode(nodeId).port, getNode(nodeId).ipAddress, "ping");
@@ -168,7 +168,7 @@ public class BullyAlgorithm implements Runnable{
 		Socket senderSoc;
 		try {
 			//logger.info("Sending message to Node on port " + port);
-			InetAddress add = InetAddress.getByName("localhost");
+			InetAddress add = InetAddress.getByName(ipAddress);
 			
 			senderSoc = new Socket(add, port);
 			// logger.info("Sender socket..");

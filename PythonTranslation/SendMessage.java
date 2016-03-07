@@ -89,7 +89,7 @@ public class SendMessage {
 		Socket senderSoc;
 		try {
 			//logger.info("Sending message to Node on port " + port);
-			InetAddress add = InetAddress.getByName("localhost");
+			InetAddress add = InetAddress.getByName(ipAddress);
 			
 			senderSoc = new Socket(add, port);
 			// logger.info("Sender socket..");
