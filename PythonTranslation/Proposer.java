@@ -53,7 +53,7 @@ public class Proposer implements Runnable {
 
 		while(true) {
 			if(!commandQueue.isEmpty()) {
-				System.out.println("In proposer...");
+				//System.out.println("In proposer...");
 				UDPMessage message = commandQueue.get(commandQueue.size()-1);
 				commandQueue.remove(commandQueue.size()-1);
 				message.print();

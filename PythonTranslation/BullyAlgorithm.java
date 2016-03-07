@@ -63,8 +63,8 @@ public class BullyAlgorithm implements Runnable{
 					if((messageObj.msg).equals("COORDINATOR")) {
 						if(messageObj.id > n.id) {
                                                 n.leaderId = messageObj.id;
-                                                System.out.println("Coordinator is" + n.leaderId);
-                                                System.out.println("Getting out");
+                                              //  System.out.println("Coordinator is" + n.leaderId);
+                                              //  System.out.println("Getting out");
                                                 break;
 						}
                                         }
