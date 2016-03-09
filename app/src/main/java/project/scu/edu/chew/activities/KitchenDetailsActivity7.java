@@ -13,10 +13,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import project.scu.edu.chew.R;
 import project.scu.edu.chew.helpers.LoadReviews;
+import project.scu.edu.chew.models.FoodItem;
 import project.scu.edu.chew.models.HomeCook;
 
 // Display kitchen details
@@ -30,7 +35,7 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
     private final int REQUEST_CODE_CALL = 1;
 
     LinearLayout userPhotosLayout;
-    private Integer image [] = {R.drawable.food11, R.drawable.lasagna, R.drawable.pasta2, R.drawable.risotto, R.drawable.food15, R.drawable.tiramisu};
+    private int image [] = {R.drawable.food11, R.drawable.lasagna, R.drawable.pasta2, R.drawable.risotto, R.drawable.food15, R.drawable.tiramisu};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +45,15 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().hide();
 
-        addImagesToGallery();
+
 
         Intent i = getIntent();
         homeCook = (HomeCook)i.getSerializableExtra("homecook");
+
+        populateImagesForHSV();
+        addImagesToGallery();
+
+
         reviewsRatings = (ListView) findViewById(R.id.ratingsList);
         reviewsRatings.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, LoadReviews.getReviews()));
         menuLayout = (LinearLayout) findViewById(R.id.menuLayout);
@@ -73,17 +83,41 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (ActivityCompat.checkSelfPermission(KitchenDetailsActivity7.this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(KitchenDetailsActivity7.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     // Request missing phone call permission
                     ActivityCompat.requestPermissions(KitchenDetailsActivity7.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CODE_CALL);
                 } else {
-                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "888-888-8888"));
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + homeCook.getPhone()));
                     if (intent.resolveActivity(getPackageManager()) != null) {
                         startActivity(intent);
                     }
                 }
             }
         });
+
+        //TOP BAR
+        TextView nameView = (TextView) findViewById(R.id.iname);
+        nameView.setText(homeCook.getName());
+
+        RatingBar ratings = (RatingBar) findViewById(R.id.irating);
+        ratings.setRating(homeCook.getRating());
+
+        // Distance to be done
+
+        TextView cuisineName = (TextView) findViewById(R.id.icuisine);
+        cuisineName.setText(homeCook.getCuisine());
+
+        TextView timings = (TextView) findViewById(R.id.itimings);
+        timings.setText(homeCook.getTime());
+
+        TextView address = (TextView) findViewById(R.id.iaddress);
+        address.setText(homeCook.getAddress());
+
+        TextView phone = (TextView) findViewById(R.id.iphone);
+        phone.setText(homeCook.getPhone());
+
+
+
     }
 
     public void addImagesToGallery() {
@@ -109,13 +143,34 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_CALL) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (ActivityCompat.checkSelfPermission(KitchenDetailsActivity7.this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "888-888-8888"));
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + homeCook.getPhone()));
                     if (intent.resolveActivity(getPackageManager()) != null) {
                         startActivity(intent);
                     }
                 }
             }
         }
+    }
+
+    public void populateImagesForHSV() {
+
+        List<Integer> imageArray = new ArrayList<>();
+        System.out.println("[7a]No of Food Items: " + homeCook.getFoodItems().size());
+
+        for(FoodItem foodItem: homeCook.getFoodItems()) {
+            System.out.println("[7b]Food Items image name: " + foodItem.getImagePath());
+            String imagePath = "@drawable/" + foodItem.getImagePath();
+            System.out.println("Image Path:" + imagePath);
+            int imageResource = getResources().getIdentifier(imagePath, null, getPackageName());
+            imageArray.add(imageResource);
+        }
+
+        int[] ret = new int[imageArray.size()];
+        int i = 0;
+        for (Integer e : imageArray)
+            ret[i++] = e.intValue();
+
+        image = ret;
     }
 
 }

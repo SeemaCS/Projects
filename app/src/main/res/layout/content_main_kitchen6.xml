@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_kitchen1"
+    android:id="@+id/backgroundMain"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="project.scu.edu.chew.activities.MainKitchenActivity6"
     tools:showIn="@layout/activity_main_kitchen6">
@@ -33,6 +34,7 @@
                 android:textSize="20sp"
                 android:duplicateParentState="true"
                 android:clickable="false"
+                android:id="@+id/mainName"
                 android:text="Maria's Kitchen"/>
 
             <TextView
@@ -61,6 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="false"
+            android:id="@+id/mainCuisine"
             android:layout_marginLeft="15dp"
             android:duplicateParentState="true"
             android:text="Italian" />
@@ -69,6 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
+            android:id="@+id/timings"
             android:duplicateParentState="true"
             android:clickable="false"
             android:text="8:00 AM - 9:00 PM"/>

@@ -30,6 +30,7 @@
                 android:layout_marginRight="160dp"
                 android:textColor="@color/brown"
                 android:textStyle="bold"
+                android:id="@+id/iname"
                 android:textSize="20sp"
                 android:layout_marginLeft="15dp"
                 android:text="Maria's Kitchen"/>
@@ -43,7 +44,7 @@
 
 
         <RatingBar
-            android:id="@+id/ratingBar1"
+            android:id="@+id/irating"
             style="@style/foodRatingBarStandard"
             android:layout_marginLeft="15dp"
             android:rating="3.5"
@@ -56,12 +57,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
+            android:id="@+id/icuisine"
             android:text="Italian" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
+            android:id="@+id/itimings"
             android:text="8:00 AM - 9:00 PM"/>
     </LinearLayout>
     <ScrollView
@@ -131,6 +134,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/iaddress"
                             android:text= "500 E El Camino Real, Santa Clara, CA 95050"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -180,6 +184,7 @@
                             android:layout_width="wrap_content"
                             android:duplicateParentState="true"
                             android:clickable="false"
+                            android:id="@+id/iphone"
                             android:layout_height="wrap_content"
                             android:text= "888-888-8888"/>
                     </LinearLayout>

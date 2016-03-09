@@ -1,5 +1,6 @@
 package project.scu.edu.chew.activities;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import project.scu.edu.chew.R;
+import project.scu.edu.chew.models.FoodItem;
 
 // Display menu item details.
 public class FoodItemDetailsActivity9 extends AppCompatActivity {
@@ -27,6 +26,8 @@ public class FoodItemDetailsActivity9 extends AppCompatActivity {
     Button addToCartButton;
     TextView badgeButton;
 
+    FoodItem foodItem;
+
 
 
     @Override
@@ -36,6 +37,9 @@ public class FoodItemDetailsActivity9 extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().hide();
+
+        Intent i = getIntent();
+        foodItem = (FoodItem)i.getSerializableExtra("foodItem");
 
         minusButton = (Button) findViewById(R.id.minus);
         plusButton = (Button) findViewById(R.id.plus);
@@ -78,15 +82,47 @@ public class FoodItemDetailsActivity9 extends AppCompatActivity {
 
             }
         });
+//
+//        try {
+//            foodpic = (ImageView) findViewById(R.id.foodPic);
+//            InputStream inputStream = getBaseContext().getAssets().open("food11.jpg");
+//            Drawable drawable = Drawable.createFromStream(inputStream, null);
+//            foodpic.setImageDrawable(drawable);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        try {
-            foodpic = (ImageView) findViewById(R.id.foodPic);
-            InputStream inputStream = getBaseContext().getAssets().open("food11.jpg");
-            Drawable drawable = Drawable.createFromStream(inputStream, null);
-            foodpic.setImageDrawable(drawable);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        foodpic = (ImageView) findViewById(R.id.foodPic);
+        String imagePath = "@drawable/" + foodItem.getImagePath();
+        int imageResource = getResources().getIdentifier(imagePath, null, getPackageName());
+        Drawable drawable = getDrawable(imageResource);
+        foodpic.setImageDrawable(drawable);
+
+        TextView fname = (TextView) findViewById(R.id.fname);
+        fname.setText(foodItem.getName());
+
+        TextView fPrice = (TextView) findViewById(R.id.fPrice);
+        fPrice.setText(fPrice.getText() + Double.toString(foodItem.getPrice()));
+
+        TextView fDescription = (TextView) findViewById(R.id.fDescription);
+        fDescription.setText(foodItem.getLongDescription());
+
+        TextView fCalories = (TextView) findViewById(R.id.fCalories);
+        fCalories.setText(foodItem.getNutritionTable().get("Calories"));
+        TextView fCarbs = (TextView) findViewById(R.id.fCarbs);
+        fCarbs.setText(foodItem.getNutritionTable().get("Carbohydrates"));
+        TextView fProtein = (TextView) findViewById(R.id.fProtein);
+        fProtein.setText(foodItem.getNutritionTable().get("Protein"));
+        TextView fFat = (TextView) findViewById(R.id.fFat);
+        fFat.setText(foodItem.getNutritionTable().get("Fat"));
+        TextView fFiber = (TextView) findViewById(R.id.fFiber);
+        fFiber.setText(foodItem.getNutritionTable().get("Fiber"));
+
+        TextView fServe = (TextView) findViewById(R.id.fServe);
+        fServe.setText("Serves " + foodItem.getServing());
+
+        TextView fReadyTime = (TextView) findViewById(R.id.fReadyTime);
+        fReadyTime.setText("Ready in " + foodItem.getReadyTime() +" mins");
 
 
     }

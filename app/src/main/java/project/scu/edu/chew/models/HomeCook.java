@@ -16,6 +16,15 @@ public class HomeCook implements Serializable{
     private String name;
     private String cuisine;
     private String largeImage;
+    private float rating;
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
 
     public String getLargeImage() {
         return largeImage;

@@ -10,6 +10,25 @@ public class FoodItem implements Serializable{
     private String description;
     private double calories;
     private double price;
+    private String serving;
+    private String readyTime;
+
+    public String getServing() {
+        return serving;
+    }
+
+    public void setServing(String serving) {
+        this.serving = serving;
+    }
+
+    public String getReadyTime() {
+        return readyTime;
+    }
+
+    public void setReadyTime(String readyTime) {
+        this.readyTime = readyTime;
+    }
+
     private HashMap<String, String> nutritionTable = new HashMap<>();
 
     public HashMap<String, String> getNutritionTable() {
