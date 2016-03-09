@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import project.scu.edu.chew.models.FoodItem;
 public class CartAdapter extends ArrayAdapter<FoodItem> {
 
     private final List<FoodItem> foodItems;
+    Button cancelButton;
 
     public CartAdapter(Context context, int resource, List<FoodItem> foodItems) {
         super(context, resource, foodItems);
@@ -28,11 +30,21 @@ public class CartAdapter extends ArrayAdapter<FoodItem> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        FoodItem foodItem = foodItems.get(position);
+        final FoodItem foodItem = foodItems.get(position);
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.cart_list_row, null);
+
+        cancelButton = (Button) row.findViewById(R.id.cancelButton);
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodItems.remove(foodItem);
+                notifyDataSetChanged();
+            }
+        });
 
         TextView nameTextView = (TextView) row.findViewById(R.id.cart_row_name);
         nameTextView.setText(foodItem.getName());

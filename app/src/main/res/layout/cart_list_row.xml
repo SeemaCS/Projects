@@ -33,6 +33,7 @@
             <Button
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:id="@+id/cancelButton"
                 android:layout_marginLeft="220dp"
                 android:background="@drawable/cancel_icon"/>
 

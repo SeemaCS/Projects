@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import project.scu.edu.chew.R;
 
@@ -21,6 +22,7 @@ public class BottomToolbarFragment extends Fragment {
     Button user;
     Button cartButton;
     Button homeButton;
+    TextView badgeButton;
 
 
     public BottomToolbarFragment() {
@@ -33,6 +35,13 @@ public class BottomToolbarFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_bottom_toolbar, container, false);
+
+        badgeButton = (TextView) view.findViewById(R.id.badgeButton);
+        badgeButton.setVisibility(view.INVISIBLE);
+
+        if(!badgeButton.getText().equals("0")) {
+            badgeButton.setVisibility(view.VISIBLE);
+        }
 
         searchButton = (Button) view.findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {

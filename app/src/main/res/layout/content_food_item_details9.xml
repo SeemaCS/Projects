@@ -69,17 +69,20 @@
                 <Button
                     android:layout_width="25dp"
                     android:layout_height="25dp"
+                    android:id="@+id/minus"
                     android:background="@drawable/minus_icon" />
 
                 <TextView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:paddingLeft="10dp"
+                    android:id="@+id/quantity"
                     android:text="1"/>
 
                 <Button
                     android:layout_width="25dp"
                     android:layout_height="25dp"
+                    android:id="@+id/plus"
                     android:background="@drawable/add_icon"/>
 
 
@@ -89,6 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:id="@+id/addToCart"
                 android:textColor="@color/yellow"
                 android:background="@color/brown"
                 android:text="Add to Cart"/>
