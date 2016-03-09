@@ -66,10 +66,14 @@ public class LoadData {
         homeCooks.add(homeCook);
 
         // #5
-        homeCook = new HomeCook("Wang's Kitchen", "12345678", "food1.jpg");
+        homeCook = new HomeCook("Wang's Kitchen", "408-433-9626", "food1.jpg");
         homeCook.setCuisine("Chinese");
-        homeCook.getFoodItems().add(new FoodItem("Paratha", "food1.jpg"));
-        homeCook.getFoodItems().add(new FoodItem("Pasta", "pasta.jpg"));
+        homeCook.setAddress("438 Barber Lane, Milpitas, CA 95035");
+
+        foodItem = new FoodItem("Manchow soup", "image");
+
+//        homeCook.getFoodItems().add(new FoodItem("Paratha", "food1.jpg"));
+//        homeCook.getFoodItems().add(new FoodItem("Pasta", "pasta.jpg"));
         homeCooks.add(homeCook);
 
         // #6

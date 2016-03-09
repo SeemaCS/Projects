@@ -83,6 +83,7 @@
             android:layout_height="45dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/facebook"
+            android:id="@+id/fbButton"
             />
 
         <Button
@@ -90,6 +91,7 @@
             android:layout_height="43dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/insta"
+            android:id="@+id/instaButton"
             />
 
         <Button
@@ -97,12 +99,14 @@
             android:layout_height="45dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/googleplus"
+            android:id="@+id/gButton"
             />
 
         <Button
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@drawable/twitter"
+            android:id="@+id/twitterButton"
             />
 
 

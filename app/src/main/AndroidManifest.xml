@@ -45,7 +45,17 @@
             android:name=".activities.LoginOptionsActivity2"
             android:label="@string/title_activity_login_options2"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"> </action>
+                <category android:name="android.intent.category.DEFAULT"> </category>
+                <category android:name="android.intent.category.BROWSABLE"> </category>
+                <data android:host="www.scu.edu" android:scheme="https"> </data>
+
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activities.SignUpActivity4"
             android:label="@string/title_activity_sign_up4"
