@@ -1,6 +1,7 @@
 package project.scu.edu.chew.models;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class FoodItem implements Serializable{
 
@@ -9,6 +10,25 @@ public class FoodItem implements Serializable{
     private String description;
     private double calories;
     private double price;
+    private HashMap<String, String> nutritionTable = new HashMap<>();
+
+    public HashMap<String, String> getNutritionTable() {
+        return nutritionTable;
+    }
+
+    public void setNutritionTable(HashMap<String, String> nutritionTable) {
+        this.nutritionTable = nutritionTable;
+    }
+
+    public String getLongDescription() {
+        return longDescription;
+    }
+
+    public void setLongDescription(String longDescription) {
+        this.longDescription = longDescription;
+    }
+
+    private String longDescription;
 
     public int getQuantity() {
         return quantity;

@@ -15,6 +15,15 @@ public class HomeCook implements Serializable{
     private String time;
     private String name;
     private String cuisine;
+    private String largeImage;
+
+    public String getLargeImage() {
+        return largeImage;
+    }
+
+    public void setLargeImage(String largeImage) {
+        this.largeImage = largeImage;
+    }
 
     public HomeCook(String name, String phone, String imagePath) {
         this.name = name;
