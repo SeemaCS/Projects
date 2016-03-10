@@ -1,128 +1,167 @@
+
 package project.scu.edu.chew.activities;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
+import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 import project.scu.edu.chew.R;
+import project.scu.edu.chew.models.HomeCook;
 
-public class KitchenAddressMapsActivity extends FragmentActivity  {
+/**
+ * This shows how to create a simple activity with a map and a marker on the map.
+ */
+public class KitchenAddressMapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
-    Button search;
+    HomeCook homeCook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kitchen_address_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
-        search = (Button) findViewById(R.id.search);
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                onSearch(v);
-            }
-        });
-        setUpMapIfneeded();
+        Intent i = getIntent();
+        homeCook = (HomeCook)i.getSerializableExtra("homecook");
 
-    }
-
-    protected void onResume()
-    {
-        super.onResume();
-        setUpMapIfneeded();
-    }
-
-
-
-    public void onSearch(View view)
-    {
-        Toast.makeText(this,"in search", Toast.LENGTH_SHORT).show();
-        EditText location_tf = (EditText) findViewById(R.id.TFadress);
-        String location = location_tf.getText().toString();
-        List<Address> addressList = null;
-
-        if(location !=null ||!location.equals(""))
-        {
-            Geocoder geoCoder = new Geocoder(this);
-            try
-            {
-                addressList = geoCoder.getFromLocationName(location, 1);
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-
-            Address address = addressList.get(0);
-            LatLng latLag = new LatLng(address.getLatitude(),address.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(latLag).title("Marker"));
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLag));
-
-        }
+        SupportMapFragment mapFragment =
+                (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
     /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
      * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
+     * we
+     * just add a marker near Africa.
      */
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        mMap = googleMap;
-//
-//        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-//    }
-    private void setUpMapIfneeded() {
-        if (mMap == null) {
-            mMap = ((SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.map)).getMap();
-            if (mMap != null) {
-                setUpMap();
+    @Override
+    public void onMapReady(GoogleMap map) {
+//        map.addMarker(new MarkerOptions().position(new LatLng(37.3492, -121.9381)).title(homeCook.getName())).showInfoWindow();
+//        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.3492, -121.9381), 10));
+
+//        getAddressFromLocation(homeCook.getAddress(),
+//                getApplicationContext(), new GeocoderHandler());
+
+        LatLng myLatLng = getAddressFromLocation1(homeCook.getAddress(), getApplicationContext());
+
+        map.addMarker(new MarkerOptions().position(myLatLng).title(homeCook.getName())).showInfoWindow();
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(myLatLng, 10));
+    }
+
+    public static void getAddressFromLocation(final String locationAddress,
+                                              final Context context, final Handler handler) {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+                String result = null;
+                try {
+                    List<Address> addressList = geocoder.getFromLocationName(locationAddress, 1);
+                    if (addressList != null && addressList.size() > 0) {
+                        Address address = addressList.get(0);
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(address.getLatitude()).append("\n");
+                        sb.append(address.getLongitude()).append("\n");
+                        result = sb.toString();
+                    }
+                } catch (IOException e) {
+                   System.out.println("Unable to connect to Geocoder" + e.getMessage());
+                } finally {
+                    Message message = Message.obtain();
+                    message.setTarget(handler);
+                    if (result != null) {
+                        message.what = 1;
+                        Bundle bundle = new Bundle();
+                        result = "Address: " + locationAddress +
+                                "\n\nLatitude and Longitude :\n" + result;
+                        System.out.println("Lat Long:" + result);
+                        bundle.putString("address", result);
+                        message.setData(bundle);
+                    } else {
+                        message.what = 1;
+                        Bundle bundle = new Bundle();
+                        result = "Address: " + locationAddress +
+                                "\n Unable to get Latitude and Longitude for this address location.";
+                        System.out.println("Could not get lat long");
+                                bundle.putString("address", result);
+                        message.setData(bundle);
+                    }
+                    message.sendToTarget();
+                }
             }
+        };
+        thread.start();
+    }
+
+    private class GeocoderHandler extends Handler {
+        @Override
+        public void handleMessage(Message message) {
+            String locationAddress;
+            switch (message.what) {
+                case 1:
+                    Bundle bundle = message.getData();
+                    locationAddress = bundle.getString("address");
+                    break;
+                default:
+                    locationAddress = null;
+            }
+
         }
     }
 
-    private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        mMap.setMyLocationEnabled(true);
+
+    public  LatLng getAddressFromLocation1(final String locationAddress,
+                                              final Context context) {
+
+                LatLng myLatLng = null;
+                Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+                String result = null;
+                try {
+                    List<Address> addressList = geocoder.getFromLocationName(locationAddress, 1);
+                    if (addressList != null && addressList.size() > 0) {
+                        Address address = addressList.get(0);
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(address.getLatitude()).append("\n");
+                        sb.append(address.getLongitude()).append("\n");
+                        result = sb.toString();
+                        myLatLng = new LatLng(address.getLatitude(), address.getLongitude());
+                    }
+                } catch (IOException e) {
+                    System.out.println("Unable to connect to Geocoder" + e.getMessage());
+                } finally {
+                    if (result != null) {
+
+                        result = "Address: " + locationAddress +
+                                "\n\nLatitude and Longitude :\n" + result;
+                        System.out.println("Lat Long:" + result);
+
+                    } else {
+
+                        result = "Address: " + locationAddress +
+                                "\n Unable to get Latitude and Longitude for this address location.";
+                        System.out.println("Could not get lat long");
+
+                    }
+                }
+
+
+        return myLatLng;
+
     }
 }
+

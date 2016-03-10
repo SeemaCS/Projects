@@ -88,6 +88,7 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(KitchenDetailsActivity7.this, KitchenAddressMapsActivity.class);
+                intent.putExtra("homecook", homeCook);
                 if(intent != null)
                     startActivity(intent);
             }

@@ -138,4 +138,6 @@
     <string name="title_activity_tool_bar_base">ToolBarBaseActivity</string>
     <string name="title_activity_review_details">ReviewDetailsActivity</string>
     <string name="title_activity_kitchen_address_maps">Map</string>
+
+    <string name="google_app_id">466881259301</string>
 </resources>
