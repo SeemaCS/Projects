@@ -48,21 +48,23 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         reviews = MainKitchenActivity6.reviews;
-        String[] reviewList = new String[reviews.size()];
-        //reviewList[0] = "hi";
-        int j = 0;
-        if(reviews!=null) {
-            for (ReviewRatings r : reviews) {
-                if(r.getReview() != null) {
-                    reviewList[j] = r.getReview();
-                    j++;
+        if(reviews != null) {
+            String[] reviewList = new String[reviews.size()];
+            //reviewList[0] = "hi";
+            int j = 0;
+            if (reviews != null) {
+                for (ReviewRatings r : reviews) {
+                    if (r.getReview() != null) {
+                        reviewList[j] = r.getReview();
+                        j++;
+                    }
                 }
             }
-        }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, reviewList);
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, reviewList);
 
-        reviewsRatings.setAdapter(arrayAdapter);
-        arrayAdapter.notifyDataSetChanged();
+            reviewsRatings.setAdapter(arrayAdapter);
+            arrayAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -99,6 +101,7 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
         //      reviewsRatings = (ListView) findViewById(R.id.ratingsList);
 //        reviewsRatings.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, LoadReviews.getReviews()));
 
+
         reviews = MainKitchenActivity6.reviews;
         // ReviewRatings review = new ReviewRatings();
 
@@ -111,34 +114,36 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
                 reviewDetails.setUserName(review.getUserName());
             }
         }*/
-
-        String[] reviewList = new String[reviews.size()];
-        //reviewList[0] = "hi";
-        int j = 0;
         if(reviews!=null) {
+
+            String[] reviewList = new String[reviews.size()];
+            //reviewList[0] = "hi";
+            int j = 0;
+
             for (ReviewRatings r : reviews) {
-                if(r.getReview() != null) {
+                if (r.getReview() != null) {
                     reviewList[j] = r.getReview();
                     j++;
                 }
             }
+
+
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, reviewList);
+
+            reviewsRatings.setAdapter(arrayAdapter);
+            reviewsRatings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    System.out.println("You clicked on:" + position);
+                    System.out.println("Review list reviews size:" + reviews.size());
+
+                    Intent intent = new Intent(getBaseContext(), ReviewDetailsActivity.class);
+                    intent.putExtra("reviewDetails", reviews.get(position));
+                    if (intent != null)
+                        startActivity(intent);
+                }
+            });
         }
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, reviewList);
-
-        reviewsRatings.setAdapter(arrayAdapter);
-        reviewsRatings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("You clicked on:" + position);
-                System.out.println("Review list reviews size:" + reviews.size());
-
-                Intent intent = new Intent(getBaseContext(), ReviewDetailsActivity.class);
-                intent.putExtra("reviewDetails", reviews.get(position));
-                if (intent != null)
-                    startActivity(intent);
-            }
-        });
         menuLayout = (LinearLayout) findViewById(R.id.menuLayout);
         menuLayout.setOnClickListener(new View.OnClickListener() {
             @Override
