@@ -8,10 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import project.scu.edu.chew.R;
+import project.scu.edu.chew.database.User;
 
 // Display Login options - home screen
 public class LoginOptionsActivity2 extends AppCompatActivity {
@@ -23,6 +29,11 @@ public class LoginOptionsActivity2 extends AppCompatActivity {
     Button instaButton;
     Button twiButton;
     Button googleButton;
+
+    static List<User> users;
+
+    private Firebase mFirebaseRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,11 +167,53 @@ public class LoginOptionsActivity2 extends AppCompatActivity {
             }
         });
 
+        Firebase.setAndroidContext(this);
 
-
-
+        loadUsersFromFirebase();
 
 
 
 }
+
+    public void loadUsersFromFirebase() {
+        Firebase ref = new Firebase("https://gobble.firebaseio.com/");
+
+
+        ref.addValueEventListener(new ValueEventListener() {
+
+            @SuppressWarnings("unchecked")
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                DataSnapshot newSnap = snapshot.child("users");
+
+                if(snapshot.getValue() != null) {
+                    users = new ArrayList<User>();
+
+                        for (DataSnapshot messageSnapshot: newSnap.getChildren()) {
+                            User userObject = (User)messageSnapshot.getValue(User.class);
+                            users.add(userObject);
+                        }
+
+                }
+            }
+            @Override
+            public void onCancelled(FirebaseError arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+    }
+
+    public static User getUser(String email){
+        User user = null;
+
+        for(User myUser: users) {
+            if(myUser.getEmail().equals(email)) {
+                user = myUser;
+                break;
+            }
+        }
+
+        return user;
+    }
 }

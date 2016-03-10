@@ -7,6 +7,7 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -31,11 +32,14 @@ import android.widget.TextView;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import project.scu.edu.chew.R;
+import project.scu.edu.chew.database.User;
+import project.scu.edu.chew.models.UserSession;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -214,13 +218,17 @@ public class LoginActivity3 extends AppCompatActivity implements LoaderCallbacks
 
     }
 
-    private void authenticateUser(String email, String password) {
+    private void authenticateUser(final String email, String password) {
         mFirebaseRef = new Firebase("https://gobble.firebaseio.com");
         mFirebaseRef.authWithPassword(email, password, new Firebase.AuthResultHandler() {
             @Override
             public void onAuthenticated(AuthData authData) {
                 errorMsg.setText("");
                 Intent intent = new Intent(LoginActivity3.this, HCListActivity5.class);
+
+                startUserSession(email);
+
+
                 if(intent != null)
                     startActivity(intent);
             }
@@ -395,5 +403,21 @@ public class LoginActivity3 extends AppCompatActivity implements LoaderCallbacks
             showProgress(false);
         }
     }
+
+    public void startUserSession(String email) {
+
+        User currentUser = LoginOptionsActivity2.getUser(email);
+
+        SharedPreferences gobblePreferences = getSharedPreferences("GOBBLE_PREFS", MODE_PRIVATE);
+        SharedPreferences.Editor editor = gobblePreferences.edit();
+        UserSession newSession = new UserSession();
+        newSession.setUser(currentUser);
+        Gson gson = new Gson();
+        String json = gson.toJson(newSession);
+        editor.putString("currentSession", json);
+        editor.commit();
+    }
+
+
 }
 

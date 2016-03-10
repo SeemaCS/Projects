@@ -80,6 +80,12 @@ public class FoodItemDetailsActivity9 extends AppCompatActivity {
                 badgeCount = badgeCount + quantityCount;
                 badgeButton.setText(badgeCount+"");
 
+
+
+
+                ///NEw logic
+                
+
             }
         });
 //
@@ -123,6 +129,8 @@ public class FoodItemDetailsActivity9 extends AppCompatActivity {
 
         TextView fReadyTime = (TextView) findViewById(R.id.fReadyTime);
         fReadyTime.setText("Ready in " + foodItem.getReadyTime() +" mins");
+
+
 
 
     }
