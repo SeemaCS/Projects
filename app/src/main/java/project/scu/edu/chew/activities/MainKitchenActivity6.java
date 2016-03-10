@@ -12,7 +12,16 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import project.scu.edu.chew.R;
+import project.scu.edu.chew.database.ReviewRatings;
 import project.scu.edu.chew.models.HomeCook;
 
 // Display the kitchen details in brief
@@ -20,6 +29,9 @@ public class MainKitchenActivity6 extends AppCompatActivity {
 
     LinearLayout kitchenLayout;
     HomeCook homeCook;
+
+    private Firebase mFirebaseRef;
+    static List<ReviewRatings> reviews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +80,37 @@ public class MainKitchenActivity6 extends AppCompatActivity {
 
         System.out.println("[6]No of Food Items: " + homeCook.getFoodItems().size());
 
+        Firebase.setAndroidContext(this);
+        loadReviews();
 
 
 
+    }
+
+    public void loadReviews() {
+        mFirebaseRef = new Firebase("https://gobble.firebaseio.com");
+        Firebase reviewRef = mFirebaseRef.child("reviews");
+
+
+
+        //  final ReviewRatings reviewRatings = new ReviewRatings(userName, ratings, reviews, imageEncoded);
+        //reviewRef.setValue(reviewRatings);
+        reviewRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ReviewRatings dbReviewRating = new ReviewRatings();
+                reviews = new ArrayList<ReviewRatings>();
+                for (DataSnapshot item : dataSnapshot.getChildren()) {
+                    dbReviewRating = (ReviewRatings) item.getValue(ReviewRatings.class);
+                    reviews.add(dbReviewRating);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
     }
 

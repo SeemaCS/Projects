@@ -10,6 +10,8 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -33,4 +35,5 @@ dependencies {
     compile 'com.firebase:firebase-client-android:2.5.0'
     compile 'com.firebaseui:firebase-ui:0.3.1'
     compile 'com.google.code.gson:gson:2.5'
+    compile 'com.google.android.gms:play-services:8.4.0'
 }

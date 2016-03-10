@@ -124,6 +124,10 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="match_parent"
@@ -136,6 +140,14 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/iaddress"
                             android:text= "500 E El Camino Real, Santa Clara, CA 95050"/>
+                    </LinearLayout>
+                        <Button
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:background="@drawable/add_map"
+                            android:id="@+id/addressMap"/>
+
                     </LinearLayout>
                 </LinearLayout>
 

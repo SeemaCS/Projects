@@ -9,7 +9,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.scu.edu.chew.R;
-import project.scu.edu.chew.helpers.LoadReviews;
+import project.scu.edu.chew.database.ReviewRatings;
 import project.scu.edu.chew.models.FoodItem;
 import project.scu.edu.chew.models.HomeCook;
 
@@ -32,10 +34,36 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
     LinearLayout menuLayout;
     TextView reviewHint;
 
+    Button addMap;
+
     private final int REQUEST_CODE_CALL = 1;
+
+    ReviewRatings reviewDetails = new ReviewRatings();
+    List<ReviewRatings> reviews = new ArrayList<ReviewRatings>();
 
     LinearLayout userPhotosLayout;
     private int image [] = {R.drawable.food11, R.drawable.lasagna, R.drawable.pasta2, R.drawable.risotto, R.drawable.food15, R.drawable.tiramisu};
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reviews = MainKitchenActivity6.reviews;
+        String[] reviewList = new String[reviews.size()];
+        //reviewList[0] = "hi";
+        int j = 0;
+        if(reviews!=null) {
+            for (ReviewRatings r : reviews) {
+                if(r.getReview() != null) {
+                    reviewList[j] = r.getReview();
+                    j++;
+                }
+            }
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, reviewList);
+
+        reviewsRatings.setAdapter(arrayAdapter);
+        arrayAdapter.notifyDataSetChanged();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +81,63 @@ public class KitchenDetailsActivity7 extends AppCompatActivity {
         populateImagesForHSV();
         addImagesToGallery();
 
-
         reviewsRatings = (ListView) findViewById(R.id.ratingsList);
-        reviewsRatings.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, LoadReviews.getReviews()));
+        addMap = (Button)findViewById(R.id.addressMap);
+
+        addMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(KitchenDetailsActivity7.this, KitchenAddressMapsActivity.class);
+                if(intent != null)
+                    startActivity(intent);
+            }
+        });
+
+
+
+        //      reviewsRatings = (ListView) findViewById(R.id.ratingsList);
+//        reviewsRatings.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, LoadReviews.getReviews()));
+
+        reviews = MainKitchenActivity6.reviews;
+        // ReviewRatings review = new ReviewRatings();
+
+        // reviews.add(review);
+       /* for(ReviewRatings review : reviews) {
+            if(reviews!=null) {
+                reviewDetails.setImageView(review.getImageView());
+                reviewDetails.setReview(review.getReview());
+                reviewDetails.setRating(review.getRating());
+                reviewDetails.setUserName(review.getUserName());
+            }
+        }*/
+
+        String[] reviewList = new String[reviews.size()];
+        //reviewList[0] = "hi";
+        int j = 0;
+        if(reviews!=null) {
+            for (ReviewRatings r : reviews) {
+                if(r.getReview() != null) {
+                    reviewList[j] = r.getReview();
+                    j++;
+                }
+            }
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, reviewList);
+
+        reviewsRatings.setAdapter(arrayAdapter);
+        reviewsRatings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("You clicked on:" + position);
+                System.out.println("Review list reviews size:" + reviews.size());
+
+                Intent intent = new Intent(getBaseContext(), ReviewDetailsActivity.class);
+                intent.putExtra("reviewDetails", reviews.get(position));
+                if (intent != null)
+                    startActivity(intent);
+            }
+        });
         menuLayout = (LinearLayout) findViewById(R.id.menuLayout);
         menuLayout.setOnClickListener(new View.OnClickListener() {
             @Override
