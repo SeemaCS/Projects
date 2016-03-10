@@ -57,6 +57,10 @@ public class UserActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(currentUser.getName().equals("guest")) {
+                    Toast.makeText(UserActivity.this, "Please sign up first", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if(!(oldPassword.getText().toString().equals(currentUser.getPassword().toString()))) {
                     Toast.makeText(UserActivity.this, "Old password is not correct", Toast.LENGTH_SHORT).show();
