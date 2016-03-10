@@ -11,95 +11,95 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="project.scu.edu.chew.activities.CartActivity10"
-    tools:showIn="@layout/activity_cart10">
+    tools:context="project.scu.edu.chew.activities.CartActivity10">
+    <!--tools:showIn="@layout/activity_cart10">-->
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="10dp">
-
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/cart_list_view"
-                android:layout_gravity="center_horizontal"
-                android:dividerHeight="2dp"
-                />
-
-
-        </LinearLayout>
-
-
-    </ScrollView>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Total: $50"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/thin_border_set"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/orderButton"
-        android:layout_marginLeft="110dp"
-        android:background="@color/brown"
-        android:textColor="@color/yellow"
-        android:layout_marginBottom="15dp"
-        android:text="Place Order"/>
-
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="525dp"
-        android:layout_marginLeft="15dp"
-        android:name="project.scu.edu.chew.activities.BottomToolbarFragment"
-        android:id="@+id/bottomToolbar">
-    </fragment>
-
-    <!--<Toolbar-->
+    <!--<ScrollView-->
         <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:id="@+id/bottomToolbar"-->
-        <!--android:background="@android:color/transparent"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!-->-->
+        <!--android:layout_height="400dp"-->
+        <!--android:fillViewport="true">-->
 
-        <!--<Button-->
-            <!--android:layout_width="30dp"-->
-            <!--android:layout_height="30dp"-->
-            <!--android:layout_marginRight="55dp"-->
-            <!--android:background="@drawable/home_icon"/>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:paddingBottom="10dp">-->
 
-        <!--<Button-->
-            <!--android:layout_width="30dp"-->
-            <!--android:layout_height="30dp"-->
-            <!--android:layout_marginRight="55dp"-->
-            <!--android:background="@drawable/search_icon"/>-->
 
-        <!--<Button-->
-            <!--android:layout_width="30dp"-->
-            <!--android:layout_height="30dp"-->
-            <!--android:layout_marginRight="55dp"-->
-            <!--android:background="@drawable/user_icon"/>-->
+            <!--<ListView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/cart_list_view"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:dividerHeight="2dp"-->
+                <!--/>-->
 
-        <!--<Button-->
-            <!--android:layout_width="30dp"-->
-            <!--android:layout_height="30dp"-->
-            <!--android:background="@drawable/shopping_cart_icon"/>-->
-    <!--</Toolbar>-->
+
+        <!--</LinearLayout>-->
+
+
+    <!--</ScrollView>-->
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Total: $50"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:background="@drawable/thin_border_set"-->
+        <!--/>-->
+
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/orderButton"-->
+        <!--android:layout_marginLeft="110dp"-->
+        <!--android:background="@color/brown"-->
+        <!--android:textColor="@color/yellow"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:text="Place Order"/>-->
+
+    <!--<fragment-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="525dp"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:name="project.scu.edu.chew.activities.BottomToolbarFragment"-->
+        <!--android:id="@+id/bottomToolbar">-->
+    <!--</fragment>-->
+
+    <!--&lt;!&ndash;<Toolbar&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="30dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/bottomToolbar"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:background="@android:color/transparent"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_alignParentBottom="true"&ndash;&gt;-->
+        <!--&lt;!&ndash;>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginRight="55dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:background="@drawable/home_icon"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginRight="55dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:background="@drawable/search_icon"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginRight="55dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:background="@drawable/user_icon"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:background="@drawable/shopping_cart_icon"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;</Toolbar>&ndash;&gt;-->
 
 
 </LinearLayout>

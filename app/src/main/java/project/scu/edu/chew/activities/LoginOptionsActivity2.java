@@ -1,6 +1,7 @@
 package project.scu.edu.chew.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -12,12 +13,14 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import project.scu.edu.chew.R;
 import project.scu.edu.chew.database.User;
+import project.scu.edu.chew.models.UserSession;
 
 // Display Login options - home screen
 public class LoginOptionsActivity2 extends AppCompatActivity {
@@ -44,6 +47,7 @@ public class LoginOptionsActivity2 extends AppCompatActivity {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startUserSession();
                 Intent intent = new Intent(LoginOptionsActivity2.this, HCListActivity5.class);
                 if (intent != null)
                     startActivity(intent);
@@ -184,6 +188,7 @@ public class LoginOptionsActivity2 extends AppCompatActivity {
             @SuppressWarnings("unchecked")
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                System.out.println("I am getting called...");
                 DataSnapshot newSnap = snapshot.child("users");
 
                 if(snapshot.getValue() != null) {
@@ -191,6 +196,7 @@ public class LoginOptionsActivity2 extends AppCompatActivity {
 
                         for (DataSnapshot messageSnapshot: newSnap.getChildren()) {
                             User userObject = (User)messageSnapshot.getValue(User.class);
+                            System.out.println("Got a user:" + userObject.getName());
                             users.add(userObject);
                         }
 
@@ -205,15 +211,32 @@ public class LoginOptionsActivity2 extends AppCompatActivity {
     }
 
     public static User getUser(String email){
+        System.out.println("Entering getUser from Login Options Activity 2");
         User user = null;
 
         for(User myUser: users) {
             if(myUser.getEmail().equals(email)) {
+                System.out.println("myUser:" + myUser.getId());
                 user = myUser;
                 break;
             }
         }
 
         return user;
+    }
+
+    public void startUserSession() {
+
+        User currentUser = new User();
+        currentUser.setName("guest");
+
+        SharedPreferences gobblePreferences = getSharedPreferences("GOBBLE_PREFS", MODE_PRIVATE);
+        SharedPreferences.Editor editor = gobblePreferences.edit();
+        UserSession newSession = new UserSession();
+        newSession.setUser(currentUser);
+        Gson gson = new Gson();
+        String json = gson.toJson(newSession);
+        editor.putString("currentSession", json);
+        editor.commit();
     }
 }

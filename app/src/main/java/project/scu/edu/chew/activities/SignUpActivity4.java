@@ -1,6 +1,7 @@
 package project.scu.edu.chew.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -11,9 +12,11 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.google.gson.Gson;
 
 import project.scu.edu.chew.R;
 import project.scu.edu.chew.database.User;
+import project.scu.edu.chew.models.UserSession;
 
 // Sign up Screen - Activity to create a new account with Gobble
 public class SignUpActivity4 extends AppCompatActivity {
@@ -114,8 +117,10 @@ public class SignUpActivity4 extends AppCompatActivity {
             public void onSuccess() {
                 errorMsg.setText("");
                 User newUser = new User(name, email, password);
-                Firebase userRef = mFirebaseRef.child("users").child(newUser.getId() + "");
+                Firebase userRef = mFirebaseRef.child("users").child(name);
                 userRef.setValue(newUser);
+
+                startUserSession(newUser);
 
                 Intent intent = new Intent(SignUpActivity4.this, HCListActivity5.class);
                 if(intent != null)
@@ -139,6 +144,20 @@ public class SignUpActivity4 extends AppCompatActivity {
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
+    }
+
+    public void startUserSession(User user) {
+
+        User currentUser = user;
+
+        SharedPreferences gobblePreferences = getSharedPreferences("GOBBLE_PREFS", MODE_PRIVATE);
+        SharedPreferences.Editor editor = gobblePreferences.edit();
+        UserSession newSession = new UserSession();
+        newSession.setUser(currentUser);
+        Gson gson = new Gson();
+        String json = gson.toJson(newSession);
+        editor.putString("currentSession", json);
+        editor.commit();
     }
 
 }

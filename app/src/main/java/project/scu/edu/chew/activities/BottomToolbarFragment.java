@@ -1,6 +1,7 @@
 package project.scu.edu.chew.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import project.scu.edu.chew.R;
+import project.scu.edu.chew.models.UserSession;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,11 +41,23 @@ public class BottomToolbarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bottom_toolbar, container, false);
 
         badgeButton = (TextView) view.findViewById(R.id.badgeButton);
-        badgeButton.setVisibility(view.INVISIBLE);
-
-        if(!badgeButton.getText().equals("0")) {
-            badgeButton.setVisibility(view.VISIBLE);
+        SharedPreferences gobblePreferences = getActivity().getSharedPreferences("GOBBLE_PREFS", getActivity().MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = gobblePreferences.getString("currentSession", "");
+        UserSession userSession = gson.fromJson(json, UserSession.class);
+        badgeButton.setText(userSession.getBadgeCount() + "");
+        if(userSession.getBadgeCount() > 0) {
+            badgeButton.setVisibility(View.VISIBLE);
+        } else {
+            badgeButton.setVisibility(View.INVISIBLE);
         }
+
+
+//        badgeButton.setVisibility(view.INVISIBLE);
+//
+//        if(!badgeButton.getText().equals("0")) {
+//            badgeButton.setVisibility(view.VISIBLE);
+//        }
 
         searchButton = (Button) view.findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -93,4 +109,18 @@ public class BottomToolbarFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences gobblePreferences = getActivity().getSharedPreferences("GOBBLE_PREFS", getActivity().MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = gobblePreferences.getString("currentSession", "");
+        UserSession userSession = gson.fromJson(json, UserSession.class);
+        badgeButton.setText(userSession.getBadgeCount() + "");
+        if(userSession.getBadgeCount() > 0) {
+            badgeButton.setVisibility(View.VISIBLE);
+        } else {
+            badgeButton.setVisibility(View.INVISIBLE);
+        }
+    }
 }

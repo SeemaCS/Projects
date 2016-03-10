@@ -1,6 +1,7 @@
 package project.scu.edu.chew.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +11,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import project.scu.edu.chew.R;
+import project.scu.edu.chew.models.CartItem;
 import project.scu.edu.chew.models.FoodItem;
+import project.scu.edu.chew.models.UserSession;
 
 // Display menu item details.
 public class FoodItemDetailsActivity9 extends AppCompatActivity {
@@ -73,18 +78,47 @@ public class FoodItemDetailsActivity9 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                badgeButton = (TextView) findViewById(R.id.badgeButton);
-                badgeButton.setVisibility(View.VISIBLE);
-                badgeCount = Integer.parseInt((String) badgeButton.getText());
-                int quantityCount = Integer.parseInt((String) quantity.getText());
-                badgeCount = badgeCount + quantityCount;
-                badgeButton.setText(badgeCount+"");
+//                badgeButton = (TextView) findViewById(R.id.badgeButton);
+//                badgeButton.setVisibility(View.VISIBLE);
+//                badgeCount = Integer.parseInt((String) badgeButton.getText());
+//                int quantityCount = Integer.parseInt((String) quantity.getText());
+//                badgeCount = badgeCount + quantityCount;
+//                badgeButton.setText(badgeCount+"");
 
 
 
 
                 ///NEw logic
-                
+                CartItem cartItem = new CartItem();
+                cartItem.setName(foodItem.getName());
+                cartItem.setQuantity(Integer.parseInt(quantity.getText().toString()));
+                cartItem.setPrice(cartItem.getQuantity() * foodItem.getPrice());
+
+                SharedPreferences gobblePreferences = getSharedPreferences("GOBBLE_PREFS", MODE_PRIVATE);
+                Gson gson = new Gson();
+                String json = gobblePreferences.getString("currentSession", "");
+                UserSession userSession = gson.fromJson(json, UserSession.class);
+                userSession.getCartItems().add(cartItem);
+
+                userSession.setBadgeCount(userSession.getBadgeCount() + cartItem.getQuantity());
+                badgeButton = (TextView) findViewById(R.id.badgeButton);
+                badgeButton.setText(userSession.getBadgeCount() + "");
+                if(userSession.getBadgeCount() > 0) {
+                    badgeButton.setVisibility(View.VISIBLE);
+                } else {
+                    badgeButton.setVisibility(View.INVISIBLE);
+                }
+
+                double totalValue = userSession.getTotalValueInCart() + (cartItem.getPrice() * cartItem.getQuantity());
+                System.out.println("Setting total in cart:" + totalValue);
+                userSession.setTotalValueInCart(totalValue);
+
+                SharedPreferences.Editor editor = gobblePreferences.edit();
+                String writeJson = gson.toJson(userSession);
+                editor.putString("currentSession", writeJson);
+                editor.commit();
+
+
 
             }
         });

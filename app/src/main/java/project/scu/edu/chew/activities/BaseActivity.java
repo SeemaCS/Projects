@@ -1,5 +1,7 @@
 package project.scu.edu.chew.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,7 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
+
 import project.scu.edu.chew.R;
+import project.scu.edu.chew.models.UserSession;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -39,6 +44,11 @@ public class BaseActivity extends AppCompatActivity {
             mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    System.out.println("Position: " + position);
+
+                    if(position == 4) {
+                        signOut();
+                    }
                     //Toast.makeText(HCListActivity5.this, "", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -51,6 +61,22 @@ public class BaseActivity extends AppCompatActivity {
             mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemsArray);
             mDrawerList.setAdapter(mAdapter);
         }
+
+
+    public void signOut() {
+        SharedPreferences gobblePreferences = getSharedPreferences("GOBBLE_PREFS", MODE_PRIVATE);
+        SharedPreferences.Editor editor = gobblePreferences.edit();
+        UserSession newSession = new UserSession();
+        Gson gson = new Gson();
+        String json = gson.toJson(newSession);
+        editor.putString("currentSession", json);
+        editor.commit();
+
+        Intent intent = new Intent(BaseActivity.this, LoginOptionsActivity2.class);
+        if(intent != null)
+            startActivity(intent);
+        finish();
+    }
 
     }
 
