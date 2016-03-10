@@ -15,6 +15,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -59,7 +60,9 @@ public class KitchenAddressMapsActivity extends AppCompatActivity implements OnM
 
         LatLng myLatLng = getAddressFromLocation1(homeCook.getAddress(), getApplicationContext());
 
-        map.addMarker(new MarkerOptions().position(myLatLng).title(homeCook.getName())).showInfoWindow();
+        Marker marker = map.addMarker(new MarkerOptions().position(myLatLng).title(homeCook.getName()));
+        marker.showInfoWindow();
+        marker.setTitle(homeCook.getAddress());
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(myLatLng, 10));
     }
 
