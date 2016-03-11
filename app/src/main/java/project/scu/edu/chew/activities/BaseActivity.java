@@ -46,6 +46,12 @@ public class BaseActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     System.out.println("Position: " + position);
 
+                    if(position == 0) {
+                        Intent intent = new Intent(BaseActivity.this, HCListActivity5.class);
+                        if (intent != null)
+                            startActivity(intent);
+                    }
+
                     if(position == 4) {
                         signOut();
                     }
