@@ -136,8 +136,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_tool_bar_base">ToolBarBaseActivity</string>
-    <string name="title_activity_review_details">ReviewDetailsActivity</string>
+    <string name="title_activity_review_details">Your Review</string>
     <string name="title_activity_kitchen_address_maps">Map</string>
 
     <string name="google_app_id">466881259301</string>
+
+    <string name="about_text">Gobble is an awesome app that has registered home cooks. For a user that is craving home cooked food can visit our app, choose to either create and account and login or browse as a guest. The app will provide a list of home cooks that serve variety of cuisines. A user can browse through home cooks and can place an order from the home cooks menu.</string>
+    <string name="title_activity_help">Help</string>
+
+
 </resources>

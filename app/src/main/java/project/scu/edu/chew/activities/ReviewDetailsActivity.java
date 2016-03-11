@@ -28,7 +28,7 @@ public class ReviewDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().hide();
+
 
 
 
