@@ -1,0 +1,79 @@
+<!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:orientation = "vertical">-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<EditText-->
+            <!--android:layout_width="302dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/TFadress"-->
+            <!--/>-->
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Search"-->
+            <!--android:id="@+id/search"-->
+            <!--android:layout_gravity="right" />-->
+
+
+    <!--</LinearLayout>
+    </LinearLayout>-->
+
+
+    <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:map="http://schemas.android.com/apk/res-auto"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:id="@+id/map"-->
+        <!--android:name="com.google.android.gms.maps.SupportMapFragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="471dp"-->
+        <!--tools:context="project.scu.edu.chew.activities.KitchenAddressMapsActivity" />-->
+
+    <!--<fragment-->
+        <!--android:id="@+id/map"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--class="com.google.android.gms.maps.SupportMapFragment"-->
+         <!--/>-->
+
+<!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--android:id="@+id/map"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--class="com.google.android.gms.maps.SupportMapFragment" />-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/map_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/map_container2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:orientation="vertical">
+
+        <fragment
+            android:id="@+id/streetviewpanorama"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            class="com.google.android.gms.maps.SupportStreetViewPanoramaFragment" />
+
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            class="com.google.android.gms.maps.SupportMapFragment"
+             />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,60 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="project.scu.edu.chew.activities.BottomToolbarFragment">
+
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/bottomToolbar"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="55dp"
+            android:id="@+id/homeButton"
+            android:background="@drawable/home_icon"/>
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/searchButton"
+            android:layout_marginRight="55dp"
+            android:background="@drawable/search_icon"/>
+
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/user"
+            android:layout_marginRight="55dp"
+            android:background="@drawable/user_icon"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/cartButton"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/cart_icon"/>
+        <TextView
+            style="?@android:attr/buttonStyleSmall"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:textColor="@color/white"
+            android:id="@+id/badgeButton"
+            android:text="0"
+            android:background="@android:color/holo_green_dark"
+            android:layout_alignTop="@+id/cartButton"
+            android:layout_alignRight="@+id/cartButton"
+            android:layout_alignEnd="@+id/cartButton"
+            />
+        </RelativeLayout>
+    </Toolbar>
+
+</FrameLayout>

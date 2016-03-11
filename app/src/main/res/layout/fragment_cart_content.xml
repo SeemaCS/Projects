@@ -1,0 +1,72 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="project.scu.edu.chew.activities.CartContentFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cart_list_view"
+                android:layout_gravity="center_horizontal"
+                android:dividerHeight="2dp"
+                />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_marginBottom="50dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:id="@+id/noItemMsg"
+            android:text="No items in the cart!!"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/ctotal"
+        android:text="Total: $50"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/thin_border_set"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/orderButton"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="130dp"
+        android:background="@color/brown"
+        android:textColor="@color/yellow"
+        android:layout_marginBottom="15dp"
+        android:text="Place Order"/>
+    </LinearLayout>
+
+</FrameLayout>
