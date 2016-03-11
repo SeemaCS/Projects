@@ -15,6 +15,7 @@ import com.google.android.gms.maps.OnStreetViewPanoramaReadyCallback;
 import com.google.android.gms.maps.StreetViewPanorama;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.SupportStreetViewPanoramaFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -84,12 +85,16 @@ public class KitchenAddressMapsActivity extends AppCompatActivity implements Goo
                 map.setOnMarkerDragListener(KitchenAddressMapsActivity.this);
                 // Creates a draggable marker. Long press to drag.
                 mMarker = map.addMarker(new MarkerOptions()
-                        .position(markerPosition)
+                        .position(markerPosition).draggable(true).title(homeCook.getName())
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.chef_marker)));
+                mMarker.showInfoWindow();
+                mMarker.setTitle(homeCook.getAddress());
 
-                        .draggable(true));
+
+
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(homecookLatlng, 10));
 
-                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.pegman))
+
             }
         });
     }
@@ -128,7 +133,9 @@ public class KitchenAddressMapsActivity extends AppCompatActivity implements Goo
                 Geocoder geocoder = new Geocoder(context, Locale.getDefault());
                 String result = null;
                 try {
+                    System.out.println("Gecoder working for:" + locationAddress);
                     List<Address> addressList = geocoder.getFromLocationName(locationAddress, 1);
+                    System.out.println("Done getFromLocation:" + addressList);
                     if (addressList != null && addressList.size() > 0) {
                         Address address = addressList.get(0);
                         StringBuilder sb = new StringBuilder();

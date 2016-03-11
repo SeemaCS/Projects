@@ -50,7 +50,7 @@ public class LoadData {
         homeCook = new HomeCook("Swathi’s Kitchen", "408-984-9922", "paratha.jpg");
         homeCook.setLargeImage("swathi_kitchen");
         homeCook.setCuisine("Indian");
-        homeCook.setAddress("1032 E El Camino Real, Sunnyvale, CA 94087");
+        homeCook.setAddress("500 El Camino Real, Santa Clara, CA 95050");
         homeCook.setTime("9:00 am to 10:00 pm");
         homeCook.setRating(4.5f);
 
@@ -170,7 +170,7 @@ public class LoadData {
         homeCook = new HomeCook("Wang's Kitchen", "408-433-9626", "food1.jpg");
         homeCook.setLargeImage("wangs_kitchen");
         homeCook.setCuisine("Chinese");
-        homeCook.setAddress("438 Barber Lane, Milpitas, CA 95035");
+        homeCook.setAddress("500 El Camino Real, Santa Clara, CA 95050");
         homeCook.setTime("11:30 am to 10:00 pm");
         homeCook.setRating(3.0f);
 
