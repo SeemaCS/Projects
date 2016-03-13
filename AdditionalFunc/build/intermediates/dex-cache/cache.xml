@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Seema\SCU\GITHUB\AdditionalFunc\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="C:\Seema\SCU\GITHUB\AdditionalFunc\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.1.1_0e68de287977e6a85fb8d98f89d4ba7065b9929c.jar" />
+    </item>
+    <item
+        jar="C:\Seema\SCU\GITHUB\AdditionalFunc\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="C:\Seema\SCU\GITHUB\AdditionalFunc\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1_585b1de866f0b78d450d0a2e84aa9039cb74a3e1.jar" />
+    </item>
+    <item
+        jar="C:\Seema\SCU\GITHUB\AdditionalFunc\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Seema\SCU\GITHUB\AdditionalFunc\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.1.1_c49240d421fcb8dad1bc223365ba11faff4bf465.jar" />
+    </item>
+    <item
+        jar="C:\Seema\SCU\GITHUB\AdditionalFunc\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="C:\Seema\SCU\GITHUB\AdditionalFunc\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.1.1_04015bb60c71243282f6e3c932a5e8d4b9a3a12c.jar" />
+    </item>
+    <item
+        jar="C:\Seema\SCU\GITHUB\AdditionalFunc\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="C:\Seema\SCU\GITHUB\AdditionalFunc\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.1.1_389faa03715ea17e69b1eb858e7d65fae786cb46.jar" />
+    </item>
+    <item
+        jar="C:\Users\ssardesai\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\Seema\SCU\GITHUB\AdditionalFunc\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1_71b3b3147bcb52b54cf143deb26d3e3722fd920a.jar" />
+    </item>
+
+</items>
