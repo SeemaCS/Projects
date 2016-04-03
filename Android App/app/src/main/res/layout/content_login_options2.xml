@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@drawable/whitewood"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="project.scu.edu.chew.activities.LoginOptionsActivity2"
+    tools:showIn="@layout/activity_login_options2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/skipButton"
+            android:backgroundTint="@color/brown"
+            android:textColor="@color/yellow"
+            android:text="Skip" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/gobble_logo"
+            android:background="@android:color/transparent"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:id="@+id/loginButton"
+            android:backgroundTint="@color/brown"
+            android:textColor="@color/yellow"
+            android:text="Login" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/signUpButton"
+            android:backgroundTint="@color/brown"
+            android:textColor="@color/yellow"
+            android:text="Sign up" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        >
+
+        <!--<Button-->
+            <!--android:layout_width="45dp"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_marginRight="40dp"-->
+            <!--android:background="@drawable/facebook"-->
+            <!--android:id="@+id/fbButton"-->
+            <!--/>-->
+
+        <!--<Button-->
+            <!--android:layout_width="43dp"-->
+            <!--android:layout_height="43dp"-->
+            <!--android:layout_marginRight="40dp"-->
+            <!--android:background="@drawable/insta"-->
+            <!--android:id="@+id/instaButton"-->
+            <!--/>-->
+
+        <!--<Button-->
+            <!--android:layout_width="45dp"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_marginRight="40dp"-->
+            <!--android:background="@drawable/googleplus"-->
+            <!--android:id="@+id/gButton"-->
+            <!--/>-->
+
+        <!--<Button-->
+            <!--android:layout_width="45dp"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:background="@drawable/twitter"-->
+            <!--android:id="@+id/twitterButton"-->
+            <!--/>-->
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/fblogin_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

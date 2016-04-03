@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@drawable/whitewood"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="project.scu.edu.chew.activities.FoodItemDetailsActivity9"
+    tools:showIn="@layout/activity_food_item_details9">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/shortDesc">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/foodPic"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:id="@+id/details">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/brown"
+                android:id="@+id/fname"
+                android:text="Pasta"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/brown"
+                android:layout_marginTop="10dp"
+                android:id="@+id/fServe"
+                android:text="Serves 2-3"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/brown"
+                android:id="@+id/fReadyTime"
+                android:text="Ready in 30 mins"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/brown"
+                android:id="@+id/fPrice"
+                android:text="Price: $"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/brown"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/minus"
+                    android:background="@drawable/minus_icon" />
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:paddingLeft="10dp"
+                    android:id="@+id/quantity"
+                    android:text="1"/>
+
+                <Button
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/plus"
+                    android:background="@drawable/add_icon"/>
+
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/addToCart"
+                android:textColor="@color/yellow"
+                android:backgroundTint="@color/brown"
+                android:text="Add to Cart"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:layout_below="@+id/shortDesc"
+        android:layout_marginBottom="3dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:id="@+id/detailDesc">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textColor="@color/brown"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/fDescription"
+                android:text="Pasta (Italian pronunciation: [ˈpasta]) is a staple food of traditional Italian cuisine, with the first reference dating to 1154 in Sicily.It is also commonly used to refer to the variety of pasta dishes. Typically, pasta is a noodle made from an unleavened dough of a durum wheat flour mixed with water or eggs and formed into sheets or various shapes, then cooked by boiling or baking. It can also be made with flour from other cereals or grains.[citation needed] Pastas may be divided into two broad categories, dried (pasta secca) and fresh (pasta fresca)."/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Nutrition"
+                android:textColor="@color/brown"
+                android:textStyle="bold"/>
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                >
+                <TableRow>
+                    <TextView
+                        android:text="Calories"
+                        android:background="@drawable/cell_shape"
+                        android:padding="7dip"/>
+                    <TextView
+                        android:text="200"
+                        android:padding="7dip"
+                        android:id="@+id/fCalories"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="right"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Carbohydrates"
+                        android:background="@drawable/cell_shape"
+                        android:padding="7dip"/>
+                    <TextView
+                        android:text="30g"
+                        android:background="@drawable/cell_shape"
+                        android:padding="7dip"
+                        android:id="@+id/fCarbs"
+                        android:gravity="right"/>
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="Protein"
+                        android:background="@drawable/cell_shape"
+                        android:padding="7dip"/>
+                    <TextView
+                        android:text="4g"
+                        android:background="@drawable/cell_shape"
+                        android:padding="7dip"
+                        android:id="@+id/fProtein"
+                        android:gravity="right"/>
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="Fat"
+                        android:background="@drawable/cell_shape"
+                        android:padding="7dip"/>
+                    <TextView
+                        android:text="10g"
+                        android:background="@drawable/cell_shape"
+                        android:padding="7dip"
+                        android:id="@+id/fFat"
+                        android:gravity="right"/>
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="Fiber"
+                        android:background="@drawable/cell_shape"
+                        android:padding="7dip"/>
+                    <TextView
+                        android:text="5g"
+                        android:background="@drawable/cell_shape"
+                        android:padding="7dip"
+                        android:id="@+id/fFiber"
+                        android:gravity="right"/>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="15dp"
+        android:name="project.scu.edu.chew.activities.BottomToolbarFragment"
+        android:id="@+id/bottomToolbar">
+    </fragment>
+
+    <!--<Toolbar-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:id="@+id/bottomToolbar"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!-->-->
+
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginRight="55dp"-->
+            <!--android:background="@drawable/home_icon"/>-->
+
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginRight="55dp"-->
+            <!--android:background="@drawable/search_icon"/>-->
+
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginRight="55dp"-->
+            <!--android:background="@drawable/user_icon"/>-->
+
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:id="@+id/cartButton"-->
+            <!--android:background="@drawable/shopping_cart_icon"/>-->
+    <!--</Toolbar>-->
+
+
+
+</RelativeLayout>

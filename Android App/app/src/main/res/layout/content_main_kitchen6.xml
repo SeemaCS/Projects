@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_kitchen1"
+    android:id="@+id/backgroundMain"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="project.scu.edu.chew.activities.MainKitchenActivity6"
+    tools:showIn="@layout/activity_main_kitchen6">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:id="@+id/kitchenLayout"
+        android:background="@drawable/whitewood"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="true"
+            android:clickable="false"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="160dp"
+                android:textColor="@color/brown"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:duplicateParentState="true"
+                android:clickable="false"
+                android:id="@+id/mainName"
+                android:text="Maria's Kitchen"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:id="@+id/distanceMiles"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:duplicateParentState="true"
+                android:text="N/A"/>
+
+        </RelativeLayout>
+
+
+        <RatingBar
+            android:id="@+id/ratingBar1"
+            style="@style/foodRatingBarStandard"
+            android:clickable="false"
+            android:layout_marginLeft="15dp"
+            android:rating="3.5"
+            android:duplicateParentState="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true">
+
+        </RatingBar>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:id="@+id/mainCuisine"
+            android:layout_marginLeft="15dp"
+            android:duplicateParentState="true"
+            android:text="Italian" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/timings"
+            android:duplicateParentState="true"
+            android:clickable="false"
+            android:text="8:00 AM - 9:00 PM"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

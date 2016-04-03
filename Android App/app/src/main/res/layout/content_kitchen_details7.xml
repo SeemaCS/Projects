@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/whitewood"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="project.scu.edu.chew.activities.KitchenDetailsActivity7"
+    tools:showIn="@layout/activity_kitchen_details7">
+
+    <!-- Kitchen Details -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:id="@+id/kitchenDetailsLayout"
+        android:background="@drawable/thin_border_set"
+        android:layout_alignParentTop="true">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="160dp"
+                android:textColor="@color/brown"
+                android:textStyle="bold"
+                android:id="@+id/iname"
+                android:textSize="20sp"
+                android:layout_marginLeft="15dp"
+                android:text="Maria's Kitchen"/>
+
+            <TextView
+                android:id="@+id/kDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:text="N/A"/>
+
+        </RelativeLayout>
+
+
+        <RatingBar
+            android:id="@+id/irating"
+            style="@style/foodRatingBarStandard"
+            android:layout_marginLeft="15dp"
+            android:rating="3.5"
+            android:isIndicator="true"
+            android:clickable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </RatingBar>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/icuisine"
+            android:text="Italian" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/itimings"
+            android:text="8:00 AM - 9:00 PM"/>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:fillViewport="true"
+        android:layout_below="@+id/kitchenDetailsLayout">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout android:focusable="true" android:focusableInTouchMode="true" android:layout_width="0px" android:layout_height="0px" > <requestFocus /> </LinearLayout>
+
+
+            <!-- User Photos -->
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/horizontalScroll"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:id="@+id/userPhotosLayout"
+                    android:background="@drawable/thin_border_set"
+                    android:orientation="horizontal">
+
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Address -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/horizontalScroll"
+                android:id="@+id/addressLayout"
+                android:background="@drawable/thin_border_set"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="7dp"
+                        android:layout_marginLeft="7dp"
+                        android:background="@drawable/address_icon"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text= "Address"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/iaddress"
+                                android:text= "500 E El Camino Real, Santa Clara, CA 95050"/>
+                        </LinearLayout>
+                        <Button
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/add_map"
+                            android:id="@+id/addressMap"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Phone -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/phoneLayout"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/thin_border_set"
+                android:layout_below="@+id/addressLayout"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:duplicateParentState="true"
+                    android:clickable="false"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:duplicateParentState="true"
+                        android:clickable="false"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:background="@drawable/call_icon"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:duplicateParentState="true"
+                        android:clickable="false"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:duplicateParentState="true"
+                            android:clickable="false"
+                            android:text= "Call"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:duplicateParentState="true"
+                            android:clickable="false"
+                            android:id="@+id/iphone"
+                            android:layout_height="wrap_content"
+                            android:text= "888-888-8888"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Menu -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/phoneLayout"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/thin_border_set"
+                android:orientation="horizontal"
+                android:id="@+id/menuLayout">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:duplicateParentState="true"
+                    android:clickable="false"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:duplicateParentState="true"
+                        android:id="@+id/imageMenu"
+                        android:clickable="false"
+                        android:background="@drawable/restaurant_menu_icon"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="37dp"
+                        android:duplicateParentState="true"
+                        android:clickable="false"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:duplicateParentState="true"
+                            android:clickable="false"
+                            android:text= "Explore the Menu"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/arrows"
+                        />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <!-- Rating & Reviews -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/menuLayout"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                android:orientation="horizontal"
+                android:id="@+id/reviewsLayout">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="7dp"
+                        android:background="@drawable/rating_icon"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text= "Reviews &amp; Ratings"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/reviewHint"
+                            android:layout_marginTop="7dp"
+                            android:text="Start your review here"
+                            android:textStyle="italic"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp">
+                            <ListView
+                                android:layout_width="match_parent"
+                                android:layout_height="1000dp"
+                                android:textSize="12sp"
+                                android:id="@+id/ratingsList">
+                            </ListView>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="525dp"
+        android:layout_marginLeft="15dp"
+        android:name="project.scu.edu.chew.activities.BottomToolbarFragment"
+        android:id="@+id/bottomToolbar">
+    </fragment>
+
+    <!-- Bottom Toolbar -->
+    <!--<Toolbar-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:id="@+id/bottomToolbar"-->
+    <!--android:background="@android:color/transparent"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!-->-->
+
+    <!--<Button-->
+    <!--android:layout_width="30dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:layout_marginRight="65dp"-->
+    <!--android:background="@drawable/home_icon"/>-->
+
+    <!--<Button-->
+    <!--android:layout_width="30dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:layout_marginRight="65dp"-->
+    <!--android:background="@drawable/search_icon"/>-->
+
+    <!--<Button-->
+    <!--android:layout_width="30dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:layout_marginRight="65dp"-->
+    <!--android:background="@drawable/user_icon"/>-->
+
+    <!--<Button-->
+    <!--android:layout_width="30dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:background="@drawable/shopping_cart_icon"/>-->
+    <!--</Toolbar>-->
+
+
+</RelativeLayout>
