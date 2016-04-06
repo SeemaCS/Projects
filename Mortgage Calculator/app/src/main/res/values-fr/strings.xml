@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"Calculateur d'hypothèque"</string>
+    <string name="amnt">Mmontant</string>
+    <string name="interestR">"Taux d'intérêt"</string>
+    <string name="tax">"L'impôt et l'assurance"</string>
+    <string name="monthlyPayment">"Paiement mensuel"</string>
+    <string name="calc">Calculer</string>
+    <string name="noOfYears">"Prêt à terme - Nbr ans"</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="popupMsg">"S'il vous plaît Entrez montant valide-2.5"</string>
+
+</resources>

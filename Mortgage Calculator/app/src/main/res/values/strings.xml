@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Mortgage Calculator</string>
+    <string name="amnt">Amount Borrowed</string>
+    <string name="interestR">Interest Rate</string>
+    <string name="tax">Tax and Insurance</string>
+    <string name="monthlyPayment">Monthly Payment</string>
+    <string name="calc">Calculate</string>
+    <string name="noOfYears">Loan Term - No.of Years</string>
+    <string name="action_settings">Settings</string>
+    <string name="popupMsg">Please Enter Valid Amount</string>
+</resources>

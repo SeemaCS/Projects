@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.ssardesai.homework1.MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/amnt"
+        android:id="@+id/amnt"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="40dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/amount"
+        android:hint="0.00"
+        android:inputType="numberSigned|numberDecimal"
+        android:layout_marginLeft="25dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/interestR"
+        android:id="@+id/interestR"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        />
+
+    <SeekBar
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="50"
+        android:id="@+id/interest"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:layout_marginLeft="25dp"
+        android:id="@+id/interestRateProgress" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/noOfYears"
+        android:id="@+id/noOfYears"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup">
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7"
+        android:checked="true"
+        android:id="@+id/yrs"
+        android:layout_marginLeft="25dp"
+         />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="15"
+        android:id="@+id/yrs2"
+        android:layout_marginLeft="25dp"/>
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30"
+        android:id="@+id/yrs3"
+        android:layout_marginLeft="25dp"/>
+    </RadioGroup>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tax"
+        android:id="@+id/tax"
+        android:checked="false"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/monthlyPayment"
+        android:id="@+id/monthlyPayment"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/monthlypay"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calc"
+        android:id="@+id/calc"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>
